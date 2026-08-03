@@ -113,3 +113,6 @@ if(navigator.geolocation){
     });
 
 }
+const script = document.createElement("script");
+script.src = "notification.js";
+document.body.appendChild(script);
