@@ -21,6 +21,22 @@ header{
     text-align:center;
 }
 
+.search-box{
+    padding:15px;
+}
+
+.search-box input{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+    box-sizing:border-box;
+    outline:none;
+    background:white;
+    box-shadow:0 2px 5px rgba(0,0,0,.1);
+}
+
 #surah-list{
     padding:15px;
 }
@@ -56,6 +72,14 @@ header{
 <h2>📖 Holy Quran</h2>
 <p>Select a Surah</p>
 </header>
+
+<div class="search-box">
+    <input
+        type="text"
+        id="search"
+        placeholder="🔍 Search Surah..."
+        onkeyup="searchSurah()">
+</div>
 
 <div id="surah-list">
 Loading Surahs...
