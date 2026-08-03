@@ -1,42 +1,42 @@
 [
   {
     "name": "Mishary Rashid Alafasy",
-    "id": "ar.alafasy"
-  },
-  {
-    "name": "Abdul Basit Abdul Samad",
-    "id": "ar.abdulbasitmurattal"
-  },
-  {
-    "name": "Mahmoud Khalil Al-Husary",
-    "id": "ar.husary"
-  },
-  {
-    "name": "Muhammad Siddiq Al-Minshawi",
-    "id": "ar.minshawi"
-  },
-  {
-    "name": "Saad Al-Ghamdi",
-    "id": "ar.saadalghamdi"
-  },
-  {
-    "name": "Ahmed Al-Ajmi",
-    "id": "ar.ahmedajamy"
-  },
-  {
-    "name": "Abdul Rahman Al-Sudais",
-    "id": "ar.abdurrahmaansudais"
-  },
-  {
-    "name": "Saud Al-Shuraim",
-    "id": "ar.saoodshuraym"
+    "folder": "Alafasy_128kbps"
   },
   {
     "name": "Maher Al-Muaiqly",
-    "id": "ar.mahermuaiqly"
+    "folder": "Maher_AlMuaiqly_128kbps"
   },
   {
     "name": "Yasser Al-Dossary",
-    "id": "ar.yasseraldossary"
+    "folder": "Yasser_Ad-Dussary_128kbps"
+  },
+  {
+    "name": "Abdul Rahman Al-Sudais",
+    "folder": "Abdurrahmaan_As-Sudais_192kbps"
+  },
+  {
+    "name": "Saad Al-Ghamdi",
+    "folder": "Saad_Al-Ghamdi_128kbps"
+  },
+  {
+    "name": "Abdul Basit Murattal",
+    "folder": "Abdul_Basit_Murattal_192kbps"
+  },
+  {
+    "name": "Mahmoud Khalil Al-Husary",
+    "folder": "Husary_128kbps"
+  },
+  {
+    "name": "Muhammad Siddiq Al-Minshawi",
+    "folder": "Minshawy_Murattal_128kbps"
+  },
+  {
+    "name": "Ahmed Al-Ajmi",
+    "folder": "Ahmed_ibn_Ali_al-Ajamy_128kbps"
+  },
+  {
+    "name": "Saud Al-Shuraim",
+    "folder": "Saood_ash-Shuraym_128kbps"
   }
 ]
