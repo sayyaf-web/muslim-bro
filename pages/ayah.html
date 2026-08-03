@@ -1,1 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Ayah - Muslim Bro</title>
 
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>✨ Daily Ayah</h1>
+
+    <div class="card">
+
+        <h2>Today's Ayah</h2>
+
+        <p id="ayahText">
+            Indeed, with hardship comes ease.
+        </p>
+
+        <small>Qur'an 94:6</small>
+
+        <br><br>
+
+        <button onclick="copyAyah()">📋 Copy</button>
+
+        <button onclick="shareAyah()">📤 Share</button>
+
+        <button onclick="location.href='../index.html'">🏠 Home</button>
+
+    </div>
+
+</div>
+
+<script>
+function copyAyah() {
+    navigator.clipboard.writeText(
+        document.getElementById("ayahText").innerText + "\n\nQur'an 94:6"
+    );
+    alert("Ayah copied!");
+}
+
+function shareAyah() {
+    if (navigator.share) {
+        navigator.share({
+            title: "Daily Ayah",
+            text: document.getElementById("ayahText").innerText + "\n\nQur'an 94:6"
+        });
+    } else {
+        alert("Sharing is not supported on this device.");
+    }
+}
+</script>
+
+</body>
+</html>
