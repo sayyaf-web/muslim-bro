@@ -1,22 +1,115 @@
+// ===============================
 // Daily Ayah
+// ===============================
 async function loadAyah() {
     try {
-        const response = await fetch("https://api.alquran.cloud/v1/ayah/2:255/en.asad");
+        const response = await fetch("https://api.alquran.cloud/v1/ayah/random/en.asad");
         const data = await response.json();
 
-        document.getElementById("ayah").innerHTML =
-            `"${data.data.text}"<br><small>${data.data.surah.englishName} (${data.data.numberInSurah})</small>`;
-    } catch (error) {
-        document.getElementById("ayah").textContent =
-            "Unable to load Ayah.";
+        const ayah = document.getElementById("ayah");
+        if (ayah) {
+            ayah.innerHTML =
+                `"${data.data.text}"<br><small>${data.data.surah.englishName} ${data.data.numberInSurah}</small>`;
+        }
+    } catch (e) {
+        const ayah = document.getElementById("ayah");
+        if (ayah) ayah.textContent = "Unable to load today's Ayah.";
     }
 }
 
+// ===============================
 // Daily Hadith
-function loadHadith() {
-    document.getElementById("hadith").innerHTML =
-        `"The best among you are those who learn the Qur'an and teach it." <br><small>— Sahih al-Bukhari</small>`;
+// ===============================
+async function loadHadith() {
+    try {
+        const response = await fetch("https://random-hadith-generator.vercel.app/bukhari/");
+        const data = await response.json();
+
+        const hadith = document.getElementById("hadith");
+        if (hadith) {
+            hadith.innerHTML = `"${data.data.hadith_english}"`;
+        }
+    } catch (e) {
+        const hadith = document.getElementById("hadith");
+        if (hadith) hadith.textContent = "Unable to load today's Hadith.";
+    }
 }
 
+// Load cards
 loadAyah();
 loadHadith();
+
+
+// ===============================
+// Prayer Notifications
+// ===============================
+
+if ("Notification" in window) {
+    Notification.requestPermission();
+}
+
+async function startPrayerNotifications(lat, lon) {
+
+    const url =
+`https://api.aladhan.com/v1/timings?latitude=${lat}&longitude=${lon}&method=2`;
+
+    const response = await fetch(url);
+    const data = await response.json();
+
+    const timings = data.data.timings;
+
+    checkPrayer(timings);
+}
+
+function checkPrayer(times){
+
+    setInterval(()=>{
+
+        const now = new Date();
+
+        const current =
+            now.getHours().toString().padStart(2,"0") +
+            ":" +
+            now.getMinutes().toString().padStart(2,"0");
+
+        const prayers = {
+            Fajr:times.Fajr,
+            Dhuhr:times.Dhuhr,
+            Asr:times.Asr,
+            Maghrib:times.Maghrib,
+            Isha:times.Isha
+        };
+
+        for(const prayer in prayers){
+
+            if(current===prayers[prayer]){
+
+                new Notification("🕌 Prayer Time",{
+                    body:`It's time for ${prayer}.`
+                });
+
+            }
+
+        }
+
+    },60000);
+
+}
+
+
+// ===============================
+// Get user location
+// ===============================
+
+if(navigator.geolocation){
+
+    navigator.geolocation.getCurrentPosition(position=>{
+
+        startPrayerNotifications(
+            position.coords.latitude,
+            position.coords.longitude
+        );
+
+    });
+
+}
