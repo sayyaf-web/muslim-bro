@@ -2,14 +2,26 @@
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
         position => {
-            const lat = position.coords.latitude;
-            const lon = position.coords.longitude;
-
-            loadPrayerTimes(lat, lon);
+            loadPrayerTimes(
+                position.coords.latitude,
+                position.coords.longitude
+            );
         },
-        () => {
+        error => {
             document.getElementById("location").textContent =
-                "Location permission denied.";
+                "Location Error: " + error.message;
+            console.log(error);
+        },
+        {
+            enableHighAccuracy: true,
+            timeout: 10000,
+            maximumAge: 0
+        }
+    );
+} else {
+    document.getElementById("location").textContent =
+        "Geolocation is not supported by this browser.";
+}
         }
     );
 } else {
