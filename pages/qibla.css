@@ -1,1 +1,56 @@
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#0f172a;
+    color:white;
+}
 
+.container{
+    max-width:500px;
+    margin:auto;
+    padding:20px;
+    text-align:center;
+}
+
+h1{
+    color:#22c55e;
+}
+
+#location{
+    margin:15px 0;
+    color:#cbd5e1;
+}
+
+.compass-box{
+    width:260px;
+    height:260px;
+    margin:20px auto;
+    background:#1e293b;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    box-shadow:0 4px 12px rgba(0,0,0,.4);
+}
+
+#compass{
+    width:170px;
+    transition:transform .5s ease;
+}
+
+#direction{
+    margin-top:20px;
+    font-size:20px;
+    font-weight:bold;
+    color:#22c55e;
+}
+
+.backBtn{
+    display:inline-block;
+    margin-top:20px;
+    padding:12px 20px;
+    background:#22c55e;
+    color:white;
+    text-decoration:none;
+    border-radius:10px;
+}
