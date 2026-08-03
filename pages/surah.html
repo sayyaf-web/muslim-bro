@@ -1,1 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Surah</title>
 
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f4f4;
+}
+
+header{
+    background:#0d3b2e;
+    color:white;
+    padding:15px;
+    text-align:center;
+}
+
+#content{
+    padding:15px;
+}
+
+.ayah{
+    background:#fff;
+    margin-bottom:12px;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 2px 5px rgba(0,0,0,.1);
+}
+
+.arabic{
+    font-size:30px;
+    text-align:right;
+    line-height:2;
+}
+
+.translation{
+    margin-top:10px;
+    color:#444;
+}
+
+audio{
+    width:100%;
+    margin:15px 0;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h2 id="surah-title">Loading...</h2>
+</header>
+
+<div id="content">
+Loading Surah...
+</div>
+
+<script>
+const params = new URLSearchParams(location.search);
+const id = params.get("id") || 1;
+
+async function loadSurah(){
+
+const response = await fetch(
+`https://api.alquran.cloud/v1/surah/${id}/editions/quran-uthmani,en.asad`
+);
+
+const json = await response.json();
+
+const arabic = json.data[0];
+const english = json.data[1];
+
+document.getElementById("surah-title").innerHTML =
+arabic.englishName + " (" + arabic.name + ")";
+
+let html = `
+<audio controls src="https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/${id}.mp3"></audio>
+`;
+
+for(let i=0;i<arabic.ayahs.length;i++){
+
+html += `
+<div class="ayah">
+<div class="arabic">${arabic.ayahs[i].text}</div>
+<div class="translation">${english.ayahs[i].text}</div>
+</div>
+`;
+
+}
+
+document.getElementById("content").innerHTML = html;
+
+}
+
+loadSurah();
+</script>
+
+</body>
+</html>
