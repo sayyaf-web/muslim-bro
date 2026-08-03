@@ -142,4 +142,31 @@ font-size:30px;
 font-size:28px;
 }
 
+}.container{
+    max-width:500px;
+    margin:auto;
+    padding:20px;
+    text-align:center;
+}
+
+.compass-container{
+    margin:30px auto;
+}
+
+#compass{
+    width:250px;
+    height:250px;
+    transition:transform .4s ease;
+}
+
+#status{
+    font-size:18px;
+    margin-top:10px;
+}
+
+#angle{
+    margin-top:20px;
+    font-size:18px;
+    font-weight:bold;
+    color:#0b7a3b;
 }
