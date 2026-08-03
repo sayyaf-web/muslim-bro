@@ -123,3 +123,21 @@ if ("serviceWorker" in navigator) {
             .catch(err => console.log(err));
     });
 }
+// Continue Reading Card
+const lastSurah = localStorage.getItem("lastSurah");
+const lastSurahName = localStorage.getItem("lastSurahName");
+
+if (lastSurah && lastSurahName) {
+
+    const card = document.getElementById("continueCard");
+    const text = document.getElementById("continueText");
+
+    if (card && text) {
+        card.style.display = "block";
+        text.textContent = `${lastSurah}. ${lastSurahName}`;
+
+        card.onclick = () => {
+            location.href = `pages/surah.html?id=${lastSurah}`;
+        };
+    }
+}
