@@ -3,22 +3,24 @@
   "short_name": "MuslimBro",
   "description": "Your complete Islamic companion with Prayer Times, Quran, Duas, Qibla, Tasbih, Hadith, Islamic Articles, Hijri Calendar and more.",
   "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#0d3b2e",
   "theme_color": "#0d3b2e",
   "orientation": "portrait",
   "lang": "en",
-  "scope": "./",
   "icons": [
     {
-      "src": "icons/icon-192.png",
+      "src": "icon-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-      "src": "icons/icon-512.png",
+      "src": "icon-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
