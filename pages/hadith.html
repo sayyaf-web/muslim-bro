@@ -1,1 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Hadith - Muslim Bro</title>
 
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🌙 Daily Hadith</h1>
+
+    <div class="card">
+
+        <h2>Today's Hadith</h2>
+
+        <p id="hadithText">
+        The best among you are those who learn the Qur'an and teach it.
+        </p>
+
+        <small>— Sahih al-Bukhari</small>
+
+        <br><br>
+
+        <button onclick="copyHadith()">📋 Copy</button>
+
+        <button onclick="shareHadith()">📤 Share</button>
+
+        <button onclick="location.href='../index.html'">🏠 Home</button>
+
+    </div>
+
+</div>
+
+<script>
+function copyHadith() {
+    navigator.clipboard.writeText(
+        document.getElementById("hadithText").innerText
+    );
+    alert("Hadith copied!");
+}
+
+function shareHadith() {
+    if (navigator.share) {
+        navigator.share({
+            title: "Daily Hadith",
+            text: document.getElementById("hadithText").innerText
+        });
+    } else {
+        alert("Sharing is not supported on this device.");
+    }
+}
+</script>
+
+</body>
+</html>
