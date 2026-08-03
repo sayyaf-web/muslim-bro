@@ -1,1 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Nearby Mosques</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f4f4;
+}
+
+header{
+    background:#0d3b2e;
+    color:white;
+    padding:16px;
+    text-align:center;
+}
+
+#status{
+    text-align:center;
+    margin:15px;
+    color:#555;
+}
+
+#mosque-list{
+    padding:15px;
+}
+
+.card{
+    background:white;
+    padding:15px;
+    margin-bottom:15px;
+    border-radius:10px;
+    box-shadow:0 2px 5px rgba(0,0,0,.1);
+}
+
+.card h3{
+    margin:0;
+    color:#0d3b2e;
+}
+
+.card p{
+    margin:8px 0;
+    color:#555;
+}
+
+button{
+    background:#0d3b2e;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    border-radius:8px;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+button:hover{
+    background:#136b53;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+    <h2>🕌 Nearby Mosques</h2>
+</header>
+
+<p id="status">Detecting your location...</p>
+
+<div id="mosque-list">
+</div>
+
+<script src="mosques.js"></script>
+
+</body>
+</html>
