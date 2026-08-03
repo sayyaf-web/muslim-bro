@@ -1,29 +1,21 @@
 // Daily Ayah
 async function loadAyah() {
     try {
-        const response = await fetch("https://api.alquran.cloud/v1/ayah/random/en.asad");
+        const response = await fetch("https://api.alquran.cloud/v1/ayah/2:255/en.asad");
         const data = await response.json();
 
         document.getElementById("ayah").innerHTML =
-            `"${data.data.text}"<br><small>${data.data.surah.englishName} ${data.data.numberInSurah}</small>`;
+            `"${data.data.text}"<br><small>${data.data.surah.englishName} (${data.data.numberInSurah})</small>`;
     } catch (error) {
         document.getElementById("ayah").textContent =
-            "Unable to load today's Ayah.";
+            "Unable to load Ayah.";
     }
 }
 
 // Daily Hadith
-async function loadHadith() {
-    try {
-        const response = await fetch("https://random-hadith-generator.vercel.app/bukhari/");
-        const data = await response.json();
-
-        document.getElementById("hadith").innerHTML =
-            `"${data.data.hadith_english}"`;
-    } catch (error) {
-        document.getElementById("hadith").textContent =
-            "Unable to load today's Hadith.";
-    }
+function loadHadith() {
+    document.getElementById("hadith").innerHTML =
+        `"The best among you are those who learn the Qur'an and teach it." <br><small>— Sahih al-Bukhari</small>`;
 }
 
 loadAyah();
