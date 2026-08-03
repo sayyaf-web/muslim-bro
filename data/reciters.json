@@ -1,1 +1,42 @@
-
+[
+  {
+    "name": "Mishary Rashid Alafasy",
+    "id": "ar.alafasy"
+  },
+  {
+    "name": "Abdul Basit Abdul Samad",
+    "id": "ar.abdulbasitmurattal"
+  },
+  {
+    "name": "Mahmoud Khalil Al-Husary",
+    "id": "ar.husary"
+  },
+  {
+    "name": "Muhammad Siddiq Al-Minshawi",
+    "id": "ar.minshawi"
+  },
+  {
+    "name": "Saad Al-Ghamdi",
+    "id": "ar.saadalghamdi"
+  },
+  {
+    "name": "Ahmed Al-Ajmi",
+    "id": "ar.ahmedajamy"
+  },
+  {
+    "name": "Abdul Rahman Al-Sudais",
+    "id": "ar.abdurrahmaansudais"
+  },
+  {
+    "name": "Saud Al-Shuraim",
+    "id": "ar.saoodshuraym"
+  },
+  {
+    "name": "Maher Al-Muaiqly",
+    "id": "ar.mahermuaiqly"
+  },
+  {
+    "name": "Yasser Al-Dossary",
+    "id": "ar.yasseraldossary"
+  }
+]
