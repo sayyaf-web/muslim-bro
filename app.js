@@ -1,65 +1,30 @@
-/* ===========================
-   Muslim Bro - app.js v1.0
-=========================== */
+// Daily Ayah
+async function loadAyah() {
+    try {
+        const response = await fetch("https://api.alquran.cloud/v1/ayah/random/en.asad");
+        const data = await response.json();
 
-document.addEventListener("DOMContentLoaded", () => {
-
-    // Daily Quran Verses
-    const verses = [
-        "Indeed, with hardship comes ease. (Quran 94:6)",
-        "So remember Me; I will remember you. (Quran 2:152)",
-        "Indeed, Allah is with the patient. (Quran 2:153)",
-        "And Allah is the best of planners. (Quran 8:30)",
-        "My mercy encompasses all things. (Quran 7:156)"
-    ];
-
-    // Daily Hadiths
-    const hadiths = [
-        "The best among you are those who learn the Quran and teach it.",
-        "Smiling at your brother is charity.",
-        "Allah is kind and loves kindness.",
-        "Actions are judged by intentions.",
-        "Make things easy and do not make them difficult."
-    ];
-
-    // Today's verse
-    const ayah = document.getElementById("ayah");
-    if (ayah) {
-        ayah.textContent = verses[new Date().getDate() % verses.length];
+        document.getElementById("ayah").innerHTML =
+            `"${data.data.text}"<br><small>${data.data.surah.englishName} ${data.data.numberInSurah}</small>`;
+    } catch (error) {
+        document.getElementById("ayah").textContent =
+            "Unable to load today's Ayah.";
     }
+}
 
-    // Today's hadith
-    const hadith = document.getElementById("hadith");
-    if (hadith) {
-        hadith.textContent = hadiths[new Date().getDate() % hadiths.length];
+// Daily Hadith
+async function loadHadith() {
+    try {
+        const response = await fetch("https://random-hadith-generator.vercel.app/bukhari/");
+        const data = await response.json();
+
+        document.getElementById("hadith").innerHTML =
+            `"${data.data.hadith_english}"`;
+    } catch (error) {
+        document.getElementById("hadith").textContent =
+            "Unable to load today's Hadith.";
     }
+}
 
-    // Next prayer placeholder
-    const prayer = document.getElementById("nextPrayerTime");
-    if (prayer) {
-        prayer.textContent = "Coming Soon";
-    }
-
-    // Button messages
-    const pages = {
-        btnPrayer: "Prayer Times",
-        btnQuran: "Quran",
-        btnDua: "Duas",
-        btnQibla: "Qibla",
-        btnTasbih: "Tasbih Counter",
-        btnCalendar: "Hijri Calendar"
-    };
-
-    Object.keys(pages).forEach(id => {
-        const button = document.getElementById(id);
-
-        if (button) {
-            button.addEventListener("click", () => {
-                alert(pages[id] + " page is under development.");
-            });
-        }
-    });
-
-    console.log("Muslim Bro Loaded Successfully");
-
-});
+loadAyah();
+loadHadith();
