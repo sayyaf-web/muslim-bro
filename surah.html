@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Surah | Muslim Bro</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f4f7f4;
+margin:0;
+}
+
+header{
+background:#0b8457;
+color:#fff;
+padding:20px;
+text-align:center;
+}
+
+#content{
+padding:20px;
+}
+
+button{
+width:100%;
+padding:15px;
+background:#0b8457;
+color:white;
+border:none;
+border-radius:10px;
+font-size:18px;
+margin-bottom:20px;
+cursor:pointer;
+}
+
+.ayah{
+background:white;
+padding:15px;
+margin-bottom:12px;
+border-radius:10px;
+box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.arabic{
+font-size:28px;
+text-align:right;
+direction:rtl;
+line-height:2;
+margin-bottom:10px;
+}
+
+.english{
+color:#555;
+line-height:1.6;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h2 id="title">Loading...</h2>
+</header>
+
+<div id="content">
+
+<div style="display:flex;gap:10px;margin-bottom:15px;">
+
+<button id="playBtn" style="flex:1;">
+▶ Play Recitation
+</button>
+
+<button id="bookmarkBtn" style="width:70px;font-size:24px;">
+☆ 
+</button>
+
+</div>
+
+<div id="verses"></div>
+
+<audio id="player" controls style="width:100%;margin-top:20px;"></audio>
+
+</div>
+
+<script>
+
+const id = new URLSearchParams(location.search).get("id");
+
+async function loadSurah(){
+
+const arabic = await fetch(`https://api.alquran.cloud/v1/surah/${id}`);
+const english = await fetch(`https://api.alquran.cloud/v1/surah/${id}/en.asad`);
+
+const ar = await arabic.json();
+const en = await english.json();
+
+document.getElementById("title").innerText =
+ar.data.englishName;
+
+const verses=document.getElementById("verses");
+
+ar.data.ayahs.forEach((a,i)=>{
+
+verses.innerHTML+=`
+<div class="ayah">
+<div class="arabic">${a.text}</div>
+<div class="english">${en.data.ayahs[i].text}</div>
+</div>
+`;
+
+});
+
+document.getElementById("playBtn").onclick=function(){
+
+document.getElementById("player").src =
+`https://server8.mp3quran.net/afs/${String(id).padStart(3,"0")}.mp3`;
+
+document.getElementById("player").play();
+
+};
+loadBookmark();
+}
+const bookmarkBtn = document.getElementById("bookmarkBtn");
+
+function loadBookmark() {
+
+let bookmarks = JSON.parse(localStorage.getItem("bookmarks") || "[]");
+
+if (bookmarks.includes(Number(id))) {
+
+bookmarkBtn.innerHTML = "⭐";
+
+} else {
+
+bookmarkBtn.innerHTML = "☆";
+
+}
+
+}
+
+bookmarkBtn.onclick = function () {
+
+let bookmarks = JSON.parse(localStorage.getItem("bookmarks") || "[]");
+
+if (bookmarks.includes(Number(id))) {
+
+bookmarks = bookmarks.filter(n => n !== Number(id));
+
+bookmarkBtn.innerHTML = "☆";
+
+} else {
+
+bookmarks.push(Number(id));
+
+bookmarkBtn.innerHTML = "⭐";
+
+}
+
+localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+
+};
+loadSurah();
+
+</script>
+
+</body>
+</html>

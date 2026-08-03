@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bookmarks | Muslim Bro</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#f4f7f5;
+}
+
+header{
+background:#0b8457;
+color:white;
+padding:20px;
+text-align:center;
+}
+
+#list{
+padding:15px;
+}
+
+.card{
+background:white;
+padding:18px;
+margin-bottom:12px;
+border-radius:12px;
+box-shadow:0 2px 8px rgba(0,0,0,.1);
+cursor:pointer;
+}
+
+.card h3{
+margin:0;
+color:#0b8457;
+}
+
+.card p{
+margin-top:6px;
+color:#666;
+}
+
+.empty{
+text-align:center;
+padding:40px;
+color:#777;
+font-size:18px;
+}
+</style>
+
+</head>
+<body>
+
+<header>
+<h2>⭐ Bookmarks</h2>
+<p>Your saved Surahs</p>
+</header>
+
+<div id="list"></div>
+
+<script>
+const list=document.getElementById("list");
+
+const surahs=[
+{name:"Al-Fatihah"},
+{name:"Al-Baqarah"},
+{name:"Ali 'Imran"},
+{name:"An-Nisa"},
+{name:"Al-Ma'idah"},
+{name:"Al-An'am"},
+{name:"Al-A'raf"},
+{name:"Al-Anfal"},
+{name:"At-Tawbah"},
+{name:"Yunus"},
+{name:"Hud"},
+{name:"Yusuf"},
+{name:"Ar-Ra'd"},
+{name:"Ibrahim"},
+{name:"Al-Hijr"},
+{name:"An-Nahl"},
+{name:"Al-Isra"},
+{name:"Al-Kahf"},
+{name:"Maryam"},
+{name:"Ta-Ha"}
+];
+
+let bookmarks=JSON.parse(localStorage.getItem("bookmarks"))||[];
+
+if(bookmarks.length===0){
+list.innerHTML='<div class="empty">No bookmarks yet.</div>';
+}else{
+bookmarks.forEach(id=>{
+const s=surahs[id-1];
+if(s){
+list.innerHTML+=`
+<div class="card" onclick="location.href='surah.html?id=${id}'">
+<h3>${id}. ${s.name}</h3>
+<p>Open Surah</p>
+</div>
+`;
+}
+});
+}
+</script>
+
+</body>
+</html>
