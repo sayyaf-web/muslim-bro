@@ -1,1 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Quran Audio</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#f4f4f4;
+}
+
+header{
+background:#0b8457;
+color:white;
+padding:18px;
+text-align:center;
+}
+
+.container{
+padding:20px;
+}
+
+select,button{
+width:100%;
+padding:14px;
+margin:10px 0;
+font-size:16px;
+border-radius:10px;
+border:1px solid #ccc;
+}
+
+button{
+background:#0b8457;
+color:white;
+border:none;
+cursor:pointer;
+}
+
+button:hover{
+background:#08714a;
+}
+
+audio{
+width:100%;
+margin-top:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h2>🎧 Quran Audio</h2>
+
+<p>Choose your favourite reciter</p>
+
+</header>
+
+<div class="container">
+
+<label>Reciter</label>
+
+<select id="reciter">
+
+<option value="7">Mishary Rashid Alafasy</option>
+
+<option value="2">Abdul Basit Abdul Samad</option>
+
+<option value="5">Mahmoud Khalil Al-Husary</option>
+
+<option value="6">Muhammad Siddiq Al-Minshawi</option>
+
+</select>
+
+<label>Surah</label>
+
+<select id="surah"></select>
+
+<button onclick="playSurah()">
+
+▶ Play Surah
+
+</button>
+
+<audio id="player" controls></audio>
+
+</div>
+
+<script>
+
+for(let i=1;i<=114;i++){
+
+const option=document.createElement("option");
+
+option.value=i;
+
+option.textContent="Surah "+i;
+
+document.getElementById("surah").appendChild(option);
+
+}
+
+async function playSurah(){
+
+const reciter=document.getElementById("reciter").value;
+
+const surah=document.getElementById("surah").value;
+
+const response=await fetch(
+
+`https://api.quran.com/api/v4/chapter_recitations/${reciter}/${surah}`
+
+);
+
+const json=await response.json();
+
+document.getElementById("player").src=json.audio_file.audio_url;
+
+document.getElementById("player").play();
+
+}
+
+</script>
+
+</body>
+</html>
