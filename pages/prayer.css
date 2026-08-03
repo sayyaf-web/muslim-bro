@@ -1,1 +1,59 @@
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#0f172a;
+    color:white;
+}
 
+.container{
+    padding:20px;
+    max-width:500px;
+    margin:auto;
+}
+
+h2{
+    text-align:center;
+    color:#22c55e;
+}
+
+#location,
+#today,
+#nextPrayer{
+    text-align:center;
+    margin:15px 0;
+}
+
+.card{
+    background:#1e293b;
+    border-radius:15px;
+    padding:15px;
+    box-shadow:0 4px 10px rgba(0,0,0,.3);
+}
+
+.row{
+    display:flex;
+    justify-content:space-between;
+    padding:15px 10px;
+    border-bottom:1px solid rgba(255,255,255,.1);
+}
+
+.row:last-child{
+    border-bottom:none;
+}
+
+.row span:first-child{
+    font-weight:bold;
+}
+
+.active{
+    background:#22c55e;
+    color:#fff;
+    border-radius:8px;
+    padding:10px;
+}
+
+@media(max-width:600px){
+    .container{
+        padding:15px;
+    }
+}
