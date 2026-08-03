@@ -5,25 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Qibla Direction</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="qibla.css">
 </head>
 <body>
 
 <div class="container">
+
     <h1>🕋 Qibla Direction</h1>
 
     <p id="status">Detecting your location...</p>
 
-    <div class="compass-container">
+    <div class="compass-box">
         <img
             id="compass"
-            src="images/compass.png"
-            alt="Compass"
-            width="250"
-        >
+            src="../images/compass.png"
+            alt="Compass">
     </div>
 
     <p id="angle"></p>
+
+    <a href="../index.html" class="backBtn">
+        ← Back Home
+    </a>
+
 </div>
 
 <script src="qibla.js"></script>
