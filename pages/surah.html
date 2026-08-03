@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Surah</title>
 
 <style>
+
 body{
     margin:0;
     font-family:Arial,sans-serif;
@@ -31,19 +33,30 @@ header{
     border:none;
     border-radius:10px;
     background:#f4b400;
-    color:#fff;
+    color:white;
     font-size:18px;
     cursor:pointer;
 }
 
-.bookmark-btn:hover{
-    background:#d89d00;
+select{
+    width:90%;
+    display:block;
+    margin:15px auto;
+    padding:12px;
+    border-radius:10px;
+    border:1px solid #ccc;
+    font-size:16px;
+}
+
+audio{
+    width:100%;
+    margin:15px 0;
 }
 
 .ayah{
-    background:#fff;
-    margin-bottom:12px;
+    background:white;
     padding:15px;
+    margin-bottom:12px;
     border-radius:10px;
     box-shadow:0 2px 5px rgba(0,0,0,.1);
 }
@@ -59,22 +72,41 @@ header{
     color:#444;
 }
 
-audio{
-    width:100%;
-    margin:15px 0;
-}
 </style>
+
 </head>
 
 <body>
 
 <header>
+
 <h2 id="surah-title">Loading...</h2>
+
 </header>
 
 <button class="bookmark-btn" onclick="bookmarkSurah()">
 ⭐ Bookmark This Surah
 </button>
+
+<select id="reciter" onchange="changeReciter()">
+
+<option value="ar.alafasy">
+Mishary Rashid Alafasy
+</option>
+
+<option value="ar.abdulbasitmurattal">
+Abdul Basit Abdul Samad
+</option>
+
+<option value="ar.husary">
+Mahmoud Khalil Al-Husary
+</option>
+
+<option value="ar.minshawi">
+Muhammad Siddiq Al-Minshawi
+</option>
+
+</select>
 
 <div id="content">
 Loading Surah...
@@ -83,9 +115,10 @@ Loading Surah...
 <script>
 
 const params = new URLSearchParams(location.search);
+
 const id = params.get("id") || 1;
 
-let currentName = "";
+let currentName="";
 
 async function loadSurah(){
 
@@ -95,45 +128,82 @@ const response = await fetch(
 
 const json = await response.json();
 
-const arabic = json.data[0];
-const english = json.data[1];
+const arabic=json.data[0];
+const english=json.data[1];
 
-currentName = arabic.englishName;
+currentName=arabic.englishName;
 
-document.getElementById("surah-title").innerHTML =
-arabic.englishName + " (" + arabic.name + ")";
+document.getElementById("surah-title").innerHTML=
+arabic.englishName+" ("+arabic.name+")";
 
-let html = `
-<audio controls src="https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/${id}.mp3"></audio>
+const reciter=
+localStorage.getItem("selectedReciter") || "ar.alafasy";
+
+document.getElementById("reciter").value=reciter;
+
+let html=`
+
+<audio
+id="player"
+controls
+src="https://cdn.islamic.network/quran/audio-surah/128/${reciter}/${id}.mp3">
+</audio>
+
 `;
 
 for(let i=0;i<arabic.ayahs.length;i++){
 
-html += `
+html+=`
+
 <div class="ayah">
-<div class="arabic">${arabic.ayahs[i].text}</div>
-<div class="translation">${english.ayahs[i].text}</div>
+
+<div class="arabic">
+${arabic.ayahs[i].text}
 </div>
+
+<div class="translation">
+${english.ayahs[i].text}
+</div>
+
+</div>
+
 `;
 
 }
 
-document.getElementById("content").innerHTML = html;
+document.getElementById("content").innerHTML=html;
+
+}
+
+function changeReciter(){
+
+const reciter=document.getElementById("reciter").value;
+
+localStorage.setItem(
+"selectedReciter",
+reciter
+);
+
+document.getElementById("player").src=
+`https://cdn.islamic.network/quran/audio-surah/128/${reciter}/${id}.mp3`;
 
 }
 
 function bookmarkSurah(){
 
-let bookmarks =
+let bookmarks=
 JSON.parse(localStorage.getItem("bookmarks")) || [];
 
-const exists = bookmarks.find(item => item.id == id);
+const exists=bookmarks.find(item=>item.id==id);
 
 if(!exists){
 
 bookmarks.push({
+
 id:id,
+
 name:currentName
+
 });
 
 localStorage.setItem(
