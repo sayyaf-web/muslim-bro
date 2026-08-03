@@ -23,6 +23,23 @@ header{
     padding:15px;
 }
 
+.bookmark-btn{
+    display:block;
+    width:90%;
+    margin:15px auto;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:#f4b400;
+    color:#fff;
+    font-size:18px;
+    cursor:pointer;
+}
+
+.bookmark-btn:hover{
+    background:#d89d00;
+}
+
 .ayah{
     background:#fff;
     margin-bottom:12px;
@@ -55,13 +72,20 @@ audio{
 <h2 id="surah-title">Loading...</h2>
 </header>
 
+<button class="bookmark-btn" onclick="bookmarkSurah()">
+⭐ Bookmark This Surah
+</button>
+
 <div id="content">
 Loading Surah...
 </div>
 
 <script>
+
 const params = new URLSearchParams(location.search);
 const id = params.get("id") || 1;
+
+let currentName = "";
 
 async function loadSurah(){
 
@@ -73,6 +97,8 @@ const json = await response.json();
 
 const arabic = json.data[0];
 const english = json.data[1];
+
+currentName = arabic.englishName;
 
 document.getElementById("surah-title").innerHTML =
 arabic.englishName + " (" + arabic.name + ")";
@@ -96,7 +122,37 @@ document.getElementById("content").innerHTML = html;
 
 }
 
+function bookmarkSurah(){
+
+let bookmarks =
+JSON.parse(localStorage.getItem("bookmarks")) || [];
+
+const exists = bookmarks.find(item => item.id == id);
+
+if(!exists){
+
+bookmarks.push({
+id:id,
+name:currentName
+});
+
+localStorage.setItem(
+"bookmarks",
+JSON.stringify(bookmarks)
+);
+
+alert("✅ Surah bookmarked!");
+
+}else{
+
+alert("⭐ Already bookmarked.");
+
+}
+
+}
+
 loadSurah();
+
 </script>
 
 </body>
