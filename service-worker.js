@@ -19,4 +19,15 @@ self.addEventListener("fetch", event => {
       return response || fetch(event.request);
     })
   );
+});self.addEventListener("install", event => {
+    console.log("Service Worker Installed");
+    self.skipWaiting();
+});
+
+self.addEventListener("activate", event => {
+    console.log("Service Worker Activated");
+});
+
+self.addEventListener("fetch", event => {
+    // Allow normal network requests
 });
