@@ -22,12 +22,6 @@ if (navigator.geolocation) {
     document.getElementById("location").textContent =
         "Geolocation is not supported by this browser.";
 }
-        }
-    );
-} else {
-    document.getElementById("location").textContent =
-        "Geolocation not supported.";
-}
 
 async function loadPrayerTimes(lat, lon) {
 
@@ -50,13 +44,14 @@ async function loadPrayerTimes(lat, lon) {
             `${data.data.date.gregorian.date} | ${data.data.date.hijri.date}`;
 
         document.getElementById("location").textContent =
-            `${data.data.meta.timezone}`;
+            data.data.meta.timezone;
 
         highlightPrayer(t);
 
     } catch (e) {
         document.getElementById("location").textContent =
             "Failed to load prayer times.";
+        console.log(e);
     }
 }
 
