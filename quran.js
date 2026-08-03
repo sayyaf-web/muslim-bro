@@ -20,9 +20,14 @@ async function loadQuran() {
         <small>${surah.revelationType} • ${surah.numberOfAyahs} Ayahs</small>
       `;
 
-      card.onclick = () => {
-        location.href = `surah.html?id=${surah.number}`;
-      };
+    card.onclick = () => {
+
+    // Save last opened Surah
+    localStorage.setItem("lastSurah", surah.number);
+    localStorage.setItem("lastSurahName", surah.englishName);
+
+    location.href = `surah.html?id=${surah.number}`;
+};
 
       list.appendChild(card);
     });
