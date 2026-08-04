@@ -5,8 +5,7 @@
 
 <meta charset="UTF-8">
 
-<meta
-name="viewport"
+<meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
 <title>Digital Tasbih</title>
@@ -23,9 +22,15 @@ href="../css/tasbih.css">
 
 <body>
 
-<!-- ==========================================
-     HERO
-========================================== -->
+<!-- ===========================
+BACKGROUND OVERLAY
+============================ -->
+
+<div class="backgroundOverlay"></div>
+
+<!-- ===========================
+HERO
+============================ -->
 
 <header class="tasbihHero">
 
@@ -39,17 +44,23 @@ href="../css/tasbih.css">
 
 <p>
 
-Remember Allah Everywhere
+"Indeed, in the remembrance of Allah do hearts find rest."
 
 </p>
+
+<small>
+
+— Qur'an 13:28
+
+</small>
 
 </div>
 
 </header>
 
-<!-- ==========================================
-     MAIN
-========================================== -->
+<!-- ===========================
+MAIN
+============================ -->
 
 <main class="tasbihContainer">
 
@@ -63,51 +74,31 @@ SubhanAllah
 
 <select id="dhikrSelect">
 
-<option value="SubhanAllah">
+<option value="SubhanAllah">SubhanAllah</option>
 
-SubhanAllah
+<option value="Alhamdulillah">Alhamdulillah</option>
 
-</option>
+<option value="Allahu Akbar">Allahu Akbar</option>
 
-<option value="Alhamdulillah">
+<option value="La ilaha illallah">La ilaha illallah</option>
 
-Alhamdulillah
-
-</option>
-
-<option value="Allahu Akbar">
-
-Allahu Akbar
-
-</option>
-
-<option value="La ilaha illallah">
-
-La ilaha illallah
-
-</option>
-
-<option value="Astaghfirullah">
-
-Astaghfirullah
-
-</option>
+<option value="Astaghfirullah">Astaghfirullah</option>
 
 <option value="Allahumma Salli Ala Muhammad">
-
 Allahumma Salli Ala Muhammad ﷺ
-
 </option>
 
 <option value="Custom">
-
 Custom Dhikr
-
 </option>
 
-</select>
+</select><!-- ===========================
+COUNTER
+============================ -->
 
-<!-- Counter -->
+<div class="counterWrapper">
+
+<div class="counterGlow"></div>
 
 <div class="counterCircle">
 
@@ -121,15 +112,19 @@ class="counter">
 
 </div>
 
+</div>
+
 <div
 id="goalText"
 class="goalText">
 
 Goal: 33
 
-</div><!-- ==========================================
-     PROGRESS BAR
-========================================== -->
+</div>
+
+<!-- ===========================
+PROGRESS
+============================ -->
 
 <div class="progressContainer">
 
@@ -141,13 +136,13 @@ class="progressBar">
 
 </div>
 
-<!-- ==========================================
-     COUNTING MODE
-========================================== -->
+<!-- ===========================
+COUNTING MODE
+============================ -->
 
 <div class="modeContainer">
 
-<label>
+<label class="modeCard">
 
 <input
 type="radio"
@@ -155,38 +150,56 @@ name="mode"
 value="tap"
 checked>
 
+<span>
+
 👆 Tap Mode
+
+</span>
 
 </label>
 
-<label>
+<label class="modeCard">
 
 <input
 type="radio"
 name="mode"
 value="voice">
 
+<span>
+
 🎤 Voice Mode
+
+</span>
 
 </label>
 
 </div>
 
-<!-- ==========================================
-     MICROPHONE STATUS
-========================================== -->
+<!-- ===========================
+VOICE STATUS
+============================ -->
 
 <div
 id="voiceStatus"
 class="voiceStatus">
 
-Microphone Off
+👆 Tap Mode Enabled
+
+</div><!-- ===========================
+DIGITAL MISBAHA
+============================ -->
+
+<div
+id="misbaha"
+class="misbaha">
+
+<!-- Beads are generated automatically by JavaScript -->
 
 </div>
 
-<!-- ==========================================
-     BUTTONS
-========================================== -->
+<!-- ===========================
+BUTTONS
+============================ -->
 
 <div class="tasbihButtons">
 
@@ -222,7 +235,7 @@ class="dangerBtn">
 id="saveBtn"
 class="secondaryBtn">
 
-💾 Save
+💾 Save Session
 
 </button>
 
@@ -236,9 +249,9 @@ class="secondaryBtn">
 
 </div>
 
-<!-- ==========================================
-     SESSION INFO
-========================================== -->
+<!-- ===========================
+SESSION INFO
+============================ -->
 
 <div
 id="sessionInfo"
@@ -246,349 +259,74 @@ class="sessionInfo">
 
 Today's Count: 0
 
-</div><!-- ==========================================
-     FOOTER ACTIONS
-========================================== -->
-
-</div>
+</div></div>
 
 </main>
 
-<div class="tasbihActions">
+<!-- ===========================
+PREMIUM MODAL
+============================ -->
 
-<button
-class="actionBtn"
-onclick="history.back()">
+<div id="premiumModal" class="premiumModal">
 
-🏠 Home
+<div class="premiumCard">
 
-</button>
+<div
+id="modalIcon"
+class="modalIcon">
 
-<button
-class="actionBtn"
-onclick="location.reload()">
+🌿
 
-🔄 Refresh
+</div>
+
+<h2 id="modalTitle">
+
+MashaAllah
+
+</h2>
+
+<p id="modalMessage">
+
+You completed your Tasbih.
+
+</p>
+
+<button id="modalButton">
+
+Continue
 
 </button>
 
 </div>
+
+</div>
+
+<!-- ===========================
+FOOTER
+============================ -->
 
 <footer class="tasbihFooter">
 
 <p>
 
-☪ Muslim Bro • Digital Tasbih
+☪ Muslim Bro
+
+</p>
+
+<p>
+
+Digital Tasbih • Remember Allah Everywhere
 
 </p>
 
 </footer>
 
-<!-- ==========================================
-     SCRIPT
-========================================== -->
+<!-- ===========================
+SCRIPT
+============================ -->
 
 <script src="../js/tasbih.js"></script>
-/* ==========================================
-   MUSLIM BRO
-   PREMIUM FINISH
-========================================== */
 
-/* ==========================================
-   FLOATING ISLAMIC LIGHTS
-========================================== */
-
-body::before{
-
-content:"";
-
-position:fixed;
-
-inset:0;
-
-pointer-events:none;
-
-background-image:
-
-radial-gradient(circle,#ffffff55 2px,transparent 2px),
-
-radial-gradient(circle,#FFD54F55 1.5px,transparent 1.5px);
-
-background-size:
-
-180px 180px,
-
-120px 120px;
-
-animation:
-
-starsMove 45s linear infinite;
-
-opacity:.45;
-
-z-index:0;
-
-}
-
-@keyframes starsMove{
-
-0%{
-
-transform:translateY(0);
-
-}
-
-100%{
-
-transform:translateY(-250px);
-
-}
-
-}
-
-/* ==========================================
-   KEEP CONTENT ABOVE BACKGROUND
-========================================== */
-
-.tasbihHero,
-
-.tasbihContainer,
-
-.tasbihFooter{
-
-position:relative;
-
-z-index:2;
-
-}
-
-/* ==========================================
-   GLASS SHINE
-========================================== */
-
-.tasbihCard{
-
-overflow:hidden;
-
-position:relative;
-
-}
-
-.tasbihCard::before{
-
-content:"";
-
-position:absolute;
-
-top:-60%;
-
-left:-60%;
-
-width:80%;
-
-height:220%;
-
-background:
-
-linear-gradient(
-
-90deg,
-
-transparent,
-
-rgba(255,255,255,.18),
-
-transparent
-
-);
-
-transform:rotate(25deg);
-
-animation:
-
-glassShine 8s linear infinite;
-
-}
-
-@keyframes glassShine{
-
-0%{
-
-left:-80%;
-
-}
-
-100%{
-
-left:180%;
-
-}
-
-}
-
-/* ==========================================
-   PREMIUM BUTTON HOVER
-========================================== */
-
-.tasbihButtons button:hover{
-
-box-shadow:
-
-0 12px 28px rgba(0,0,0,.35),
-
-0 0 20px rgba(255,255,255,.18);
-
-}
-
-/* ==========================================
-   PREMIUM DROPDOWN
-========================================== */
-
-#dhikrSelect{
-
-box-shadow:
-
-0 8px 20px rgba(0,0,0,.15);
-
-}
-
-/* ==========================================
-   DIGITAL MISBAHA
-========================================== */
-
-.bead{
-
-background:
-
-linear-gradient(
-
-145deg,
-
-rgba(255,255,255,.35),
-
-rgba(255,255,255,.15)
-
-);
-
-}
-
-.bead.active{
-
-background:
-
-linear-gradient(
-
-145deg,
-
-#FFD54F,
-
-#FFC107
-
-);
-
-box-shadow:
-
-0 0 16px rgba(255,213,79,.9);
-
-}
-
-/* ==========================================
-   SOFT PAGE FADE
-========================================== */
-
-body{
-
-animation:
-
-pageFade .7s ease;
-
-}
-
-@keyframes pageFade{
-
-from{
-
-opacity:0;
-
-}
-
-to{
-
-opacity:1;
-
-}
-
-}
-
-/* ==========================================
-   MOBILE
-========================================== */
-
-@media(max-width:768px){
-
-.heroOverlay h1{
-
-font-size:2rem;
-
-}
-
-.heroOverlay p{
-
-font-size:.95rem;
-
-}
-
-.counterCircle{
-
-width:180px;
-
-height:180px;
-
-}
-
-.counter{
-
-font-size:3.5rem;
-
-}
-
-.tasbihButtons{
-
-grid-template-columns:1fr;
-
-}
-
-#historyBtn{
-
-grid-column:auto;
-
-}
-
-.misbaha{
-
-grid-template-columns:
-
-repeat(11,1fr);
-
-gap:6px;
-
-}
-
-.bead{
-
-width:15px;
-
-height:15px;
-
-}
-
-.tasbihCard{
-
-padding:22px;
-
-}
-
-}
 </body>
 
 </html>
