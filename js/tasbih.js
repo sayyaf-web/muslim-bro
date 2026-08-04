@@ -342,22 +342,103 @@ if(SpeechRecognition){
 
     };
 
-    recognition.onresult = (event)=>{
+    /* ==========================================
+   AI SMART DHIKR DETECTION
+========================================== */
 
-        const last =
+recognition.onresult = (event)=>{
 
-        event.results.length - 1;
+    const last =
+    event.results.length - 1;
 
-        const speech =
+    const speech =
+    event.results[last][0]
+    .transcript
+    .toLowerCase();
 
-        event.results[last][0]
-        .transcript
-        .toLowerCase();
+    const dhikrs = [
 
-        const dhikr =
+        "subhanallah",
 
-        dhikrSelect.value
-        .toLowerCase();
+        "alhamdulillah",
+
+        "allahu akbar",
+
+        "la ilaha illallah",
+
+        "astaghfirullah",
+
+        "allahumma salli ala muhammad"
+
+    ];
+
+    let detected = false;
+
+    dhikrs.forEach(dhikr=>{
+
+        const escaped =
+
+        dhikr.replace(
+
+            /[.*+?^${}()|[\]\\]/g,
+
+            "\\$&"
+
+        );
+
+        const regex =
+
+        new RegExp(
+
+            escaped,
+
+            "gi"
+
+        );
+
+        const matches =
+
+        speech.match(regex);
+
+        if(matches){
+
+            detected = true;
+
+            dhikrSelect.value = dhikr;
+
+            dhikrTitle.textContent = dhikr;
+
+            for(
+
+                let i=0;
+
+                i<matches.length;
+
+                i++
+
+            ){
+
+                incrementCount();
+
+            }
+
+            voiceStatus.textContent =
+
+            `🎤 ${matches.length} × ${dhikr}`;
+
+        }
+
+    });
+
+    if(!detected){
+
+        voiceStatus.textContent =
+
+        "🎤 Listening...";
+
+    }
+
+};
 
         if(speech.includes(dhikr)){
 
