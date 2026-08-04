@@ -1,7 +1,7 @@
-/* ======================================
-   MUSLIM BRO v3
-   Premium Islamic UI
-====================================== */
+/* ==========================================
+   MUSLIM BRO v4
+   Premium Home UI
+========================================== */
 
 *{
 margin:0;
@@ -12,32 +12,30 @@ box-sizing:border-box;
 :root{
 
 --primary:#0b8457;
---primary-dark:#08734b;
+--primaryDark:#08734b;
 --gold:#FFD54F;
 
 --white:#ffffff;
---bg:#eef7f2;
+--background:#eef8f2;
 
 --text:#222;
 --gray:#666;
 
---glass:rgba(255,255,255,.16);
+--shadow:0 12px 30px rgba(0,0,0,.12);
 
 --radius:24px;
 
 }
 
 html{
-
 scroll-behavior:smooth;
-
 }
 
 body{
 
 font-family:Arial,sans-serif;
 
-background:var(--bg);
+background:var(--background);
 
 color:var(--text);
 
@@ -47,48 +45,33 @@ padding-bottom:110px;
 
 }
 
-/* ===========================
+/* ==========================================
    HERO
-=========================== */
+========================================== */
 
 .hero{
 
-position:relative;
+width:100%;
 
-height:380px;
-
-background:url("images/islamic-bg.jpg")
-center center/cover no-repeat;
-
-}
-
-.hero::before{
-
-content:"";
-
-position:absolute;
-
-inset:0;
+min-height:430px;
 
 background:
 
 linear-gradient(
 
-rgba(0,0,0,.28),
+rgba(0,0,0,.35),
 
 rgba(0,0,0,.55)
 
-);
+),
 
-}
+url("images/islamic-bg.jpg");
 
-.overlay{
+background-size:cover;
 
-position:relative;
+background-position:center;
 
-z-index:2;
-
-height:100%;
+background-repeat:no-repeat;
 
 display:flex;
 
@@ -96,47 +79,55 @@ justify-content:center;
 
 align-items:center;
 
-padding:20px;
+padding:30px 20px;
 
 }
 
-/* ===========================
-   DASHBOARD
-=========================== */
+/* ==========================================
+   HERO CONTENT
+========================================== */
 
-.welcomeCard{
+.heroContent{
 
 width:100%;
 
-max-width:520px;
+max-width:600px;
+
+}
+
+/* ==========================================
+   WELCOME CARD
+========================================== */
+
+.welcomeCard{
 
 background:rgba(255,255,255,.14);
 
 backdrop-filter:blur(20px);
 
-border-radius:28px;
+border-radius:30px;
 
-padding:24px;
+padding:28px;
 
-border:1px solid rgba(255,255,255,.15);
+border:1px solid rgba(255,255,255,.18);
 
-box-shadow:
+box-shadow:0 20px 45px rgba(0,0,0,.30);
 
-0 12px 35px rgba(0,0,0,.28);
+color:white;
 
-color:#fff;
+animation:fadeUp .8s ease;
 
 }
 
 .logo{
 
-font-size:40px;
+font-size:44px;
 
 font-weight:bold;
 
 text-align:center;
 
-margin-bottom:8px;
+margin-bottom:10px;
 
 }
 
@@ -144,81 +135,105 @@ margin-bottom:8px;
 
 text-align:center;
 
-font-size:17px;
+font-size:18px;
 
-margin-bottom:18px;
+margin-bottom:20px;
 
-opacity:.95;
-
-}
-
-.welcomeCard h2{
-
-font-size:26px;
-
-margin-bottom:10px;
+color:#f7f7f7;
 
 }
 
-.welcomeCard p{
+.welcomeTitle{
 
-line-height:1.7;
+font-size:28px;
 
-font-size:15px;
+margin-bottom:12px;
 
-}/* ======================================
-   LOCATION + DATE
-====================================== */
+}
 
-.heroInfo{
+.welcomeText{
+
+font-size:16px;
+
+line-height:1.8;
+
+margin-bottom:25px;
+
+}
+
+/* ==========================================
+   HERO INFO CARDS
+========================================== */
+
+.heroCards{
 
 display:flex;
 
 flex-direction:column;
 
-gap:16px;
+gap:15px;
 
-margin:20px 0;
+margin-bottom:22px;
 
 }
 
-.infoCard{
+.heroCard{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
 
 background:rgba(255,255,255,.10);
 
-border:1px solid rgba(255,255,255,.14);
+padding:16px;
 
-border-radius:20px;
+border-radius:18px;
 
-padding:16px 18px;
-
-backdrop-filter:blur(12px);
+border:1px solid rgba(255,255,255,.12);
 
 }
 
-.smallTitle{
+.heroCardIcon{
 
-font-size:12px;
+width:50px;
+
+height:50px;
+
+border-radius:50%;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+background:rgba(255,255,255,.18);
+
+font-size:22px;
+
+}
+
+.heroCard h4{
+
+font-size:13px;
+
+color:#ddd;
+
+margin-bottom:5px;
 
 text-transform:uppercase;
 
 letter-spacing:1px;
 
-color:#ddd;
-
-margin-bottom:6px;
-
 }
 
-.infoValue{
+.heroCard p{
 
-font-size:19px;
+font-size:18px;
 
-font-weight:600;
-
-color:#fff;
-
-line-height:1.5;
+font-weight:bold;
 
 }
 
@@ -226,52 +241,39 @@ line-height:1.5;
 
 display:block;
 
-margin-top:8px;
+margin-top:6px;
 
-font-size:18px;
-
-font-weight:bold;
+font-size:16px;
 
 color:var(--gold);
 
-}
+}/* ==========================================
+   NEXT PRAYER CARD
+========================================== */
 
-/* ======================================
-   NEXT PRAYER
-====================================== */
-
-.nextPrayer{
-
-margin-top:18px;
+.nextPrayerCard{
 
 background:linear-gradient(
 135deg,
 #0b8457,
-#17a46f
+#16a46f
 );
 
-border-radius:22px;
+border-radius:24px;
 
-padding:20px;
+padding:22px;
 
 text-align:center;
 
-box-shadow:
-0 10px 25px rgba(0,0,0,.25);
+box-shadow:0 12px 30px rgba(0,0,0,.25);
+
+color:white;
 
 }
 
-.nextPrayer h3{
+.nextPrayerCard h3{
 
-font-size:26px;
-
-margin-bottom:10px;
-
-}
-
-.nextPrayer h2{
-
-font-size:42px;
+font-size:22px;
 
 margin-bottom:12px;
 
@@ -279,33 +281,179 @@ font-weight:bold;
 
 }
 
+.nextPrayerCard h1{
+
+font-size:42px;
+
+margin-bottom:10px;
+
+}
+
+#dashboardPrayerTime{
+
+font-size:18px;
+
+opacity:.95;
+
+margin-bottom:10px;
+
+}
+
 #dashboardCountdown{
 
-font-size:32px;
+font-size:34px;
 
 font-weight:bold;
 
 letter-spacing:2px;
 
-color:var(--gold);
+color:#FFD54F;
+
+margin-bottom:15px;
 
 }
 
-/* ======================================
-   MAIN
-====================================== */
+.progressContainer{
 
-main{
+width:100%;
 
-margin-top:30px;
+height:10px;
 
-padding:0 18px 120px;
+background:rgba(255,255,255,.25);
+
+border-radius:20px;
+
+overflow:hidden;
+
+margin:18px 0;
 
 }
 
-/* ======================================
+#progressBar{
+
+width:0%;
+
+height:100%;
+
+background:#FFD54F;
+
+border-radius:20px;
+
+transition:.5s;
+
+}
+
+#dashboardRemaining{
+
+font-size:15px;
+
+opacity:.95;
+
+}
+
+/* ==========================================
+   MAIN CONTENT
+========================================== */
+
+.mainContent{
+
+padding:40px 18px 120px;
+
+}
+
+/* ==========================================
+   DASHBOARD SECTION
+========================================== */
+
+.dashboardSection{
+
+max-width:1200px;
+
+margin:auto;
+
+}
+
+/* ==========================================
+   CONTINUE READING
+========================================== */
+
+.continueReadingCard{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+gap:18px;
+
+background:linear-gradient(
+135deg,
+#0b8457,
+#18b67c
+);
+
+color:white;
+
+padding:22px;
+
+border-radius:24px;
+
+margin-bottom:28px;
+
+cursor:pointer;
+
+box-shadow:0 12px 30px rgba(0,0,0,.15);
+
+transition:.35s;
+
+}
+
+.continueReadingCard:hover{
+
+transform:translateY(-5px);
+
+}
+
+.continueIcon{
+
+font-size:48px;
+
+}
+
+.continueContent{
+
+flex:1;
+
+}
+
+.continueContent h3{
+
+font-size:22px;
+
+margin-bottom:8px;
+
+}
+
+.continueContent p{
+
+font-size:16px;
+
+line-height:1.5;
+
+}
+
+.continueArrow{
+
+font-size:28px;
+
+font-weight:bold;
+
+}
+
+/* ==========================================
    DASHBOARD GRID
-====================================== */
+========================================== */
 
 .dashboardGrid{
 
@@ -315,20 +463,19 @@ grid-template-columns:repeat(2,1fr);
 
 gap:18px;
 
-max-width:1200px;
+}
 
-margin:auto;
-/* ======================================
-   FEATURE CARDS
-====================================== */
+/* ==========================================
+   FEATURE CARD
+========================================== */
 
 .feature{
 
-background:#fff;
+background:white;
 
 border-radius:22px;
 
-padding:22px 16px;
+padding:22px 18px;
 
 text-align:center;
 
@@ -368,9 +515,9 @@ background:linear-gradient(
 
 .feature:hover{
 
-transform:translateY(-8px);
+transform:translateY(-6px);
 
-box-shadow:0 16px 35px rgba(0,0,0,.15);
+box-shadow:0 18px 35px rgba(0,0,0,.15);
 
 }
 
@@ -378,7 +525,7 @@ box-shadow:0 16px 35px rgba(0,0,0,.15);
 
 font-size:44px;
 
-margin-bottom:12px;
+margin-bottom:14px;
 
 }
 
@@ -386,7 +533,7 @@ margin-bottom:12px;
 
 font-size:20px;
 
-color:var(--primary);
+color:#0b8457;
 
 margin-bottom:8px;
 
@@ -396,57 +543,13 @@ margin-bottom:8px;
 
 font-size:15px;
 
-color:#666;
-
 line-height:1.5;
 
-}
+color:#666;
 
-/* ======================================
-   CONTINUE READING
-====================================== */
-
-.continue{
-
-grid-column:span 2;
-
-background:linear-gradient(
-135deg,
-#0b8457,
-#16a46f
-);
-
-color:#fff;
-
-}
-
-.continue::before{
-
-display:none;
-
-}
-
-.continue h3{
-
-color:#fff;
-
-}
-
-.continue p{
-
-color:#eefcf5;
-
-}
-
-.continue .icon{
-
-font-size:54px;
-
-}
-
-/* ======================================
+}/* ==========================================
    BOTTOM NAVIGATION
-====================================== */
+========================================== */
 
 .bottomNav{
 
@@ -468,17 +571,17 @@ justify-content:space-around;
 
 align-items:center;
 
-padding:12px 6px;
+padding:12px 8px;
 
 background:rgba(255,255,255,.94);
 
-backdrop-filter:blur(20px);
+backdrop-filter:blur(18px);
 
-border-radius:24px;
+border-radius:26px;
 
-box-shadow:0 12px 35px rgba(0,0,0,.16);
+box-shadow:0 12px 35px rgba(0,0,0,.18);
 
-z-index:9999;
+z-index:999;
 
 }
 
@@ -518,17 +621,23 @@ font-size:12px;
 
 .bottomNav button.active{
 
-color:var(--primary);
+color:#0b8457;
 
 font-weight:bold;
 
-transform:translateY(-3px);
+transform:translateY(-4px);
 
 }
 
-/* ======================================
+.bottomNav button:hover{
+
+color:#0b8457;
+
+}
+
+/* ==========================================
    ANIMATIONS
-====================================== */
+========================================== */
 
 @keyframes fadeUp{
 
@@ -572,12 +681,6 @@ transform:translateY(0);
 
 }
 
-.welcomeCard{
-
-animation:fadeUp .8s ease;
-
-}
-
 .feature{
 
 animation:fadeUp .8s ease;
@@ -590,45 +693,73 @@ animation:floating 4s ease-in-out infinite;
 
 }
 
-/* ======================================
+/* ==========================================
    SCROLLBAR
-====================================== */
+========================================== */
 
 ::-webkit-scrollbar{
 
-width:7px;
+width:8px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:#edf5ef;
 
 }
 
 ::-webkit-scrollbar-thumb{
 
-background:var(--primary);
+background:#0b8457;
 
 border-radius:20px;
 
 }
 
-/* ======================================
-   MOBILE
-====================================== */
+::-webkit-scrollbar-thumb:hover{
 
-@media(max-width:768px){
+background:#149c73;
+
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media(max-width:900px){
 
 .hero{
 
-height:340px;
+min-height:420px;
+
+padding:20px;
 
 }
 
-.overlay{
+.heroContent{
 
-padding:16px;
+max-width:100%;
 
 }
 
-.welcomeCard{
+.dashboardGrid{
 
-padding:18px;
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media(max-width:600px){
+
+.hero{
+
+min-height:380px;
 
 }
 
@@ -644,25 +775,41 @@ font-size:15px;
 
 }
 
-.welcomeCard h2{
+.welcomeTitle{
 
-font-size:22px;
+font-size:24px;
 
 }
 
-.welcomeCard p{
+.welcomeText{
 
 font-size:14px;
 
 }
 
-.infoValue{
+.heroCard{
 
-font-size:17px;
+padding:14px;
 
 }
 
-.nextPrayer h2{
+.heroCardIcon{
+
+width:44px;
+
+height:44px;
+
+font-size:20px;
+
+}
+
+.nextPrayerCard{
+
+padding:18px;
+
+}
+
+.nextPrayerCard h1{
 
 font-size:34px;
 
@@ -670,25 +817,27 @@ font-size:34px;
 
 #dashboardCountdown{
 
-font-size:26px;
+font-size:28px;
 
 }
 
 .dashboardGrid{
 
-gap:15px;
+grid-template-columns:repeat(2,1fr);
+
+gap:14px;
 
 }
 
 .feature{
 
-padding:18px 12px;
+padding:18px 14px;
 
 }
 
 .feature .icon{
 
-font-size:38px;
+font-size:36px;
 
 }
 
@@ -704,15 +853,68 @@ font-size:13px;
 
 }
 
+.continueReadingCard{
+
+padding:18px;
+
 }
 
-/* ======================================
-   DESKTOP
-====================================== */
+.continueContent h3{
 
-@media(min-width:1000px){
+font-size:18px;
+
+}
+
+.continueContent p{
+
+font-size:14px;
+
+}
+
+.bottomNav{
+
+width:97%;
+
+bottom:8px;
+
+}
+
+.bottomNav button span{
+
+font-size:21px;
+
+}
+
+.bottomNav button p{
+
+font-size:11px;
+
+}
+
+}
+
+/* ==========================================
+   LARGE DESKTOP
+========================================== */
+
+@media(min-width:1100px){
+
+.dashboardGrid{
+
+grid-template-columns:repeat(4,1fr);
+
+}
+
+.heroContent{
+
+max-width:700px;
+
+}
 
 .hero{
 
-height:430
+min-height:470px;
+
+}
+
 }
