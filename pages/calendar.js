@@ -1,13 +1,13 @@
 /* ==========================================
    MUSLIM BRO
-   HIJRI CALENDAR
+   PREMIUM HIJRI CALENDAR
 ========================================== */
 
-const monthName =
-document.getElementById("monthName");
+const monthTitle =
+document.getElementById("monthTitle");
 
-const hijriMonth =
-document.getElementById("hijriMonth");
+const hijriTitle =
+document.getElementById("hijriTitle");
 
 const calendarGrid =
 document.getElementById("calendarGrid");
@@ -21,30 +21,15 @@ document.getElementById("prevMonth");
 const nextBtn =
 document.getElementById("nextMonth");
 
-const backBtn =
-document.getElementById("backBtn");
+const todayBtn =
+document.getElementById("todayBtn");
 
 let currentDate =
 new Date();
 
-// ==============================
-// MONTH NAMES
-// ==============================
+/* ===================================== */
 
-const months = [
-
-"January","February","March",
-"April","May","June",
-"July","August","September",
-"October","November","December"
-
-];
-
-// ==============================
-// DRAW CALENDAR
-// ==============================
-
-async function renderCalendar(){
+function buildCalendar(){
 
 calendarGrid.innerHTML="";
 
@@ -54,197 +39,231 @@ currentDate.getFullYear();
 const month =
 currentDate.getMonth();
 
-monthName.textContent =
-months[month] + " " + year;
+const monthData =
+HijriEngine.generateMonth(
+year,
+month
+);
 
-// First day
+monthTitle.textContent =
+currentDate.toLocaleString(
+"default",
+{
+month:"long",
+year:"numeric"
+}
+);
 
-const firstDay =
-new Date(year,month,1).getDay();
+const firstValid =
+monthData.find(d=>d);
 
-// Total days
+if(firstValid){
 
-const totalDays =
-new Date(year,month+1,0).getDate();
-
-// Empty cells
-
-for(let i=0;i<firstDay;i++){
-
-const div =
-document.createElement("div");
-
-div.className="day empty";
-
-calendarGrid.appendChild(div);
+hijriTitle.textContent =
+HijriEngine.hijriMonthTitle(firstValid);
 
 }
 
-// Day cells
+/* Week Names */
 
-for(let day=1;day<=totalDays;day++){
+const week=[
 
-const card =
+"Sun",
+"Mon",
+"Tue",
+"Wed",
+"Thu",
+"Fri",
+"Sat"
+
+];
+
+week.forEach(name=>{
+
+const head=
 document.createElement("div");
 
-card.className="day";
+head.className=
+"weekHeader";
 
-const today =
-new Date();
+head.textContent=name;
 
-if(
+calendarGrid.appendChild(head);
 
-today.getDate()===day &&
+});
 
-today.getMonth()===month &&
+/* Days */
 
-today.getFullYear()===year
+monthData.forEach(day=>{
 
-){
+const card=
+document.createElement("div");
+
+if(day===null){
+
+card.className=
+"calendarDay empty";
+
+calendarGrid.appendChild(card);
+
+return;
+
+}
+
+card.className=
+"calendarDay";
+
+if(HijriEngine.isToday(day)){
 
 card.classList.add("today");
 
 }
 
-card.innerHTML=
+if(HijriEngine.isFriday(day)){
 
-`
-<div class="dayNumber">${day}</div>
+card.classList.add("friday");
 
-<div class="hijriNumber">
-...
+}
+
+const event =
+HijriEngine.getHijriEvent(day);
+
+card.innerHTML=`
+
+<div class="gregorianDay">
+
+${day.gregorianDay}
+
 </div>
+
+<div class="hijriDay">
+
+${day.hijriDay}
+
+</div>
+
 `;
+
+card.onclick=()=>{
+
+showDay(day,event);
+
+};
 
 calendarGrid.appendChild(card);
 
+});
+
+}/* ==========================================
+   SHOW SELECTED DAY
+========================================== */
+
+function showDay(day,event){
+
+const gregorian =
+
+day.date.toLocaleDateString(
+
+undefined,
+
+{
+
+weekday:"long",
+
+day:"numeric",
+
+month:"long",
+
+year:"numeric"
+
 }
 
-// Load Hijri information
-
-loadHijriInfo();
-
-}
-
-// ==============================
-// LOAD HIJRI DATE
-// ==============================
-
-async function loadHijriInfo(){
-
-try{
-
-const response =
-await fetch(
-"https://api.aladhan.com/v1/gToH"
 );
-
-const json =
-await response.json();
 
 const hijri =
-json.data.hijri;
 
-hijriMonth.textContent =
+`${day.hijriDay} ${day.hijriMonthArabic} ${day.hijriYear} AH`;
 
-`${hijri.month.en} (${hijri.month.ar}) ${hijri.year} AH`;
+if(eventText){
 
-loadEvents(
-hijri.month.en,
-Number(hijri.day)
-);
+eventText.innerHTML = `
 
-}catch{
+<div class="selectedDate">
 
-hijriMonth.textContent =
-"Hijri unavailable";
+<h3>${gregorian}</h3>
 
-}
+<p>🌙 ${hijri}</p>
 
-}
-// ==============================
-// ISLAMIC EVENTS
-// ==============================
+</div>
 
-function loadEvents(month,day){
+<div class="selectedEvent">
 
-let event = "No special event today.";
+${event ? event : "No special Islamic event"}
 
-if(month==="Ramadan"){
+</div>
 
-event =
-"🌙 Ramadan Mubarak! Increase your Qur'an recitation, duas and charity.";
+`;
 
 }
 
-else if(month==="Shawwal" && day===1){
-
-event =
-"🎉 Eid al-Fitr — May Allah accept your fasting and good deeds.";
-
 }
 
-else if(month==="Dhul Hijjah" && day===9){
+/* ==========================================
+   PREVIOUS MONTH
+========================================== */
 
-event =
-"🤲 Day of Arafah — One of the greatest days for dua and fasting.";
-
-}
-
-else if(month==="Dhul Hijjah" && day===10){
-
-event =
-"🐑 Eid al-Adha — Taqabbal Allahu minna wa minkum.";
-
-}
-
-else if(month==="Muharram" && day===10){
-
-event =
-"🌙 Ashura — A blessed day. Fasting is highly recommended.";
-
-}
-
-eventText.textContent = event;
-
-}
-
-// ==============================
-// MONTH NAVIGATION
-// ==============================
-
-prevBtn.onclick = ()=>{
+prevBtn.addEventListener("click",()=>{
 
 currentDate.setMonth(
+
 currentDate.getMonth()-1
+
 );
 
-renderCalendar();
+buildCalendar();
 
-};
+});
 
-nextBtn.onclick = ()=>{
+/* ==========================================
+   NEXT MONTH
+========================================== */
+
+nextBtn.addEventListener("click",()=>{
 
 currentDate.setMonth(
+
 currentDate.getMonth()+1
+
 );
 
-renderCalendar();
+buildCalendar();
 
-};
+});
 
-// ==============================
-// BACK BUTTON
-// ==============================
+/* ==========================================
+   TODAY BUTTON
+========================================== */
 
-backBtn.onclick = ()=>{
+todayBtn.addEventListener("click",()=>{
 
-history.back();
+currentDate=new Date();
 
-};
+buildCalendar();
 
-// ==============================
-// START
-// ==============================
+});
 
-renderCalendar();
+/* ==========================================
+   INITIALIZE
+========================================== */
+
+document.addEventListener(
+
+"DOMContentLoaded",
+
+()=>{
+
+buildCalendar();
+
+}
+
+);
