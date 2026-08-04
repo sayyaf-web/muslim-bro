@@ -46,28 +46,25 @@ scroll-behavior:smooth;
 }
 
 body{
-    background-image: url("../assets/images/tasbih-background.png");
+    font-family: "Poppins","Segoe UI",sans-serif;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,.45),
+            rgba(0,0,0,.60)
+        ),
+        url("../assets/images/tasbih-background.png");
+
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
+
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
 }
-
-url("../assets/images/tasbih-background.png");
-
-background-size:cover;
-background-position:center;
-background-repeat:no-repeat;
-background-attachment:fixed;
-
-color:var(--text);
-
-min-height:100vh;
-
-overflow-x:hidden;
-
-}
-
 /*==============================
  BACKGROUND LIGHT EFFECT
 ==============================*/
