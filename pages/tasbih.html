@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Digital Tasbih</title>
+
+<link
+rel="stylesheet"
+href="../styles.css">
+
+<link
+rel="stylesheet"
+href="../css/tasbih.css">
+
+</head>
+
+<body>
+
+<!-- ==========================================
+     HERO
+========================================== -->
+
+<header class="tasbihHero">
+
+<div class="heroOverlay">
+
+<h1>
+
+📿 Digital Tasbih
+
+</h1>
+
+<p>
+
+Remember Allah Everywhere
+
+</p>
+
+</div>
+
+</header>
+
+<!-- ==========================================
+     MAIN
+========================================== -->
+
+<main class="tasbihContainer">
+
+<div class="tasbihCard">
+
+<h2 id="dhikrTitle">
+
+SubhanAllah
+
+</h2>
+
+<select id="dhikrSelect">
+
+<option value="SubhanAllah">
+
+SubhanAllah
+
+</option>
+
+<option value="Alhamdulillah">
+
+Alhamdulillah
+
+</option>
+
+<option value="Allahu Akbar">
+
+Allahu Akbar
+
+</option>
+
+<option value="La ilaha illallah">
+
+La ilaha illallah
+
+</option>
+
+<option value="Astaghfirullah">
+
+Astaghfirullah
+
+</option>
+
+<option value="Allahumma Salli Ala Muhammad">
+
+Allahumma Salli Ala Muhammad ﷺ
+
+</option>
+
+<option value="Custom">
+
+Custom Dhikr
+
+</option>
+
+</select>
+
+<!-- Counter -->
+
+<div class="counterCircle">
+
+<div
+id="counter"
+class="counter">
+
+0
+
+</div>
+
+</div>
+
+<div
+id="goalText"
+class="goalText">
+
+Goal: 33
+
+</div><!-- ==========================================
+     PROGRESS BAR
+========================================== -->
+
+<div class="progressContainer">
+
+<div
+id="progressBar"
+class="progressBar">
+
+</div>
+
+</div>
+
+<!-- ==========================================
+     COUNTING MODE
+========================================== -->
+
+<div class="modeContainer">
+
+<label>
+
+<input
+type="radio"
+name="mode"
+value="tap"
+checked>
+
+👆 Tap Mode
+
+</label>
+
+<label>
+
+<input
+type="radio"
+name="mode"
+value="voice">
+
+🎤 Voice Mode
+
+</label>
+
+</div>
+
+<!-- ==========================================
+     MICROPHONE STATUS
+========================================== -->
+
+<div
+id="voiceStatus"
+class="voiceStatus">
+
+Microphone Off
+
+</div>
+
+<!-- ==========================================
+     BUTTONS
+========================================== -->
+
+<div class="tasbihButtons">
+
+<button
+id="tapBtn"
+class="primaryBtn">
+
+📿 Count
+
+</button>
+
+<button
+id="undoBtn"
+class="secondaryBtn">
+
+↩ Undo
+
+</button>
+
+<button
+id="resetBtn"
+class="dangerBtn">
+
+🔄 Reset
+
+</button>
+
+</div>
+
+<div class="tasbihButtons">
+
+<button
+id="saveBtn"
+class="secondaryBtn">
+
+💾 Save
+
+</button>
+
+<button
+id="historyBtn"
+class="secondaryBtn">
+
+📊 History
+
+</button>
+
+</div>
+
+<!-- ==========================================
+     SESSION INFO
+========================================== -->
+
+<div
+id="sessionInfo"
+class="sessionInfo">
+
+Today's Count: 0
+
+</div><!-- ==========================================
+     FOOTER ACTIONS
+========================================== -->
+
+</div>
+
+</main>
+
+<div class="tasbihActions">
+
+<button
+class="actionBtn"
+onclick="history.back()">
+
+🏠 Home
+
+</button>
+
+<button
+class="actionBtn"
+onclick="location.reload()">
+
+🔄 Refresh
+
+</button>
+
+</div>
+
+<footer class="tasbihFooter">
+
+<p>
+
+☪ Muslim Bro • Digital Tasbih
+
+</p>
+
+</footer>
+
+<!-- ==========================================
+     SCRIPT
+========================================== -->
+
+<script src="../js/tasbih.js"></script>
+
+</body>
+
+</html>
