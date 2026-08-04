@@ -4,6 +4,27 @@
    PART 1
 ========================================== */
 
+/* ==========================================
+   MONTHS
+========================================== */
+
+const months = [
+
+"January",
+"February",
+"March",
+"April",
+"May",
+"June",
+"July",
+"August",
+"September",
+"October",
+"November",
+"December"
+
+];
+
 const HIJRI_MONTHS = [
 
 "Muharram",
@@ -56,41 +77,26 @@ const WEEK_DAYS = [
 
 function gregorianToJD(year, month, day){
 
-if(month <= 2){
+    if(month <= 2){
 
-year--;
-month += 12;
+        year--;
+        month += 12;
 
-}
+    }
 
-const A = Math.floor(year / 100);
-const B = 2 - A + Math.floor(A / 4);
+    const A = Math.floor(year / 100);
 
-return Math.floor(
+    const B = 2 - A + Math.floor(A / 4);
 
-365.25 * (year + 4716)
+    return Math.floor(365.25 * (year + 4716))
 
-)
+        + Math.floor(30.6001 * (month + 1))
 
-+
+        + day
 
-Math.floor(
+        + B
 
-30.6001 * (month + 1)
-
-)
-
-+
-
-day
-
-+
-
-B
-
--
-
-1524;
+        - 1524;
 
 }
 
@@ -100,35 +106,17 @@ B
 
 function islamicToJD(year, month, day){
 
-return day
+    return day
 
-+
+    + Math.ceil(29.5 * (month - 1))
 
-Math.ceil(
+    + (year - 1) * 354
 
-29.5 * (month - 1)
+    + Math.floor((3 + 11 * year) / 30)
 
-)
+    + 1948439
 
-+
-
-(year - 1) * 354
-
-+
-
-Math.floor(
-
-(3 + 11 * year) / 30
-
-)
-
-+
-
-1948439
-
--
-
-1;
+    - 1;
 
 }/* ==========================================
    JULIAN DAY → HIJRI DATE
@@ -136,53 +124,51 @@ Math.floor(
 
 function jdToIslamic(jd){
 
-jd = Math.floor(jd) + 0.5;
+    jd = Math.floor(jd) + 0.5;
 
-const year = Math.floor(
+    const year = Math.floor(
 
-(30 * (jd - 1948439) + 10646) / 10631
+        (30 * (jd - 1948439) + 10646) / 10631
 
-);
+    );
 
-let month = Math.min(
+    let month = Math.min(
 
-12,
+        12,
 
-Math.ceil(
+        Math.ceil(
 
-(jd - (29 + islamicToJD(year,1,1))) / 29.5
+            (jd - (29 + islamicToJD(year,1,1))) / 29.5
 
-) + 1
+        ) + 1
 
-);
+    );
 
-if(month < 1){
+    if(month < 1){
 
-month = 1;
+        month = 1;
 
-}
+    }
 
-const firstDayOfMonth =
-islamicToJD(year,month,1);
+    const firstDayOfMonth =
+    islamicToJD(year,month,1);
 
-const day =
-Math.floor(jd - firstDayOfMonth + 1);
+    const day =
+    Math.floor(jd - firstDayOfMonth + 1);
 
-return{
+    return{
 
-day:day,
+        day:day,
 
-month:month,
+        month:month,
 
-monthName:
-HIJRI_MONTHS[month-1],
+        monthName:HIJRI_MONTHS[month-1],
 
-monthArabic:
-HIJRI_MONTHS_AR[month-1],
+        monthArabic:HIJRI_MONTHS_AR[month-1],
 
-year:year
+        year:year
 
-};
+    };
 
 }
 
@@ -192,17 +178,17 @@ year:year
 
 function gregorianToHijri(date){
 
-const jd = gregorianToJD(
+    const jd = gregorianToJD(
 
-date.getFullYear(),
+        date.getFullYear(),
 
-date.getMonth()+1,
+        date.getMonth()+1,
 
-date.getDate()
+        date.getDate()
 
-);
+    );
 
-return jdToIslamic(jd);
+    return jdToIslamic(jd);
 
 }
 
@@ -212,34 +198,33 @@ return jdToIslamic(jd);
 
 function formatHijri(date){
 
-const h =
-gregorianToHijri(date);
+    const h = gregorianToHijri(date);
 
-return{
+    return{
 
-day:h.day,
+        day:h.day,
 
-month:h.month,
+        month:h.month,
 
-monthName:h.monthName,
+        monthName:h.monthName,
 
-monthArabic:h.monthArabic,
+        monthArabic:h.monthArabic,
 
-year:h.year,
+        year:h.year,
 
-text:
+        text:`${h.day} ${h.monthName} ${h.year} AH`
 
-`${h.day} ${h.monthName} ${h.year} AH`
+    };
 
-};
+}
 
-}/* ==========================================
+/* ==========================================
    HIJRI LEAP YEAR
 ========================================== */
 
 function isHijriLeapYear(year){
 
-return ((11 * year + 14) % 30) < 11;
+    return ((11 * year + 14) % 30) < 11;
 
 }
 
@@ -249,29 +234,27 @@ return ((11 * year + 14) % 30) < 11;
 
 function hijriMonthDays(year,month){
 
-if(month % 2 === 1){
+    if(month % 2 === 1){
 
-return 30;
+        return 30;
 
-}
+    }
 
-if(month !== 12){
+    if(month !== 12){
 
-return 29;
+        return 29;
 
-}
+    }
 
-return isHijriLeapYear(year) ? 30 : 29;
+    return isHijriLeapYear(year) ? 30 : 29;
 
-}
-
-/* ==========================================
+}/* ==========================================
    DAYS IN GREGORIAN MONTH
 ========================================== */
 
-function gregorianMonthDays(year,month){
+function gregorianMonthDays(year, month){
 
-return new Date(year,month+1,0).getDate();
+    return new Date(year, month + 1, 0).getDate();
 
 }
 
@@ -279,129 +262,119 @@ return new Date(year,month+1,0).getDate();
    FIRST WEEKDAY OF MONTH
 ========================================== */
 
-function firstWeekday(year,month){
+function firstWeekday(year, month){
 
-return new Date(year,month,1).getDay();
+    return new Date(year, month, 1).getDay();
 
 }
 
 /* ==========================================
-   CREATE GREGORIAN DAY OBJECT
+   CREATE DAY OBJECT
 ========================================== */
 
-function createDayObject(year,month,day){
+function createDayObject(year, month, day){
 
-const date =
-new Date(year,month,day);
+    const date = new Date(year, month, day);
 
-const hijri =
-gregorianToHijri(date);
+    const hijri = gregorianToHijri(date);
 
-return{
+    return{
 
-date,
+        date,
 
-gregorianDay:day,
+        gregorianDay: day,
+        gregorianMonth: month,
+        gregorianYear: year,
 
-gregorianMonth:month,
+        weekday: WEEK_DAYS[date.getDay()],
 
-gregorianYear:year,
+        hijriDay: hijri.day,
+        hijriMonth: hijri.month,
+        hijriMonthName: hijri.monthName,
+        hijriMonthArabic: hijri.monthArabic,
+        hijriYear: hijri.year
 
-weekday:
-
-WEEK_DAYS[date.getDay()],
-
-hijriDay:hijri.day,
-
-hijriMonth:hijri.month,
-
-hijriMonthName:hijri.monthName,
-
-hijriMonthArabic:hijri.monthArabic,
-
-hijriYear:hijri.year
-
-};
+    };
 
 }
 
 /* ==========================================
-   TODAY
+   TODAY'S HIJRI DATE
 ========================================== */
 
 function todayHijri(){
 
-return gregorianToHijri(new Date());
-
-}/* ==========================================
-   GENERATE MONTH DATA
-========================================== */
-
-function generateMonth(year,month){
-
-const monthData=[];
-
-const firstDay=
-firstWeekday(year,month);
-
-const totalDays=
-gregorianMonthDays(year,month);
-
-// Empty cells before month starts
-
-for(let i=0;i<firstDay;i++){
-
-monthData.push(null);
-
-}
-
-// Month days
-
-for(let day=1;day<=totalDays;day++){
-
-monthData.push(
-
-createDayObject(
-year,
-month,
-day
-)
-
-);
-
-}
-
-// Fill last row
-
-while(monthData.length % 7 !==0){
-
-monthData.push(null);
-
-}
-
-return monthData;
+    return gregorianToHijri(new Date());
 
 }
 
 /* ==========================================
+   GENERATE MONTH
+========================================== */
+
+function generateMonth(year, month){
+
+    const monthData = [];
+
+    const firstDay =
+    firstWeekday(year, month);
+
+    const totalDays =
+    gregorianMonthDays(year, month);
+
+    // Empty cells
+
+    for(let i = 0; i < firstDay; i++){
+
+        monthData.push(null);
+
+    }
+
+    // Days
+
+    for(let day = 1; day <= totalDays; day++){
+
+        monthData.push(
+
+            createDayObject(
+                year,
+                month,
+                day
+            )
+
+        );
+
+    }
+
+    // Fill last week
+
+    while(monthData.length % 7 !== 0){
+
+        monthData.push(null);
+
+    }
+
+    return monthData;
+
+}/* ==========================================
    IS TODAY
 ========================================== */
 
 function isToday(dayObj){
 
-if(!dayObj) return false;
+    if(!dayObj) return false;
 
-const now=new Date();
+    const now = new Date();
 
-return(
+    return (
 
-dayObj.gregorianDay===now.getDate() &&
+        dayObj.gregorianDay === now.getDate() &&
 
-dayObj.gregorianMonth===now.getMonth() &&
+        dayObj.gregorianMonth === now.getMonth() &&
 
-dayObj.gregorianYear===now.getFullYear()
+        dayObj.gregorianYear === now.getFullYear()
 
-);
+    );
 
 }
 
@@ -411,9 +384,9 @@ dayObj.gregorianYear===now.getFullYear()
 
 function isFriday(dayObj){
 
-if(!dayObj) return false;
+    if(!dayObj) return false;
 
-return dayObj.weekday==="Friday";
+    return dayObj.weekday === "Friday";
 
 }
 
@@ -423,15 +396,15 @@ return dayObj.weekday==="Friday";
 
 function isWeekend(dayObj){
 
-if(!dayObj) return false;
+    if(!dayObj) return false;
 
-return(
+    return (
 
-dayObj.weekday==="Saturday" ||
+        dayObj.weekday === "Saturday" ||
 
-dayObj.weekday==="Sunday"
+        dayObj.weekday === "Sunday"
 
-);
+    );
 
 }
 
@@ -441,69 +414,58 @@ dayObj.weekday==="Sunday"
 
 function formatGregorian(dayObj){
 
-return(
+    if(!dayObj) return "";
 
-dayObj.gregorianDay+" "+
+    return (
 
-months[dayObj.gregorianMonth]+" "+
+        dayObj.gregorianDay + " " +
 
-dayObj.gregorianYear
+        months[dayObj.gregorianMonth] + " " +
 
-);
+        dayObj.gregorianYear
 
-}/* ==========================================
+    );
+
+}
+
+/* ==========================================
    ISLAMIC EVENTS
 ========================================== */
 
 const HIJRI_EVENTS = {
 
-"1-1":"🌙 Islamic New Year",
+    "1-1":"🌙 Islamic New Year",
+    "10-1":"🌙 Day of Ashura",
+    "12-3":"🌸 Mawlid an-Nabi",
+    "27-7":"🌙 Isra & Mi'raj",
+    "15-8":"🌙 Mid Sha'ban",
+    "1-9":"🌙 First Day of Ramadan",
+    "27-9":"🌙 Laylatul Qadr",
+    "1-10":"🎉 Eid al-Fitr",
+    "8-12":"🕋 Start of Hajj",
+    "9-12":"🤲 Day of Arafah",
+    "10-12":"🐑 Eid al-Adha",
+    "11-12":"🐑 Days of Tashreeq",
+    "12-12":"🐑 Days of Tashreeq",
+    "13-12":"🐑 Days of Tashreeq"
 
-"10-1":"🌙 Day of Ashura",
-
-"12-3":"🌸 Mawlid an-Nabi",
-
-"27-7":"🌙 Isra & Mi'raj",
-
-"15-8":"🌙 Mid Sha'ban",
-
-"1-9":"🌙 First Day of Ramadan",
-
-"27-9":"🌙 Laylatul Qadr",
-
-"1-10":"🎉 Eid al-Fitr",
-
-"8-12":"🕋 Start of Hajj",
-
-"9-12":"🤲 Day of Arafah",
-
-"10-12":"🐑 Eid al-Adha",
-
-"11-12":"🐑 Days of Tashreeq",
-
-"12-12":"🐑 Days of Tashreeq",
-
-"13-12":"🐑 Days of Tashreeq"
-
-};
-
-/* ==========================================
-   GET EVENT
+};/* ==========================================
+   GET HIJRI EVENT
 ========================================== */
 
 function getHijriEvent(dayObj){
 
-if(!dayObj) return "";
+    if(!dayObj) return "";
 
-const key =
+    const key =
 
-dayObj.hijriDay +
+        dayObj.hijriDay +
 
-"-" +
+        "-" +
 
-dayObj.hijriMonth;
+        dayObj.hijriMonth;
 
-return HIJRI_EVENTS[key] || "";
+    return HIJRI_EVENTS[key] || "";
 
 }
 
@@ -513,54 +475,62 @@ return HIJRI_EVENTS[key] || "";
 
 function hasEvent(dayObj){
 
-return getHijriEvent(dayObj)!=="";
+    return getHijriEvent(dayObj) !== "";
 
 }
 
 /* ==========================================
-   MONTH TITLE
+   HIJRI MONTH TITLE
 ========================================== */
 
 function hijriMonthTitle(dayObj){
 
-if(!dayObj) return "";
+    if(!dayObj) return "";
 
-return(
+    return (
 
-dayObj.hijriMonthArabic+
+        dayObj.hijriMonthArabic +
 
-" • "+
+        " • " +
 
-dayObj.hijriYear+
+        dayObj.hijriYear +
 
-" AH"
+        " AH"
 
-);
+    );
 
 }
 
 /* ==========================================
-   EXPORT HELPERS
+   EXPORT ENGINE
 ========================================== */
 
-window.HijriEngine={
+window.HijriEngine = {
 
-gregorianToHijri,
+    // Core
+    gregorianToHijri,
+    generateMonth,
+    todayHijri,
 
-generateMonth,
+    // Formatting
+    formatHijri,
+    formatGregorian,
 
-todayHijri,
+    // Events
+    getHijriEvent,
+    hasEvent,
 
-formatHijri,
+    // Titles
+    hijriMonthTitle,
 
-getHijriEvent,
+    // Helpers
+    isToday,
+    isFriday,
+    isWeekend,
 
-hasEvent,
-
-hijriMonthTitle,
-
-HIJRI_MONTHS,
-
-HIJRI_MONTHS_AR
+    // Data
+    months,
+    HIJRI_MONTHS,
+    HIJRI_MONTHS_AR
 
 };
