@@ -1,48 +1,48 @@
 /* ==========================================
    MUSLIM BRO
    PREMIUM DIGITAL TASBIH
-   PART 1
+   VERSION 2.0
 ========================================== */
 
 /* ==========================================
    ELEMENTS
 ========================================== */
 
-const counterElement =
-document.getElementById("counter");
+const counterElement = document.getElementById("counter");
+const progressBar = document.getElementById("progressBar");
+const goalText = document.getElementById("goalText");
+const dhikrTitle = document.getElementById("dhikrTitle");
+const dhikrSelect = document.getElementById("dhikrSelect");
 
-const progressBar =
-document.getElementById("progressBar");
+const tapBtn = document.getElementById("tapBtn");
+const undoBtn = document.getElementById("undoBtn");
+const resetBtn = document.getElementById("resetBtn");
+const saveBtn = document.getElementById("saveBtn");
+const historyBtn = document.getElementById("historyBtn");
 
-const goalText =
-document.getElementById("goalText");
+const voiceStatus = document.getElementById("voiceStatus");
+const sessionInfo = document.getElementById("sessionInfo");
 
-const dhikrTitle =
-document.getElementById("dhikrTitle");
+const misbaha = document.getElementById("misbaha");
 
-const dhikrSelect =
-document.getElementById("dhikrSelect");
+/* ==========================================
+   PREMIUM MODAL
+========================================== */
 
-const tapBtn =
-document.getElementById("tapBtn");
+const premiumModal =
+document.getElementById("premiumModal");
 
-const undoBtn =
-document.getElementById("undoBtn");
+const modalIcon =
+document.getElementById("modalIcon");
 
-const resetBtn =
-document.getElementById("resetBtn");
+const modalTitle =
+document.getElementById("modalTitle");
 
-const saveBtn =
-document.getElementById("saveBtn");
+const modalMessage =
+document.getElementById("modalMessage");
 
-const historyBtn =
-document.getElementById("historyBtn");
-
-const voiceStatus =
-document.getElementById("voiceStatus");
-
-const sessionInfo =
-document.getElementById("sessionInfo");
+const modalButton =
+document.getElementById("modalButton");
 
 /* ==========================================
    SETTINGS
@@ -54,26 +54,86 @@ let goal = 33;
 
 let todayCount = 0;
 
+let lifetimeCount = 0;
+
 let history = [];
 
 let recognition = null;
 
 /* ==========================================
-   STORAGE KEYS
+   STORAGE
 ========================================== */
 
 const STORAGE = {
 
-count : "tasbihCount",
+count:"tasbihCount",
 
-today : "todayCount",
+today:"todayCount",
 
-history : "tasbihHistory"
+history:"tasbihHistory",
+
+lifetime:"tasbihLifetime",
+
+goal:"tasbihGoal",
+
+day:"tasbihDay"
 
 };
 
 /* ==========================================
-   LOAD SAVED DATA
+   PREMIUM MODAL
+========================================== */
+
+function showModal(
+
+icon,
+
+title,
+
+message
+
+){
+
+modalIcon.textContent = icon;
+
+modalTitle.textContent = title;
+
+modalMessage.textContent = message;
+
+premiumModal.classList.add("show");
+
+}
+
+function hideModal(){
+
+premiumModal.classList.remove("show");
+
+}
+
+modalButton.addEventListener(
+
+"click",
+
+hideModal
+
+);
+
+premiumModal.addEventListener(
+
+"click",
+
+(e)=>{
+
+if(e.target===premiumModal){
+
+hideModal();
+
+}
+
+});
+
+/* ==========================================
+   LOAD DATA
 ========================================== */
 
 function loadTasbih(){
@@ -90,13 +150,23 @@ localStorage.getItem(STORAGE.today)
 
 ) || 0;
 
+lifetimeCount = Number(
+
+localStorage.getItem(STORAGE.lifetime)
+
+) || 0;
+
+goal = Number(
+
+localStorage.getItem(STORAGE.goal)
+
+) || 33;
+
 history = JSON.parse(
 
 localStorage.getItem(STORAGE.history)
 
 ) || [];
-
-updateDisplay();
 
 }
 
@@ -124,6 +194,22 @@ todayCount
 
 localStorage.setItem(
 
+STORAGE.lifetime,
+
+lifetimeCount
+
+);
+
+localStorage.setItem(
+
+STORAGE.goal,
+
+goal
+
+);
+
+localStorage.setItem(
+
 STORAGE.history,
 
 JSON.stringify(history)
@@ -131,6 +217,56 @@ JSON.stringify(history)
 );
 
 }/* ==========================================
+   CREATE DIGITAL MISBAHA
+========================================== */
+
+function createMisbaha(){
+
+if(!misbaha) return;
+
+misbaha.innerHTML="";
+
+for(let i=0;i<goal;i++){
+
+const bead=document.createElement("div");
+
+bead.className="bead";
+
+misbaha.appendChild(bead);
+
+}
+
+}
+
+/* ==========================================
+   UPDATE MISBAHA
+========================================== */
+
+function updateMisbaha(){
+
+if(!misbaha) return;
+
+const beads=
+
+misbaha.querySelectorAll(".bead");
+
+beads.forEach((bead,index)=>{
+
+if(index<count){
+
+bead.classList.add("active");
+
+}else{
+
+bead.classList.remove("active");
+
+}
+
+});
+
+}
+
+/* ==========================================
    UPDATE DISPLAY
 ========================================== */
 
@@ -138,13 +274,13 @@ function updateDisplay(){
 
 if(counterElement){
 
-counterElement.textContent = count;
+counterElement.textContent=count;
 
 }
 
 if(goalText){
 
-goalText.textContent =
+goalText.textContent=
 
 `Goal: ${goal}`;
 
@@ -152,93 +288,113 @@ goalText.textContent =
 
 if(sessionInfo){
 
-sessionInfo.textContent =
+sessionInfo.textContent=
 
-`Today's Count: ${todayCount}`;
+`Today's Count: ${todayCount}
+
+• Lifetime: ${lifetimeCount}`;
 
 }
 
 if(progressBar){
 
-const percent =
+const percent=
 
 Math.min(
 
-(count / goal) * 100,
+(count/goal)*100,
 
 100
 
 );
 
-progressBar.style.width =
+progressBar.style.width=
 
-percent + "%";
+percent+"%";
 
 }
+
+updateMisbaha();
 
 }
 
 /* ==========================================
-   MILESTONE CELEBRATION
+   COUNTER ANIMATION
+========================================== */
+
+function animateCounter(){
+
+const circle=
+
+document.querySelector(
+
+".counterCircle"
+
+);
+
+if(!circle) return;
+
+circle.style.transform="scale(.92)";
+
+setTimeout(()=>{
+
+circle.style.transform="scale(1)";
+
+},120);
+
+}
+
+/* ==========================================
+   PREMIUM MILESTONES
 ========================================== */
 
 function celebrateMilestone(){
 
-if(count===33){
+switch(count){
 
-showMilestone(
+case 33:
+
+showModal(
 
 "🌿",
 
-"MashaAllah!",
+"MashaAllah",
 
 "You completed 33 Tasbih."
 
 );
 
-}
+break;
 
-else if(count===99){
+case 99:
 
-showMilestone(
+showModal(
 
 "✨",
 
-"MashaAllah!",
+"MashaAllah",
 
 "You completed 99 Tasbih."
 
 );
 
-}
+break;
 
-else if(count===100){
+case 100:
 
-showMilestone(
+showModal(
 
 "🤲",
 
-"Allahumma Barik!",
+"Allahumma Barik",
 
 "100 Tasbih completed!"
 
 );
 
-}
+break;
 
 }
-
-/* ==========================================
-   POPUP
-========================================== */
-
-function showMilestone(icon,title,message){
-
-alert(
-
-`${icon}\n\n${title}\n\n${message}`
-
-);
 
 if(navigator.vibrate){
 
@@ -258,6 +414,10 @@ count++;
 
 todayCount++;
 
+lifetimeCount++;
+
+animateCounter();
+
 updateDisplay();
 
 celebrateMilestone();
@@ -274,67 +434,45 @@ navigator.vibrate(20);
    TAP BUTTON
 ========================================== */
 
-if(tapBtn){
-
-tapBtn.addEventListener(
+tapBtn?.addEventListener(
 
 "click",
 
 incrementCount
 
 );
-
-}
 
 /* ==========================================
-   TAP COUNTER CIRCLE
+   COUNTER CIRCLE
 ========================================== */
 
-const counterCircle =
+document
 
-document.querySelector(
+.querySelector(".counterCircle")
 
-".counterCircle"
-
-);
-
-if(counterCircle){
-
-counterCircle.addEventListener(
+?.addEventListener(
 
 "click",
 
 incrementCount
 
 );
-
-}
 
 /* ==========================================
    UNDO
 ========================================== */
 
-if(undoBtn){
-
-undoBtn.addEventListener(
+undoBtn?.addEventListener(
 
 "click",
 
 ()=>{
 
-if(count<=0){
-
-return;
-
-}
+if(count===0) return;
 
 count--;
 
-if(todayCount>0){
-
-todayCount--;
-
-}
+if(todayCount>0) todayCount--;
 
 updateDisplay();
 
@@ -343,54 +481,52 @@ saveTasbih();
 }
 
 );
-
-}
 
 /* ==========================================
    RESET
 ========================================== */
 
-if(resetBtn){
-
-resetBtn.addEventListener(
+resetBtn?.addEventListener(
 
 "click",
 
 ()=>{
 
-const confirmReset =
+const answer=
 
 confirm(
 
-"Reset Tasbih Counter?"
+"Reset the Tasbih counter?"
 
 );
 
-if(!confirmReset){
+if(!answer) return;
 
-return;
-
-}
-
-count = 0;
+count=0;
 
 updateDisplay();
 
 saveTasbih();
 
-}
+showModal(
+
+"🔄",
+
+"Counter Reset",
+
+"The Tasbih counter has been reset."
 
 );
 
 }
 
+);
+
 /* ==========================================
    SAVE SESSION
 ========================================== */
 
-if(saveBtn){
-
-saveBtn.addEventListener(
+saveBtn?.addEventListener(
 
 "click",
 
@@ -398,37 +534,35 @@ saveBtn.addEventListener(
 
 history.push({
 
-dhikr: dhikrSelect.value,
+dhikr:dhikrSelect.value,
 
-count: count,
+count:count,
 
-date: new Date()
-
-.toLocaleString()
+date:new Date().toLocaleString()
 
 });
 
 saveTasbih();
 
-alert(
+showModal(
 
-"✅ Tasbih session saved."
+"💾",
+
+"Session Saved",
+
+`"${dhikrSelect.value}"\n\nCount: ${count}`
 
 );
 
 }
 
 );
-
-}
 
 /* ==========================================
    HISTORY
 ========================================== */
 
-if(historyBtn){
-
-historyBtn.addEventListener(
+historyBtn?.addEventListener(
 
 "click",
 
@@ -436,9 +570,13 @@ historyBtn.addEventListener(
 
 if(history.length===0){
 
-alert(
+showModal(
 
-"No saved Tasbih sessions."
+"📚",
+
+"No History",
+
+"No Tasbih sessions have been saved yet."
 
 );
 
@@ -446,15 +584,17 @@ return;
 
 }
 
-let text =
+let message="";
 
-"📿 Tasbih History\n\n";
+history
 
-history.forEach(
+.slice()
 
-(item,index)=>{
+.reverse()
 
-text +=
+.forEach((item,index)=>{
+
+message +=
 
 `${index+1}. ${item.dhikr}
 
@@ -464,46 +604,44 @@ ${item.date}
 
 \n`;
 
-}
+});
+
+showModal(
+
+"📿",
+
+"Session History",
+
+message
 
 );
 
-alert(text);
-
 }
 
 );
-
-}
 
 /* ==========================================
-   DHIKR SELECT
+   CHANGE DHIKR
 ========================================== */
 
-if(dhikrSelect){
-
-dhikrSelect.addEventListener(
+dhikrSelect?.addEventListener(
 
 "change",
 
 ()=>{
 
-dhikrTitle.textContent =
+dhikrTitle.textContent=
 
 dhikrSelect.value;
 
 }
 
-);
-
-}/* ==========================================
-   PREMIUM SMART VOICE RECOGNITION
+);/* ==========================================
+   PREMIUM AI VOICE RECOGNITION
 ========================================== */
 
 const SpeechRecognition =
-
 window.SpeechRecognition ||
-
 window.webkitSpeechRecognition;
 
 if(SpeechRecognition){
@@ -524,13 +662,12 @@ recognition.maxAlternatives = 1;
 
 recognition.onstart = ()=>{
 
-if(voiceStatus){
-
 voiceStatus.textContent =
-
 "🎤 Listening...";
 
-}
+voiceStatus.classList.add(
+"listening"
+);
 
 };
 
@@ -540,35 +677,23 @@ voiceStatus.textContent =
 
 recognition.onend = ()=>{
 
-const mode =
-
-document.querySelector(
-
-'input[name="mode"]:checked'
-
+voiceStatus.classList.remove(
+"listening"
 );
 
-if(
+const mode =
+document.querySelector(
+'input[name="mode"]:checked'
+);
 
-mode &&
-
-mode.value==="voice"
-
-){
+if(mode && mode.value==="voice"){
 
 recognition.start();
 
-}
-
-else{
-
-if(voiceStatus){
+}else{
 
 voiceStatus.textContent =
-
-"🎤 Microphone Off";
-
-}
+"👆 Tap Mode Enabled";
 
 }
 
@@ -580,59 +705,84 @@ voiceStatus.textContent =
 
 recognition.onerror = (event)=>{
 
-if(voiceStatus){
+voiceStatus.classList.remove(
+"listening"
+);
 
 voiceStatus.textContent =
-
 "⚠ " + event.error;
-
-}
 
 };
 
 /* ==========================================
-   SMART DHIKR DETECTION
+   SMART DETECTION
 ========================================== */
 
 recognition.onresult = (event)=>{
 
-const last =
-
-event.results.length-1;
-
 const speech =
-
-event.results[last][0]
-
+event.results[
+event.results.length-1
+][0]
 .transcript
+.toLowerCase();
 
-.toLowerCase()
-
-.trim();
+/* English + Arabic */
 
 const dhikrs=[
 
+{
+name:"subhanallah",
+words:[
 "subhanallah",
+"سبحان الله"
+]
+},
 
+{
+name:"alhamdulillah",
+words:[
 "alhamdulillah",
+"الحمد لله"
+]
+},
 
+{
+name:"allahu akbar",
+words:[
 "allahu akbar",
+"الله أكبر"
+]
+},
 
+{
+name:"la ilaha illallah",
+words:[
 "la ilaha illallah",
+"لا اله الا الله",
+"لا إله إلا الله"
+]
+},
 
+{
+name:"astaghfirullah",
+words:[
 "astaghfirullah",
-
-"allahumma salli ala muhammad"
+"استغفر الله"
+]
+}
 
 ];
 
-let found=false;
+let detected=false;
 
-dhikrs.forEach(dhikr=>{
+dhikrs.forEach(item=>{
+
+item.words.forEach(word=>{
 
 const escaped =
 
-dhikr.replace(
+word.replace(
 
 /[.*+?^${}()|[\]\\]/g,
 
@@ -640,7 +790,9 @@ dhikr.replace(
 
 );
 
-const regex =
+const matches =
+
+speech.match(
 
 new RegExp(
 
@@ -648,19 +800,17 @@ escaped,
 
 "gi"
 
+)
+
 );
-
-const matches =
-
-speech.match(regex);
 
 if(matches){
 
-found=true;
+detected=true;
 
-dhikrSelect.value=dhikr;
+dhikrSelect.value=item.name;
 
-dhikrTitle.textContent=dhikr;
+dhikrTitle.textContent=item.name;
 
 for(
 
@@ -676,21 +826,17 @@ incrementCount();
 
 }
 
-if(voiceStatus){
-
 voiceStatus.textContent=
 
-`🎤 ${matches.length} × ${dhikr}`;
-
-}
+`🎤 ${matches.length} × ${item.name}`;
 
 }
 
 });
 
-if(!found){
+});
 
-if(voiceStatus){
+if(!detected){
 
 voiceStatus.textContent=
 
@@ -698,25 +844,20 @@ voiceStatus.textContent=
 
 }
 
-}
-
 };
 
 }else{
 
-if(voiceStatus){
-
 voiceStatus.textContent=
 
-"❌ Voice Recognition Not Supported";
-
-}
+"❌ Voice Recognition Unsupported";
 
 }/* ==========================================
    VOICE / TAP MODE
 ========================================== */
 
 document
+
 .querySelectorAll(
 
 'input[name="mode"]'
@@ -749,13 +890,9 @@ recognition.start();
 
 }
 
-if(voiceStatus){
-
 voiceStatus.textContent=
 
 "🎤 Voice Mode Enabled";
-
-}
 
 }
 
@@ -767,13 +904,15 @@ recognition.stop();
 
 }
 
-if(voiceStatus){
+voiceStatus.classList.remove(
+
+"listening"
+
+);
 
 voiceStatus.textContent=
 
 "👆 Tap Mode Enabled";
-
-}
 
 }
 
@@ -784,60 +923,34 @@ voiceStatus.textContent=
 });
 
 /* ==========================================
-   CUSTOM DHIKR
-========================================== */
-
-if(dhikrSelect){
-
-dhikrSelect.addEventListener(
-
-"change",
-
-()=>{
-
-if(dhikrTitle){
-
-dhikrTitle.textContent=
-
-dhikrSelect.value;
-
-}
-
-}
-
-);
-
-}
-
-/* ==========================================
    DAILY RESET
 ========================================== */
 
 const today =
 
-new Date()
-
-.toDateString();
+new Date().toDateString();
 
 const savedDay =
 
 localStorage.getItem(
 
-"tasbihDay"
+STORAGE.day
 
 );
 
 if(savedDay!==today){
 
-todayCount=0;
+todayCount = 0;
 
 localStorage.setItem(
 
-"tasbihDay",
+STORAGE.day,
 
 today
 
 );
+
+saveTasbih();
 
 }
 
@@ -853,22 +966,44 @@ document.addEventListener(
 
 loadTasbih();
 
+/* Create Digital Beads */
+
+createMisbaha();
+
+/* Update Counter */
+
 updateDisplay();
+
+/* Default Status */
 
 if(voiceStatus){
 
-voiceStatus.textContent=
+voiceStatus.textContent =
 
 "👆 Tap Mode Enabled";
 
 }
 
-console.log(
+/* Default Dhikr */
 
-"📿 Muslim Bro Tasbih Ready"
+if(
 
-);
+dhikrSelect &&
+
+dhikrTitle
+
+){
+
+dhikrTitle.textContent =
+
+dhikrSelect.value;
 
 }
 
+console.log(
+
+"📿 Muslim Bro Premium Tasbih Ready"
+
 );
+
+});
