@@ -1,17 +1,13 @@
-const API =
-"https://api.aladhan.com/v1/timingsByCity";
-
-const city = "Nairobi";
-const country = "Kenya";
+const API = "https://api.aladhan.com/v1/timings";
 
 let playedPrayer = "";
 
-async function loadPrayerTimes() {
+async function loadPrayerTimes(latitude, longitude) {
 
     try {
 
         const response = await fetch(
-            `${API}?city=${city}&country=${country}&method=2`
+            `${API}?latitude=${latitude}&longitude=${longitude}&method=2`
         );
 
         const json = await response.json();
@@ -37,7 +33,7 @@ async function loadPrayerTimes() {
             json.data.date.readable;
 
         document.getElementById("location").textContent =
-            city + ", " + country;
+            "📍 Current Location";
 
         checkPrayerTime(timings);
 
@@ -92,4 +88,33 @@ function checkPrayerTime(timings) {
 
 }
 
-loadPrayerTimes();
+if (navigator.geolocation) {
+
+    navigator.geolocation.getCurrentPosition(
+
+        position => {
+
+            loadPrayerTimes(
+                position.coords.latitude,
+                position.coords.longitude
+            );
+
+        },
+
+        () => {
+
+            // Fallback to Nairobi if location is denied
+
+            loadPrayerTimes(-1.286389, 36.817223);
+
+        }
+
+    );
+
+} else {
+
+    // Browser doesn't support location
+
+    loadPrayerTimes(-1.286389, 36.817223);
+
+}
