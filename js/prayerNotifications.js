@@ -1,29 +1,51 @@
+let adhanPlayer = null;
+
 document.addEventListener("DOMContentLoaded", () => {
 
     const button = document.getElementById("testAdhan");
 
-    if (!button) {
-        alert("Test button not found.");
-        return;
+    if (button) {
+        button.addEventListener("click", playAdhan);
     }
 
-    button.addEventListener("click", () => {
+    const adhanSelect = document.getElementById("adhanVoice");
 
-        
+    if (adhanSelect) {
 
-        const audio = new Audio("../audio/adhan.mp3");
+        const saved =
+            localStorage.getItem("adhanVoice") || "adhan";
 
-        audio.play()
-            .then(() => {
-                console.log("Adhan playing...");
-            })
-            .catch(err => {
-                alert("Could not play audio: " + err.message);
-            });
+        adhanSelect.value = saved;
+
+        adhanSelect.addEventListener("change", changeAdhan);
+
+    }
+
+});
+
+function playAdhan() {
+
+    // Stop previous Adhan if it's still playing
+    if (adhanPlayer) {
+
+        adhanPlayer.pause();
+        adhanPlayer.currentTime = 0;
+
+    }
+
+    const voice =
+        localStorage.getItem("adhanVoice") || "adhan";
+
+    adhanPlayer = new Audio(`../audio/${voice}.mp3`);
+
+    adhanPlayer.play().catch(err => {
+
+        console.error("Audio Error:", err);
 
     });
 
-});
+}
+
 function changeAdhan() {
 
     const voice =
@@ -32,12 +54,3 @@ function changeAdhan() {
     localStorage.setItem("adhanVoice", voice);
 
 }
-
-window.addEventListener("DOMContentLoaded", () => {
-
-    const saved =
-        localStorage.getItem("adhanVoice") || "adhan";
-
-    document.getElementById("adhanVoice").value = saved;
-
-});
