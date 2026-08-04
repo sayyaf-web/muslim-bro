@@ -1,21 +1,90 @@
 /* ==========================================
    MUSLIM BRO
-   DIGITAL TASBIH
+   PREMIUM DIGITAL TASBIH
    PART 1
 ========================================== */
 
+/* ==========================================
+   ROOT COLORS
+========================================== */
+
+:root{
+
+--primary:#0D8B56;
+
+--primary-dark:#086B42;
+
+--primary-light:#22C97A;
+
+--gold:#FFD54F;
+
+--white:#FFFFFF;
+
+--glass:rgba(255,255,255,.14);
+
+--glass-border:rgba(255,255,255,.25);
+
+--shadow:rgba(0,0,0,.35);
+
+--text:#1B4332;
+
+}
+
+/* ==========================================
+   PAGE
+========================================== */
+
+*{
+
+margin:0;
+
+padding:0;
+
+box-sizing:border-box;
+
+}
+
+html{
+
+scroll-behavior:smooth;
+
+}
+
 body{
 
-    margin:0;
-    padding:0;
+font-family:
 
-    font-family:
-    "Segoe UI",
-    sans-serif;
+"Poppins",
 
-    background:#eef6ef;
+"Segoe UI",
 
-    color:#1b4332;
+sans-serif;
+
+color:var(--white);
+
+background:
+
+linear-gradient(
+
+rgba(0,0,0,.35),
+
+rgba(0,0,0,.45)
+
+),
+
+url("../assets/images/tasbih-background.png");
+
+background-size:cover;
+
+background-position:center;
+
+background-repeat:no-repeat;
+
+background-attachment:fixed;
+
+min-height:100vh;
+
+overflow-x:hidden;
 
 }
 
@@ -25,177 +94,223 @@ body{
 
 .tasbihHero{
 
-    height:180px;
+height:170px;
 
-    display:flex;
+display:flex;
 
-    justify-content:center;
+justify-content:center;
 
-    align-items:center;
+align-items:center;
 
-    background:
+text-align:center;
 
-    linear-gradient(
-
-        rgba(8,80,45,.75),
-
-        rgba(8,80,45,.75)
-
-    ),
-
-    url("../assets/images/mosque.jpg");
-
-    background-size:cover;
-
-    background-position:center;
+padding:20px;
 
 }
 
 .heroOverlay{
 
-    text-align:center;
-
-    color:#fff;
+max-width:500px;
 
 }
 
 .heroOverlay h1{
 
-    margin:0;
+font-size:2.2rem;
 
-    font-size:34px;
+font-weight:700;
 
-    font-weight:bold;
+color:#fff;
+
+text-shadow:
+
+0 4px 18px rgba(0,0,0,.55);
 
 }
 
 .heroOverlay p{
 
-    margin-top:10px;
+margin-top:10px;
 
-    font-size:16px;
+font-size:1rem;
 
-    opacity:.9;
+color:rgba(255,255,255,.9);
+
+line-height:1.6;
 
 }
 
 /* ==========================================
-   CONTAINER
+   MAIN CONTAINER
 ========================================== */
 
 .tasbihContainer{
 
-    padding:20px;
+width:min(94%,540px);
+
+margin:auto;
+
+padding-bottom:40px;
 
 }
 
+/* ==========================================
+   GLASS CARD
+========================================== */
+
 .tasbihCard{
 
-    background:#fff;
+background:var(--glass);
 
-    border-radius:25px;
+backdrop-filter:blur(20px);
 
-    padding:25px;
+-webkit-backdrop-filter:blur(20px);
 
-    box-shadow:
+border:1px solid var(--glass-border);
 
-    0 10px 30px rgba(0,0,0,.12);
+border-radius:30px;
+
+padding:28px;
+
+box-shadow:
+
+0 20px 45px var(--shadow);
 
 }
 
 .tasbihCard h2{
 
-    text-align:center;
+text-align:center;
 
-    color:#0b6b45;
+font-size:2rem;
 
-    margin-bottom:20px;
+font-weight:700;
 
-}
+color:#fff;
 
-/* ==========================================
-   DHIKR SELECT
+margin-bottom:20px;
+
+text-shadow:
+
+0 3px 10px rgba(0,0,0,.35);
+
+}/* ==========================================
+   PREMIUM DHIKR SELECT
 ========================================== */
 
 #dhikrSelect{
 
-    width:100%;
+width:100%;
 
-    padding:14px;
+padding:15px;
 
-    border:none;
+border:none;
 
-    border-radius:15px;
+border-radius:18px;
 
-    background:#f2f7f4;
+outline:none;
 
-    font-size:16px;
+font-size:1rem;
 
-    color:#1b4332;
+font-weight:600;
 
-    margin-bottom:25px;
+background:rgba(255,255,255,.18);
 
-    outline:none;
+color:#fff;
 
-}/* ==========================================
-   COUNTER CIRCLE
+backdrop-filter:blur(10px);
+
+margin-bottom:25px;
+
+}
+
+#dhikrSelect option{
+
+color:#111;
+
+}
+
+/* ==========================================
+   PREMIUM COUNTER
 ========================================== */
 
 .counterCircle{
 
-    width:230px;
+width:210px;
 
-    height:230px;
+height:210px;
 
-    margin:30px auto;
+margin:30px auto;
 
-    border-radius:50%;
+border-radius:50%;
 
-    background:
+display:flex;
 
-    linear-gradient(
+justify-content:center;
 
-        135deg,
+align-items:center;
 
-        #0d8b56,
+cursor:pointer;
 
-        #14a76c
+background:
 
-    );
+linear-gradient(
 
-    display:flex;
+145deg,
 
-    justify-content:center;
+#18B86A,
 
-    align-items:center;
+#0C6A40
 
-    box-shadow:
+);
 
-    0 12px 30px rgba(13,139,86,.35);
+border:5px solid var(--gold);
 
-    transition:.3s;
+box-shadow:
+
+0 0 25px rgba(24,184,106,.55),
+
+0 0 70px rgba(255,213,79,.35),
+
+inset 0 0 20px rgba(255,255,255,.18);
+
+transition:
+
+transform .2s ease,
+
+box-shadow .3s ease;
+
+animation:
+
+counterGlow 3s infinite;
+
+}
+
+.counterCircle:hover{
+
+transform:scale(1.03);
 
 }
 
 .counterCircle:active{
 
-    transform:scale(.97);
+transform:scale(.95);
 
 }
 
-/* ==========================================
-   COUNTER NUMBER
-========================================== */
-
 .counter{
 
-    font-size:64px;
+font-size:4.4rem;
 
-    font-weight:700;
+font-weight:800;
 
-    color:#ffffff;
+color:#fff;
 
-    user-select:none;
+text-shadow:
+
+0 3px 15px rgba(0,0,0,.45);
+
+user-select:none;
 
 }
 
@@ -205,59 +320,173 @@ body{
 
 .goalText{
 
-    text-align:center;
+margin-top:18px;
 
-    font-size:18px;
+text-align:center;
 
-    font-weight:600;
+font-size:1.1rem;
 
-    color:#0d8b56;
+font-weight:700;
 
-    margin-top:15px;
+color:var(--gold);
+
+text-shadow:
+
+0 2px 8px rgba(0,0,0,.35);
 
 }
 
 /* ==========================================
-   PROGRESS BAR
+   DIGITAL MISBAHA
+========================================== */
+
+.misbaha{
+
+display:grid;
+
+grid-template-columns:
+
+repeat(11,1fr);
+
+gap:8px;
+
+margin:28px auto;
+
+max-width:360px;
+
+}
+
+.bead{
+
+width:18px;
+
+height:18px;
+
+border-radius:50%;
+
+margin:auto;
+
+background:
+
+rgba(255,255,255,.28);
+
+border:1px solid
+
+rgba(255,255,255,.35);
+
+transition:.35s;
+
+}
+
+.bead.active{
+
+background:
+
+linear-gradient(
+
+145deg,
+
+#FFD54F,
+
+#FFC107
+
+);
+
+box-shadow:
+
+0 0 12px rgba(255,213,79,.8);
+
+transform:scale(1.15);
+
+}
+
+/* ==========================================
+   GLOW ANIMATION
+========================================== */
+
+@keyframes counterGlow{
+
+0%{
+
+box-shadow:
+
+0 0 18px rgba(24,184,106,.45),
+
+0 0 45px rgba(255,213,79,.20);
+
+}
+
+50%{
+
+box-shadow:
+
+0 0 35px rgba(24,184,106,.70),
+
+0 0 80px rgba(255,213,79,.45);
+
+}
+
+100%{
+
+box-shadow:
+
+0 0 18px rgba(24,184,106,.45),
+
+0 0 45px rgba(255,213,79,.20);
+
+}
+
+}/* ==========================================
+   PREMIUM PROGRESS
 ========================================== */
 
 .progressContainer{
 
-    width:100%;
+width:100%;
 
-    height:12px;
+height:14px;
 
-    background:#e6ece8;
+margin:28px 0;
 
-    border-radius:30px;
+background:rgba(255,255,255,.18);
 
-    overflow:hidden;
+border-radius:50px;
 
-    margin:25px 0;
+overflow:hidden;
+
+backdrop-filter:blur(8px);
 
 }
 
 .progressBar{
 
-    width:0%;
+width:0%;
 
-    height:100%;
+height:100%;
 
-    background:
+border-radius:50px;
 
-    linear-gradient(
+background:
 
-        90deg,
+linear-gradient(
 
-        #0d8b56,
+90deg,
 
-        #20c978
+#18B86A,
 
-    );
+#32D583,
 
-    border-radius:30px;
+#FFD54F
 
-    transition:width .3s ease;
+);
+
+box-shadow:
+
+0 0 15px rgba(255,213,79,.45);
+
+transition:width .5s ease;
+
+}
 
 /* ==========================================
    MODE SELECTOR
@@ -265,33 +494,53 @@ body{
 
 .modeContainer{
 
-    display:flex;
+display:flex;
 
-    justify-content:center;
+justify-content:center;
 
-    gap:25px;
+gap:18px;
 
-    margin:20px 0;
+margin:25px 0;
 
-    flex-wrap:wrap;
+flex-wrap:wrap;
 
 }
 
 .modeContainer label{
 
-    font-size:16px;
+display:flex;
 
-    font-weight:600;
+align-items:center;
 
-    color:#0d8b56;
+gap:8px;
 
-    cursor:pointer;
+padding:12px 18px;
+
+border-radius:20px;
+
+background:rgba(255,255,255,.12);
+
+backdrop-filter:blur(10px);
+
+color:#fff;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:.25s;
+
+}
+
+.modeContainer label:hover{
+
+background:rgba(255,255,255,.22);
 
 }
 
 .modeContainer input{
 
-    margin-right:8px;
+accent-color:#18B86A;
 
 }
 
@@ -301,19 +550,29 @@ body{
 
 .voiceStatus{
 
-    text-align:center;
+margin:20px 0;
 
-    margin:18px 0;
+padding:15px;
 
-    padding:12px;
+border-radius:20px;
 
-    border-radius:15px;
+text-align:center;
 
-    background:#f2f7f4;
+font-weight:700;
 
-    color:#0d8b56;
+font-size:1rem;
 
-    font-weight:600;
+color:#fff;
+
+background:rgba(255,255,255,.12);
+
+border:1px solid rgba(255,255,255,.18);
+
+backdrop-filter:blur(10px);
+
+box-shadow:
+
+0 8px 18px rgba(0,0,0,.18);
 
 }
 
@@ -323,83 +582,137 @@ body{
 
 .tasbihButtons{
 
-    display:flex;
+display:grid;
 
-    gap:12px;
+grid-template-columns:
 
-    margin-top:15px;
+repeat(2,1fr);
 
-    flex-wrap:wrap;
+gap:15px;
+
+margin-top:25px;
 
 }
 
 .tasbihButtons button{
 
-    flex:1;
+padding:15px;
 
-    min-width:120px;
+border:none;
 
-    padding:14px;
+border-radius:18px;
 
-    border:none;
+font-size:1rem;
 
-    border-radius:16px;
+font-weight:700;
 
-    font-size:16px;
+color:#fff;
 
-    font-weight:600;
+cursor:pointer;
 
-    cursor:pointer;
+transition:.25s;
 
-    transition:.25s;
+box-shadow:
 
-}
-
-/* Count Button */
-
-.primaryBtn{
-
-    background:#0d8b56;
-
-    color:white;
+0 10px 18px rgba(0,0,0,.25);
 
 }
 
-.primaryBtn:hover{
+.tasbihButtons button:hover{
 
-    background:#0b7348;
-
-}
-
-/* Save / Undo / History */
-
-.secondaryBtn{
-
-    background:#eef6ef;
-
-    color:#0d8b56;
+transform:translateY(-2px);
 
 }
 
-.secondaryBtn:hover{
+.tasbihButtons button:active{
 
-    background:#dff2e5;
-
-}
-
-/* Reset */
-
-.dangerBtn{
-
-    background:#d32f2f;
-
-    color:white;
+transform:scale(.96);
 
 }
 
-.dangerBtn:hover{
+/* ==========================================
+   BUTTON COLORS
+========================================== */
 
-    background:#b71c1c;
+#tapBtn{
+
+background:
+
+linear-gradient(
+
+135deg,
+
+#16A34A,
+
+#22C55E
+
+);
+
+}
+
+#undoBtn{
+
+background:
+
+linear-gradient(
+
+135deg,
+
+#2563EB,
+
+#3B82F6
+
+);
+
+}
+
+#resetBtn{
+
+background:
+
+linear-gradient(
+
+135deg,
+
+#DC2626,
+
+#EF4444
+
+);
+
+}
+
+#saveBtn{
+
+background:
+
+linear-gradient(
+
+135deg,
+
+#7C3AED,
+
+#9333EA
+
+);
+
+}
+
+#historyBtn{
+
+background:
+
+linear-gradient(
+
+135deg,
+
+#0891B2,
+
+#06B6D4
+
+);
+
+grid-column:span 2;
 
 }
 
@@ -409,121 +722,528 @@ body{
 
 .sessionInfo{
 
-    margin-top:25px;
+margin-top:25px;
 
-    text-align:center;
+text-align:center;
 
-    font-size:15px;
+font-size:.95rem;
 
-    color:#666;
+font-weight:600;
 
-}}/* ==========================================
-   ACTION BUTTONS
+color:#fff;
+
+opacity:.95;
+
+}/* ==========================================
+   PREMIUM ANIMATIONS
 ========================================== */
 
-.tasbihActions{
+@keyframes fadeUp{
 
-    display:flex;
+0%{
 
-    gap:15px;
+opacity:0;
 
-    justify-content:center;
-
-    margin:30px 20px;
+transform:translateY(30px);
 
 }
 
-.actionBtn{
+100%{
 
-    flex:1;
+opacity:1;
 
-    max-width:180px;
-
-    padding:14px;
-
-    border:none;
-
-    border-radius:16px;
-
-    background:#0d8b56;
-
-    color:#fff;
-
-    font-size:16px;
-
-    font-weight:600;
-
-    cursor:pointer;
-
-    transition:.3s;
+transform:translateY(0);
 
 }
 
-.actionBtn:hover{
-
-    background:#0b7348;
-
-    transform:translateY(-2px);
-
 }
 
-.actionBtn:active{
+.tasbihCard{
 
-    transform:scale(.96);
+animation:fadeUp .8s ease;
 
 }
 
 /* ==========================================
-   FOOTER
+   FLOATING GLOW
+========================================== */
+
+@keyframes floatGlow{
+
+0%{
+
+transform:translateY(0px);
+
+}
+
+50%{
+
+transform:translateY(-6px);
+
+}
+
+100%{
+
+transform:translateY(0px);
+
+}
+
+}
+
+.counterCircle{
+
+animation:
+
+counterGlow 3s infinite,
+
+floatGlow 4s ease-in-out infinite;
+
+}
+
+/* ==========================================
+   GOLD SHIMMER
+========================================== */
+
+@keyframes shimmer{
+
+0%{
+
+background-position:-250px;
+
+}
+
+100%{
+
+background-position:250px;
+
+}
+
+}
+
+.goalText{
+
+background:
+
+linear-gradient(
+
+90deg,
+
+#FFD54F,
+
+#FFF7AE,
+
+#FFD54F
+
+);
+
+background-size:250px;
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+animation:shimmer 5s linear infinite;
+
+}
+
+/* ==========================================
+   PREMIUM FOOTER
 ========================================== */
 
 .tasbihFooter{
 
-    text-align:center;
+margin-top:35px;
 
-    padding:20px;
+text-align:center;
 
-    color:#666;
+font-size:.95rem;
 
-    font-size:14px;
+color:rgba(255,255,255,.85);
+
+text-shadow:
+
+0 2px 10px rgba(0,0,0,.4);
 
 }
 
 /* ==========================================
-   ANIMATIONS
+   PREMIUM SCROLLBAR
 ========================================== */
 
-.counterCircle{
+::-webkit-scrollbar{
 
-    animation:fadeIn .6s ease;
-
-}
-
-@keyframes fadeIn{
-
-    from{
-
-        opacity:0;
-
-        transform:scale(.8);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:scale(1);
-
-    }
+width:8px;
 
 }
 
-.primaryBtn:active,
-.secondaryBtn:active,
-.dangerBtn:active{
+::-webkit-scrollbar-track{
 
-    transform:scale(.96);
+background:rgba(255,255,255,.08);
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:
+
+linear-gradient(
+
+180deg,
+
+#18B86A,
+
+#FFD54F
+
+);
+
+border-radius:20px;
+
+}
+
+/* ==========================================
+   BUTTON RIPPLE EFFECT
+========================================== */
+
+.tasbihButtons button{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.tasbihButtons button::after{
+
+content:"";
+
+position:absolute;
+
+width:0;
+
+height:0;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.35);
+
+top:50%;
+
+left:50%;
+
+transform:translate(-50%,-50%);
+
+transition:.5s;
+
+}
+
+.tasbihButtons button:active::after{
+
+width:280px;
+
+height:280px;
+
+opacity:0;
+
+}
+
+/* ==========================================
+   DIGITAL MISBAHA ANIMATION
+========================================== */
+
+@keyframes beadGlow{
+
+0%{
+
+transform:scale(1);
+
+}
+
+50%{
+
+transform:scale(1.25);
+
+}
+
+100%{
+
+transform:scale(1);
+
+}
+
+}
+
+.bead.active{
+
+animation:beadGlow .35s ease;
+
+}
+
+/* ==========================================
+   MICROPHONE PULSE
+========================================== */
+
+.voiceStatus.listening{
+
+animation:
+
+pulseMic 1.2s infinite;
+
+}
+
+@keyframes pulseMic{
+
+0%{
+
+box-shadow:
+
+0 0 0 rgba(34,197,94,.4);
+
+}
+
+50%{
+
+box-shadow:
+
+0 0 25px rgba(34,197,94,.8);
+
+}
+
+100%{
+
+box-shadow:
+
+0 0 0 rgba(34,197,94,.4);
+
+}
+
+}/* ==========================================
+   MUSLIM BRO
+   PREMIUM FINISH
+========================================== */
+
+/* ==========================================
+   FLOATING ISLAMIC LIGHTS
+========================================== */
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+inset:0;
+
+pointer-events:none;
+
+background-image:
+
+radial-gradient(circle,#ffffff55 2px,transparent 2px),
+
+radial-gradient(circle,#FFD54F55 1.5px,transparent 1.5px);
+
+background-size:
+
+180px 180px,
+
+120px 120px;
+
+animation:
+
+starsMove 45s linear infinite;
+
+opacity:.45;
+
+z-index:0;
+
+}
+
+@keyframes starsMove{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+100%{
+
+transform:translateY(-250px);
+
+}
+
+}
+
+/* ==========================================
+   KEEP CONTENT ABOVE BACKGROUND
+========================================== */
+
+.tasbihHero,
+
+.tasbihContainer,
+
+.tasbihFooter{
+
+position:relative;
+
+z-index:2;
+
+}
+
+/* ==========================================
+   GLASS SHINE
+========================================== */
+
+.tasbihCard{
+
+overflow:hidden;
+
+position:relative;
+
+}
+
+.tasbihCard::before{
+
+content:"";
+
+position:absolute;
+
+top:-60%;
+
+left:-60%;
+
+width:80%;
+
+height:220%;
+
+background:
+
+linear-gradient(
+
+90deg,
+
+transparent,
+
+rgba(255,255,255,.18),
+
+transparent
+
+);
+
+transform:rotate(25deg);
+
+animation:
+
+glassShine 8s linear infinite;
+
+}
+
+@keyframes glassShine{
+
+0%{
+
+left:-80%;
+
+}
+
+100%{
+
+left:180%;
+
+}
+
+}
+
+/* ==========================================
+   PREMIUM BUTTON HOVER
+========================================== */
+
+.tasbihButtons button:hover{
+
+box-shadow:
+
+0 12px 28px rgba(0,0,0,.35),
+
+0 0 20px rgba(255,255,255,.18);
+
+}
+
+/* ==========================================
+   PREMIUM DROPDOWN
+========================================== */
+
+#dhikrSelect{
+
+box-shadow:
+
+0 8px 20px rgba(0,0,0,.15);
+
+}
+
+/* ==========================================
+   DIGITAL MISBAHA
+========================================== */
+
+.bead{
+
+background:
+
+linear-gradient(
+
+145deg,
+
+rgba(255,255,255,.35),
+
+rgba(255,255,255,.15)
+
+);
+
+}
+
+.bead.active{
+
+background:
+
+linear-gradient(
+
+145deg,
+
+#FFD54F,
+
+#FFC107
+
+);
+
+box-shadow:
+
+0 0 16px rgba(255,213,79,.9);
+
+}
+
+/* ==========================================
+   SOFT PAGE FADE
+========================================== */
+
+body{
+
+animation:
+
+pageFade .7s ease;
+
+}
+
+@keyframes pageFade{
+
+from{
+
+opacity:0;
+
+}
+
+to{
+
+opacity:1;
+
+}
 
 }
 
@@ -533,53 +1253,65 @@ body{
 
 @media(max-width:768px){
 
-.counterCircle{
-
-    width:200px;
-
-    height:200px;
-
-}
-
-.counter{
-
-    font-size:56px;
-
-}
-
 .heroOverlay h1{
 
-    font-size:28px;
+font-size:2rem;
 
 }
 
 .heroOverlay p{
 
-    font-size:15px;
+font-size:.95rem;
+
+}
+
+.counterCircle{
+
+width:180px;
+
+height:180px;
+
+}
+
+.counter{
+
+font-size:3.5rem;
 
 }
 
 .tasbihButtons{
 
-    flex-direction:column;
+grid-template-columns:1fr;
 
 }
 
-.tasbihButtons button{
+#historyBtn{
 
-    width:100%;
-
-}
-
-.tasbihActions{
-
-    flex-direction:column;
+grid-column:auto;
 
 }
 
-.actionBtn{
+.misbaha{
 
-    max-width:100%;
+grid-template-columns:
+
+repeat(11,1fr);
+
+gap:6px;
+
+}
+
+.bead{
+
+width:15px;
+
+height:15px;
+
+}
+
+.tasbihCard{
+
+padding:22px;
 
 }
 
