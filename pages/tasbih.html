@@ -289,7 +289,306 @@ onclick="location.reload()">
 ========================================== -->
 
 <script src="../js/tasbih.js"></script>
+/* ==========================================
+   MUSLIM BRO
+   PREMIUM FINISH
+========================================== */
 
+/* ==========================================
+   FLOATING ISLAMIC LIGHTS
+========================================== */
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+inset:0;
+
+pointer-events:none;
+
+background-image:
+
+radial-gradient(circle,#ffffff55 2px,transparent 2px),
+
+radial-gradient(circle,#FFD54F55 1.5px,transparent 1.5px);
+
+background-size:
+
+180px 180px,
+
+120px 120px;
+
+animation:
+
+starsMove 45s linear infinite;
+
+opacity:.45;
+
+z-index:0;
+
+}
+
+@keyframes starsMove{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+100%{
+
+transform:translateY(-250px);
+
+}
+
+}
+
+/* ==========================================
+   KEEP CONTENT ABOVE BACKGROUND
+========================================== */
+
+.tasbihHero,
+
+.tasbihContainer,
+
+.tasbihFooter{
+
+position:relative;
+
+z-index:2;
+
+}
+
+/* ==========================================
+   GLASS SHINE
+========================================== */
+
+.tasbihCard{
+
+overflow:hidden;
+
+position:relative;
+
+}
+
+.tasbihCard::before{
+
+content:"";
+
+position:absolute;
+
+top:-60%;
+
+left:-60%;
+
+width:80%;
+
+height:220%;
+
+background:
+
+linear-gradient(
+
+90deg,
+
+transparent,
+
+rgba(255,255,255,.18),
+
+transparent
+
+);
+
+transform:rotate(25deg);
+
+animation:
+
+glassShine 8s linear infinite;
+
+}
+
+@keyframes glassShine{
+
+0%{
+
+left:-80%;
+
+}
+
+100%{
+
+left:180%;
+
+}
+
+}
+
+/* ==========================================
+   PREMIUM BUTTON HOVER
+========================================== */
+
+.tasbihButtons button:hover{
+
+box-shadow:
+
+0 12px 28px rgba(0,0,0,.35),
+
+0 0 20px rgba(255,255,255,.18);
+
+}
+
+/* ==========================================
+   PREMIUM DROPDOWN
+========================================== */
+
+#dhikrSelect{
+
+box-shadow:
+
+0 8px 20px rgba(0,0,0,.15);
+
+}
+
+/* ==========================================
+   DIGITAL MISBAHA
+========================================== */
+
+.bead{
+
+background:
+
+linear-gradient(
+
+145deg,
+
+rgba(255,255,255,.35),
+
+rgba(255,255,255,.15)
+
+);
+
+}
+
+.bead.active{
+
+background:
+
+linear-gradient(
+
+145deg,
+
+#FFD54F,
+
+#FFC107
+
+);
+
+box-shadow:
+
+0 0 16px rgba(255,213,79,.9);
+
+}
+
+/* ==========================================
+   SOFT PAGE FADE
+========================================== */
+
+body{
+
+animation:
+
+pageFade .7s ease;
+
+}
+
+@keyframes pageFade{
+
+from{
+
+opacity:0;
+
+}
+
+to{
+
+opacity:1;
+
+}
+
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media(max-width:768px){
+
+.heroOverlay h1{
+
+font-size:2rem;
+
+}
+
+.heroOverlay p{
+
+font-size:.95rem;
+
+}
+
+.counterCircle{
+
+width:180px;
+
+height:180px;
+
+}
+
+.counter{
+
+font-size:3.5rem;
+
+}
+
+.tasbihButtons{
+
+grid-template-columns:1fr;
+
+}
+
+#historyBtn{
+
+grid-column:auto;
+
+}
+
+.misbaha{
+
+grid-template-columns:
+
+repeat(11,1fr);
+
+gap:6px;
+
+}
+
+.bead{
+
+width:15px;
+
+height:15px;
+
+}
+
+.tasbihCard{
+
+padding:22px;
+
+}
+
+}
 </body>
 
 </html>
