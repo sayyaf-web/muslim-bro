@@ -53,7 +53,7 @@ body{
             rgba(0,0,0,.45),
             rgba(0,0,0,.60)
         ),
-        url("../assets/images/tasbih-background.png");
+        background-image:url("../assets/images/tasbih-background.png");
 
     background-size: cover;
     background-position: center;
