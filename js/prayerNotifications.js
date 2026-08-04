@@ -24,3 +24,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+function changeAdhan() {
+
+    const voice =
+        document.getElementById("adhanVoice").value;
+
+    localStorage.setItem("adhanVoice", voice);
+
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+
+    const saved =
+        localStorage.getItem("adhanVoice") || "adhan";
+
+    document.getElementById("adhanVoice").value = saved;
+
+});
