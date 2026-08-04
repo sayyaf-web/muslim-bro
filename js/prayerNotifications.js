@@ -1,17 +1,26 @@
-function playAdhan(type = "normal") {
+document.addEventListener("DOMContentLoaded", () => {
 
-    const audio = new Audio();
+    const button = document.getElementById("testAdhan");
 
-    if(type === "fajr"){
-
-        audio.src = "../audio/fajr.mp3";
-
-    }else{
-
-        audio.src = "../audio/adhan.mp3";
-
+    if (!button) {
+        alert("Test button not found.");
+        return;
     }
 
-    audio.play();
+    button.addEventListener("click", () => {
 
-}
+        alert("Button clicked!");
+
+        const audio = new Audio("../audio/adhan.mp3");
+
+        audio.play()
+            .then(() => {
+                console.log("Adhan playing...");
+            })
+            .catch(err => {
+                alert("Could not play audio: " + err.message);
+            });
+
+    });
+
+});
