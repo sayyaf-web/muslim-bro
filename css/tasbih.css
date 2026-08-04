@@ -6,7 +6,9 @@
 /*==============================
  ROOT VARIABLES
 ==============================*/
-
+body{
+    background:red !important;
+}
 :root{
 
 --primary:#14A564;
