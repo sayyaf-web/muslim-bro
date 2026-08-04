@@ -1,0 +1,293 @@
+/* ==========================================
+   MUSLIM BRO
+   HIJRI CALENDAR
+========================================== */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+font-family:Arial,sans-serif;
+
+background:#eef7f2;
+
+color:#222;
+
+padding-bottom:30px;
+
+}
+
+/* ===========================
+   TOP BAR
+=========================== */
+
+.topBar{
+
+background:linear-gradient(
+135deg,
+#0b8457,
+#16a46f
+);
+
+color:#fff;
+
+padding:20px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+border-bottom-left-radius:26px;
+border-bottom-right-radius:26px;
+
+box-shadow:0 8px 25px rgba(0,0,0,.18);
+
+}
+
+#backBtn,
+#prevMonth,
+#nextMonth{
+
+border:none;
+
+background:rgba(255,255,255,.18);
+
+color:#fff;
+
+width:42px;
+
+height:42px;
+
+border-radius:12px;
+
+font-size:20px;
+
+cursor:pointer;
+
+}
+
+.titleArea{
+
+text-align:center;
+
+flex:1;
+
+}
+
+.titleArea h1{
+
+font-size:30px;
+
+margin-bottom:5px;
+
+}
+
+.titleArea p{
+
+font-size:15px;
+
+opacity:.95;
+
+}
+
+/* ===========================
+   WEEK DAYS
+=========================== */
+
+.weekDays{
+
+display:grid;
+
+grid-template-columns:repeat(7,1fr);
+
+margin:20px;
+
+gap:8px;
+
+text-align:center;
+
+font-weight:bold;
+
+color:#0b8457;
+
+}
+
+/* ===========================
+   CALENDAR GRID
+=========================== */
+
+.calendarGrid{
+
+display:grid;
+
+grid-template-columns:repeat(7,1fr);
+
+gap:10px;
+
+padding:0 20px;
+
+}
+
+/* ===========================
+   DAY CARD
+=========================== */
+
+.day{
+
+background:#fff;
+
+border-radius:18px;
+
+min-height:85px;
+
+padding:10px;
+
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:space-between;
+
+transition:.25s;
+
+}
+
+.day:hover{
+
+transform:translateY(-3px);
+
+}
+
+.dayNumber{
+
+font-size:18px;
+
+font-weight:bold;
+
+}
+
+.hijriNumber{
+
+font-size:13px;
+
+color:#777;
+
+}
+
+/* ===========================
+   TODAY
+=========================== */
+
+.today{
+
+background:linear-gradient(
+135deg,
+#0b8457,
+#16a46f
+);
+
+color:white;
+
+}
+
+.today .hijriNumber{
+
+color:#fff;
+
+opacity:.9;
+
+}
+
+/* ===========================
+   EMPTY CELLS
+=========================== */
+
+.empty{
+
+visibility:hidden;
+
+}
+
+/* ===========================
+   EVENT CARD
+=========================== */
+
+.eventCard{
+
+margin:25px 20px;
+
+background:white;
+
+padding:20px;
+
+border-radius:20px;
+
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.eventCard h3{
+
+color:#0b8457;
+
+margin-bottom:10px;
+
+}
+
+.eventCard p{
+
+line-height:1.7;
+
+color:#555;
+
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media(max-width:768px){
+
+.calendarGrid{
+
+gap:8px;
+
+padding:0 12px;
+
+}
+
+.day{
+
+min-height:72px;
+
+padding:8px;
+
+}
+
+.dayNumber{
+
+font-size:16px;
+
+}
+
+.hijriNumber{
+
+font-size:11px;
+
+}
+
+.titleArea h1{
+
+font-size:24px;
+
+}
+
+}
