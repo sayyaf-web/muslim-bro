@@ -162,3 +162,89 @@ hijriMonth.textContent =
 }
 
 }
+// ==============================
+// ISLAMIC EVENTS
+// ==============================
+
+function loadEvents(month,day){
+
+let event = "No special event today.";
+
+if(month==="Ramadan"){
+
+event =
+"🌙 Ramadan Mubarak! Increase your Qur'an recitation, duas and charity.";
+
+}
+
+else if(month==="Shawwal" && day===1){
+
+event =
+"🎉 Eid al-Fitr — May Allah accept your fasting and good deeds.";
+
+}
+
+else if(month==="Dhul Hijjah" && day===9){
+
+event =
+"🤲 Day of Arafah — One of the greatest days for dua and fasting.";
+
+}
+
+else if(month==="Dhul Hijjah" && day===10){
+
+event =
+"🐑 Eid al-Adha — Taqabbal Allahu minna wa minkum.";
+
+}
+
+else if(month==="Muharram" && day===10){
+
+event =
+"🌙 Ashura — A blessed day. Fasting is highly recommended.";
+
+}
+
+eventText.textContent = event;
+
+}
+
+// ==============================
+// MONTH NAVIGATION
+// ==============================
+
+prevBtn.onclick = ()=>{
+
+currentDate.setMonth(
+currentDate.getMonth()-1
+);
+
+renderCalendar();
+
+};
+
+nextBtn.onclick = ()=>{
+
+currentDate.setMonth(
+currentDate.getMonth()+1
+);
+
+renderCalendar();
+
+};
+
+// ==============================
+// BACK BUTTON
+// ==============================
+
+backBtn.onclick = ()=>{
+
+history.back();
+
+};
+
+// ==============================
+// START
+// ==============================
+
+renderCalendar();
