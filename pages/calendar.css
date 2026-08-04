@@ -1,6 +1,6 @@
 /* ==========================================
    MUSLIM BRO
-   HIJRI CALENDAR
+   PREMIUM HIJRI CALENDAR
 ========================================== */
 
 *{
@@ -9,33 +9,115 @@ padding:0;
 box-sizing:border-box;
 }
 
+:root{
+
+--primary:#0b8457;
+--primaryDark:#08734b;
+--gold:#FFD54F;
+
+--bg:#eef8f2;
+--card:#ffffff;
+
+--text:#222;
+--gray:#666;
+
+--radius:22px;
+
+}
+
 body{
 
 font-family:Arial,sans-serif;
 
-background:#eef7f2;
+background:var(--bg);
 
-color:#222;
+color:var(--text);
 
-padding-bottom:30px;
+padding-bottom:40px;
 
 }
 
 /* ===========================
-   TOP BAR
+   HERO
 =========================== */
 
-.topBar{
+.calendarHero{
 
-background:linear-gradient(
+height:180px;
+
+background:
+linear-gradient(
 135deg,
 #0b8457,
 #16a46f
 );
 
-color:#fff;
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+color:white;
+
+border-bottom-left-radius:28px;
+border-bottom-right-radius:28px;
+
+box-shadow:0 10px 30px rgba(0,0,0,.15);
+
+}
+
+.calendarOverlay{
+
+text-align:center;
+
+}
+
+.calendarOverlay h1{
+
+font-size:34px;
+
+margin-bottom:8px;
+
+}
+
+.calendarOverlay p{
+
+font-size:16px;
+
+opacity:.95;
+
+}
+
+/* ===========================
+   CONTAINER
+=========================== */
+
+.calendarContainer{
+
+margin-top:-35px;
+
+padding:0 18px;
+
+}
+
+.calendarCard{
+
+background:white;
+
+border-radius:28px;
 
 padding:20px;
+
+box-shadow:0 10px 30px rgba(0,0,0,.10);
+
+}
+
+/* ===========================
+   TOP
+=========================== */
+
+.calendarTop{
 
 display:flex;
 
@@ -43,84 +125,95 @@ justify-content:space-between;
 
 align-items:center;
 
-border-bottom-left-radius:26px;
-border-bottom-right-radius:26px;
-
-box-shadow:0 8px 25px rgba(0,0,0,.18);
+margin-bottom:18px;
 
 }
 
-#backBtn,
-#prevMonth,
-#nextMonth{
-
-border:none;
-
-background:rgba(255,255,255,.18);
-
-color:#fff;
+.calendarTop button{
 
 width:42px;
 
 height:42px;
 
+border:none;
+
 border-radius:12px;
 
-font-size:20px;
+background:#0b8457;
+
+color:white;
+
+font-size:18px;
 
 cursor:pointer;
 
+transition:.25s;
+
 }
 
-.titleArea{
+.calendarTop button:hover{
+
+background:#08734b;
+
+}
+
+.calendarTop h2{
+
+font-size:24px;
 
 text-align:center;
 
-flex:1;
-
 }
 
-.titleArea h1{
+.calendarTop p{
 
-font-size:30px;
+color:#666;
 
-margin-bottom:5px;
+text-align:center;
 
-}
-
-.titleArea p{
-
-font-size:15px;
-
-opacity:.95;
+margin-top:4px;
 
 }
 
 /* ===========================
-   WEEK DAYS
+   TODAY BUTTON
 =========================== */
 
-.weekDays{
+.todayRow{
 
-display:grid;
+display:flex;
 
-grid-template-columns:repeat(7,1fr);
+justify-content:center;
 
-margin:20px;
+margin-bottom:18px;
 
-gap:8px;
+}
 
-text-align:center;
+#todayBtn{
+
+border:none;
+
+background:#FFD54F;
+
+padding:10px 18px;
+
+border-radius:50px;
 
 font-weight:bold;
 
-color:#0b8457;
+cursor:pointer;
+
+transition:.25s;
 
 }
 
-/* ===========================
+#todayBtn:hover{
+
+transform:translateY(-2px);
+
+}/* ==========================================
    CALENDAR GRID
-=========================== */
+========================================== */
 
 .calendarGrid{
 
@@ -130,25 +223,41 @@ grid-template-columns:repeat(7,1fr);
 
 gap:10px;
 
-padding:0 20px;
+margin-top:15px;
 
 }
 
-/* ===========================
-   DAY CARD
-=========================== */
+/* Week Headers */
 
-.day{
+.weekHeader{
+
+text-align:center;
+
+font-weight:bold;
+
+font-size:14px;
+
+padding:10px 0;
+
+color:var(--primary);
+
+background:#eef8f2;
+
+border-radius:12px;
+
+}
+
+/* Day Card */
+
+.calendarDay{
+
+min-height:78px;
 
 background:#fff;
 
-border-radius:18px;
+border-radius:16px;
 
-min-height:85px;
-
-padding:10px;
-
-box-shadow:0 5px 15px rgba(0,0,0,.08);
+padding:8px;
 
 display:flex;
 
@@ -156,37 +265,65 @@ flex-direction:column;
 
 justify-content:space-between;
 
+align-items:center;
+
+cursor:pointer;
+
 transition:.25s;
 
-}
+box-shadow:0 3px 10px rgba(0,0,0,.06);
 
-.day:hover{
-
-transform:translateY(-3px);
+border:1px solid #edf2ef;
 
 }
 
-.dayNumber{
+.calendarDay:hover{
+
+transform:translateY(-4px);
+
+box-shadow:0 10px 20px rgba(0,0,0,.12);
+
+}
+
+/* Empty cells */
+
+.calendarDay.empty{
+
+background:transparent;
+
+box-shadow:none;
+
+border:none;
+
+cursor:default;
+
+}
+
+/* Gregorian Number */
+
+.gregorianDay{
 
 font-size:18px;
 
 font-weight:bold;
 
-}
-
-.hijriNumber{
-
-font-size:13px;
-
-color:#777;
+color:var(--text);
 
 }
 
-/* ===========================
-   TODAY
-=========================== */
+/* Hijri Number */
 
-.today{
+.hijriDay{
+
+font-size:12px;
+
+color:var(--gray);
+
+}
+
+/* Today */
+
+.calendarDay.today{
 
 background:linear-gradient(
 135deg,
@@ -194,99 +331,269 @@ background:linear-gradient(
 #16a46f
 );
 
-color:white;
+color:#fff;
 
 }
 
-.today .hijriNumber{
+.calendarDay.today .gregorianDay,
+
+.calendarDay.today .hijriDay{
 
 color:#fff;
 
-opacity:.9;
+}
+
+/* Friday */
+
+.calendarDay.friday{
+
+border:2px solid var(--gold);
 
 }
 
-/* ===========================
-   EMPTY CELLS
-=========================== */
-
-.empty{
-
-visibility:hidden;
-
-}
-
-/* ===========================
-   EVENT CARD
-=========================== */
-
-.eventCard{
-
-margin:25px 20px;
-
-background:white;
-
-padding:20px;
-
-border-radius:20px;
-
-box-shadow:0 8px 20px rgba(0,0,0,.08);
-
-}
-
-.eventCard h3{
-
-color:#0b8457;
-
-margin-bottom:10px;
-
-}
-
-.eventCard p{
-
-line-height:1.7;
-
-color:#555;
-
-}
-
-/* ===========================
-   MOBILE
-=========================== */
+/* Small screens */
 
 @media(max-width:768px){
 
 .calendarGrid{
 
-gap:8px;
-
-padding:0 12px;
+gap:6px;
 
 }
 
-.day{
+.calendarDay{
 
-min-height:72px;
+min-height:64px;
 
-padding:8px;
+padding:6px;
 
 }
 
-.dayNumber{
+.gregorianDay{
 
 font-size:16px;
 
 }
 
-.hijriNumber{
+.hijriDay{
 
 font-size:11px;
 
 }
 
-.titleArea h1{
+.weekHeader{
 
-font-size:24px;
+font-size:12px;
+
+padding:8px 0;
+
+}
+
+}/* ==========================================
+   EVENT CARD
+========================================== */
+
+.eventCard{
+
+margin-top:24px;
+
+background:linear-gradient(
+135deg,
+#0b8457,
+#16a46f
+);
+
+color:#fff;
+
+border-radius:20px;
+
+padding:18px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.15);
+
+}
+
+.selectedDate h3{
+
+font-size:22px;
+
+margin-bottom:8px;
+
+}
+
+.selectedDate p{
+
+font-size:16px;
+
+opacity:.95;
+
+}
+
+.selectedEvent{
+
+margin-top:14px;
+
+padding:12px;
+
+background:rgba(255,255,255,.15);
+
+border-radius:12px;
+
+font-size:15px;
+
+font-weight:600;
+
+}
+
+/* ==========================================
+   ACTION BUTTONS
+========================================== */
+
+.calendarActions{
+
+display:flex;
+
+justify-content:center;
+
+gap:14px;
+
+margin-top:24px;
+
+}
+
+.actionBtn{
+
+border:none;
+
+background:var(--primary);
+
+color:#fff;
+
+padding:12px 22px;
+
+border-radius:50px;
+
+font-size:15px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+transition:.25s;
+
+box-shadow:0 6px 18px rgba(0,0,0,.15);
+
+}
+
+.actionBtn:hover{
+
+background:var(--primaryDark);
+
+transform:translateY(-2px);
+
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.calendarFooter{
+
+text-align:center;
+
+margin-top:28px;
+
+padding:18px;
+
+color:var(--gray);
+
+font-size:14px;
+
+}
+
+/* ==========================================
+   ANIMATIONS
+========================================== */
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+
+transform:translateY(20px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+.calendarCard{
+
+animation:fadeUp .6s ease;
+
+}
+
+.calendarDay{
+
+animation:fadeUp .35s ease;
+
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media(max-width:480px){
+
+.calendarHero{
+
+height:150px;
+
+}
+
+.calendarOverlay h1{
+
+font-size:28px;
+
+}
+
+.calendarOverlay p{
+
+font-size:14px;
+
+}
+
+.calendarCard{
+
+padding:15px;
+
+}
+
+.calendarTop h2{
+
+font-size:20px;
+
+}
+
+.selectedDate h3{
+
+font-size:18px;
+
+}
+
+.actionBtn{
+
+padding:10px 18px;
+
+font-size:14px;
 
 }
 
