@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     button.addEventListener("click", () => {
 
-        alert("Button clicked!");
+        
 
         const audio = new Audio("../audio/adhan.mp3");
 
