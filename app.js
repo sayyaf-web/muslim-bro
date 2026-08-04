@@ -1,143 +1,245 @@
 // ===============================
-// Daily Ayah
-// ===============================
-async function loadAyah() {
-    try {
-        const response = await fetch("https://api.alquran.cloud/v1/ayah/random/en.asad");
-        const data = await response.json();
-
-        const ayah = document.getElementById("ayah");
-        if (ayah) {
-            ayah.innerHTML =
-                `"${data.data.text}"<br><small>${data.data.surah.englishName} ${data.data.numberInSurah}</small>`;
-        }
-    } catch (e) {
-        const ayah = document.getElementById("ayah");
-        if (ayah) ayah.textContent = "Unable to load today's Ayah.";
-    }
-}
-
-// ===============================
-// Daily Hadith
-// ===============================
-async function loadHadith() {
-    try {
-        const response = await fetch("https://random-hadith-generator.vercel.app/bukhari/");
-        const data = await response.json();
-
-        const hadith = document.getElementById("hadith");
-        if (hadith) {
-            hadith.innerHTML = `"${data.data.hadith_english}"`;
-        }
-    } catch (e) {
-        const hadith = document.getElementById("hadith");
-        if (hadith) hadith.textContent = "Unable to load today's Hadith.";
-    }
-}
-
-// Load cards
-loadAyah();
-loadHadith();
-
-
-// ===============================
-// Prayer Notifications
+// Muslim Bro Dashboard
 // ===============================
 
-if ("Notification" in window) {
-    Notification.requestPermission();
-}
+const locationText =
+document.getElementById("dashboardLocation");
 
-async function startPrayerNotifications(lat, lon) {
+const dateText =
+document.getElementById("dashboardDate");
 
-    const url =
-`https://api.aladhan.com/v1/timings?latitude=${lat}&longitude=${lon}&method=2`;
+const prayerText =
+document.getElementById("dashboardPrayer");
 
-    const response = await fetch(url);
-    const data = await response.json();
+const countdownText =
+document.getElementById("dashboardCountdown");
 
-    const timings = data.data.timings;
+const continueCard =
+document.getElementById("continueCard");
 
-    checkPrayer(timings);
-}
-
-function checkPrayer(times){
-
-    setInterval(()=>{
-
-        const now = new Date();
-
-        const current =
-            now.getHours().toString().padStart(2,"0") +
-            ":" +
-            now.getMinutes().toString().padStart(2,"0");
-
-        const prayers = {
-            Fajr:times.Fajr,
-            Dhuhr:times.Dhuhr,
-            Asr:times.Asr,
-            Maghrib:times.Maghrib,
-            Isha:times.Isha
-        };
-
-        for(const prayer in prayers){
-
-            if(current===prayers[prayer]){
-
-                new Notification("🕌 Prayer Time",{
-                    body:`It's time for ${prayer}.`
-                });
-
-            }
-
-        }
-
-    },60000);
-
-}
-
+const continueText =
+document.getElementById("continueText");
 
 // ===============================
-// Get user location
+// Today's Date
 // ===============================
 
-if(navigator.geolocation){
+function loadTodayDate(){
 
-    navigator.geolocation.getCurrentPosition(position=>{
+const today = new Date();
 
-        startPrayerNotifications(
-            position.coords.latitude,
-            position.coords.longitude
-        );
-
-    });
+dateText.textContent =
+today.toLocaleDateString(
+undefined,
+{
+weekday:"long",
+day:"numeric",
+month:"long",
+year:"numeric"
+}
+);
 
 }
-const script = document.createElement("script");
-script.src = "notification.js";
-document.body.appendChild(script);
-if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => {
-        navigator.serviceWorker.register("service-worker.js")
-            .then(() => console.log("Service Worker Registered"))
-            .catch(err => console.log(err));
-    });
+
+// ===============================
+// User Location
+// ===============================
+
+function loadLocation(){
+
+if(!navigator.geolocation){
+
+locationText.textContent =
+"Location unavailable";
+
+return;
+
 }
-// Continue Reading Card
-const lastSurah = localStorage.getItem("lastSurah");
-const lastSurahName = localStorage.getItem("lastSurahName");
 
-if (lastSurah && lastSurahName) {
+navigator.geolocation.getCurrentPosition(
 
-    const card = document.getElementById("continueCard");
-    const text = document.getElementById("continueText");
+(position)=>{
 
-    if (card && text) {
-        card.style.display = "block";
-        text.textContent = `${lastSurah}. ${lastSurahName}`;
+locationText.textContent="Current Location";
 
-        card.onclick = () => {
-            location.href = `pages/surah.html?id=${lastSurah}`;
-        };
-    }
+},
+
+()=>{
+
+locationText.textContent=
+"Location unavailable";
+
 }
+
+);
+
+}
+
+// ===============================
+// Continue Reading
+// ===============================
+
+function loadContinueReading(){
+
+const last =
+JSON.parse(
+localStorage.getItem("lastReadSurah")
+);
+
+if(!last){
+
+continueCard.style.display="none";
+
+return;
+
+}
+
+continueCard.style.display="block";
+
+continueText.textContent =
+last.name +
+" • Ayah " +
+last.ayah;
+
+continueCard.onclick=()=>{
+
+location.href=
+`pages/surah.html?id=${last.id}`;
+
+};
+
+}// ===============================
+// Prayer Countdown
+// ===============================
+
+const prayers = [
+
+"Fajr",
+
+"Dhuhr",
+
+"Asr",
+
+"Maghrib",
+
+"Isha"
+
+];
+
+async function loadPrayerCountdown(){
+
+try{
+
+const response = await fetch(
+
+"https://api.aladhan.com/v1/timingsByCity?city=Nairobi&country=Kenya&method=2"
+
+);
+
+const json = await response.json();
+
+const timings = json.data.timings;
+
+updateCountdown(timings);
+
+setInterval(()=>{
+
+updateCountdown(timings);
+
+},1000);
+
+}catch(error){
+
+console.log(error);
+
+prayerText.textContent="Unavailable";
+
+countdownText.textContent="--:--:--";
+
+}
+
+}
+
+function updateCountdown(timings){
+
+const now = new Date();
+
+let nextPrayer = "";
+
+let nextTime = null;
+
+for(const prayer of prayers){
+
+const time = timings[prayer].substring(0,5);
+
+const parts = time.split(":");
+
+const prayerDate = new Date();
+
+prayerDate.setHours(Number(parts[0]));
+
+prayerDate.setMinutes(Number(parts[1]));
+
+prayerDate.setSeconds(0);
+
+if(prayerDate > now){
+
+nextPrayer = prayer;
+
+nextTime = prayerDate;
+
+break;
+
+}
+
+}
+
+if(!nextTime){
+
+const fajr = timings.Fajr.substring(0,5).split(":");
+
+nextPrayer = "Fajr";
+
+nextTime = new Date();
+
+nextTime.setDate(nextTime.getDate()+1);
+
+nextTime.setHours(Number(fajr[0]));
+
+nextTime.setMinutes(Number(fajr[1]));
+
+nextTime.setSeconds(0);
+
+}
+
+prayerText.textContent = nextPrayer;
+
+const diff = nextTime - now;
+
+const hours = Math.floor(diff/3600000);
+
+const minutes = Math.floor((diff%3600000)/60000);
+
+const seconds = Math.floor((diff%60000)/1000);
+
+countdownText.textContent =
+
+String(hours).padStart(2,"0")+":"+
+
+String(minutes).padStart(2,"0")+":"+
+
+String(seconds).padStart(2,"0");
+
+}
+
+// ===============================
+// Start Dashboard
+// ===============================
+
+loadTodayDate();
+
+loadLocation();
+
+loadContinueReading();
+
+loadPrayerCountdown();
