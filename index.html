@@ -2,129 +2,374 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Muslim Bro</title>
+<meta charset="UTF-8">
 
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#0b8457">
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0">
 
-    <link rel="stylesheet" href="styles.css">
+<title>Muslim Bro</title>
+
+<link rel="manifest" href="manifest.json">
+
+<meta name="theme-color"
+content="#0b8457">
+
+<link rel="stylesheet"
+href="styles.css">
+
 </head>
 
 <body>
 
-<header class="header">
-    <h1>🕌 Muslim Bro</h1>
-    <p>Your Complete Islamic Companion</p>
-</header>
+<div class="hero">
+
+<div class="overlay">
+
+<h1 class="logo">
+
+☪ Muslim Bro
+
+</h1>
+
+<p class="tagline">
+
+Your Complete Islamic Companion
+
+</p>
+
+<div class="welcomeCard">
+
+<h2>
+
+🤲 Assalamu Alaikum
+
+</h2>
+
+<p>
+
+May Allah fill your heart with peace,
+your home with barakah,
+and your life with His mercy.
+
+</p>
+
+<div class="heroInfo">
+
+<div>
+
+<p class="smallTitle">
+
+📍 Location
+
+</p>
+
+<p id="dashboardLocation">
+
+Detecting...
+
+</p>
+
+</div>
+
+<div>
+
+<p class="smallTitle">
+
+📅 Today
+
+</p>
+
+<p id="dashboardDate">
+
+Loading...
+
+</p>
+
+</div>
+
+</div>
+
+<div class="nextPrayer">
+
+<h3>
+
+🕌 Next Prayer
+
+</h3>
+
+<h2 id="dashboardPrayer">
+
+Loading...
+
+</h2>
+
+<p id="dashboardCountdown">
+
+--:--:--
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
 
 <main>
 
-<section class="hero">
-    <h2>Assalamu Alaikum</h2>
-    <p>May Allah bless your day with peace and barakah.</p>
-</section>
+<section class="dashboardGrid">
 
-<section class="cards">
+<div
+class="feature continue"
 
-    <!-- Continue Reading -->
-    <div class="card" id="continueCard" style="display:none;">
-        📖
-        <h3>Continue Reading</h3>
-        <p id="continueText"></p>
-    </div>
+id="continueCard"
 
-    <div class="card" onclick="location.href='pages/prayer.html'">
-        🕌
-        <h3>Prayer Times</h3>
-        <p>Know today's Salah times</p>
-    </div>
+style="display:none;">
 
-    <div class="card" onclick="location.href='pages/mosques.html'">
-        🕌
-        <h3>Nearby Mosques</h3>
-        <p>Find mosques near you</p>
-    </div>
+<div class="icon">
 
-    <div class="card" onclick="location.href='pages/quran.html'">
-        📖
-        <h3>Holy Quran</h3>
-        <p>Read all 114 Surahs</p>
-    </div>
+📖
 
-    <div class="card" onclick="location.href='pages/bookmarks.html'">
-        ⭐
-        <h3>Bookmarks</h3>
-        <p>Your saved Surahs</p>
-    </div>
+</div>
 
-    <div class="card" onclick="location.href='pages/duas.html'">
-        🤲
-        <h3>Duas</h3>
-        <p>Morning & Evening Adhkar</p>
-    </div>
+<h3>
 
-    <div class="card" onclick="location.href='pages/qibla.html'">
-        🧭
-        <h3>Qibla Direction</h3>
-        <p>Find the direction of the Kaaba</p>
-    </div>
+Continue Reading
 
-    <div class="card" onclick="location.href='pages/tasbih.html'">
-        📿
-        <h3>Tasbih</h3>
-        <p>Digital Counter</p>
-    </div>
+</h3>
 
-    <div class="card" onclick="location.href='pages/calendar.html'">
-        📅
-        <h3>Hijri Calendar</h3>
-        <p>Islamic Dates</p>
-    </div>
+<p id="continueText">
 
-    <div class="card" onclick="location.href='pages/hadith.html'">
-        🌙
-        <h3>Daily Hadith</h3>
-        <p id="hadith">Tap to read today's Hadith</p>
-    </div>
+Loading...
 
-    <div class="card" onclick="location.href='pages/ayah.html'">
-        ✨
-        <h3>Daily Ayah</h3>
-        <p id="ayah">Tap to read today's Ayah</p>
-    </div>
+</p>
 
-</section>
+</div><div class="feature"
+onclick="location.href='pages/prayer.html'">
+
+<div class="icon">
+🕌
+</div>
+
+<h3>
+Prayer Times
+</h3>
+
+<p>
+Today's Salah Times
+</p>
+
+</div>
+
+<div class="feature"
+onclick="location.href='pages/quran.html'">
+
+<div class="icon">
+📖
+</div>
+
+<h3>
+Holy Quran
+</h3>
+
+<p>
+Read & Listen
+</p>
+
+</div>
+
+<div class="feature"
+onclick="location.href='pages/qibla.html'">
+
+<div class="icon">
+🧭
+</div>
+
+<h3>
+Qibla
+</h3>
+
+<p>
+Find Kaaba Direction
+</p>
+
+</div>
+
+<div class="feature"
+onclick="location.href='pages/tasbih.html'">
+
+<div class="icon">
+📿
+</div>
+
+<h3>
+Tasbih
+</h3>
+
+<p>
+Digital Counter
+</p>
+
+</div>
+
+<div class="feature"
+onclick="location.href='pages/duas.html'">
+
+<div class="icon">
+🤲
+</div>
+
+<h3>
+Duas
+</h3>
+
+<p>
+Morning & Evening
+</p>
+
+</div>
+
+<div class="feature"
+onclick="location.href='pages/hadith.html'">
+
+<div class="icon">
+📚
+</div>
+
+<h3>
+Daily Hadith
+</h3>
+
+<p id="hadith">
+Tap to Read
+</p>
+
+</div>
+
+<div class="feature"
+onclick="location.href='pages/ayah.html'">
+
+<div class="icon">
+✨
+</div>
+
+<h3>
+Daily Ayah
+</h3>
+
+<p id="ayah">
+Tap to Read
+</p>
+
+</div>
+
+<div class="feature"
+onclick="location.href='pages/calendar.html'">
+
+<div class="icon">
+📅
+</div>
+
+<h3>
+Hijri Calendar
+</h3>
+
+<p>
+Islamic Dates
+</p>
+
+</div>
+
+<div class="feature"
+onclick="location.href='pages/bookmarks.html'">
+
+<div class="icon">
+⭐
+</div>
+
+<h3>
+Bookmarks
+</h3>
+
+<p>
+Saved Surahs
+</p>
+
+</div>
+
+<div class="feature"
+onclick="location.href='pages/mosques.html'">
+
+<div class="icon">
+🕌
+</div>
+
+<h3>
+Nearby Mosques
+</h3>
+
+<p>
+Find Nearby Masjids
+</p>
+
+</div></section>
 
 </main>
 
 <nav class="bottomNav">
 
-    <button onclick="location.href='index.html'">
-        🏠<br>Home
-    </button>
+<button class="active"
+onclick="location.href='index.html'">
 
-    <button onclick="location.href='pages/quran.html'">
-        📖<br>Quran
-    </button>
+<span>🏠</span>
 
-    <button onclick="location.href='pages/prayer.html'">
-        🕌<br>Prayer
-    </button>
+<p>Home</p>
 
-    <button onclick="location.href='pages/qibla.html'">
-        🧭<br>Qibla
-    </button>
+</button>
 
-    <button onclick="location.href='pages/settings.html'">
-        ⚙️<br>Settings
-    </button>
+<button
+onclick="location.href='pages/quran.html'">
+
+<span>📖</span>
+
+<p>Quran</p>
+
+</button>
+
+<button
+onclick="location.href='pages/prayer.html'">
+
+<span>🕌</span>
+
+<p>Prayer</p>
+
+</button>
+
+<button
+onclick="location.href='pages/qibla.html'">
+
+<span>🧭</span>
+
+<p>Qibla</p>
+
+</button>
+
+<button
+onclick="location.href='pages/settings.html'">
+
+<span>⚙️</span>
+
+<p>Settings</p>
+
+</button>
 
 </nav>
 
 <script src="app.js"></script>
 
 </body>
+
 </html>
