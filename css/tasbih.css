@@ -48,17 +48,11 @@ scroll-behavior:smooth;
 body{
     font-family: "Poppins","Segoe UI",sans-serif;
 
-    background:
-        linear-gradient(
-            rgba(0,0,0,.45),
-            rgba(0,0,0,.60)
-        ),
-        background-image:url("../assets/images/tasbih-background.png");
-
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-image: url("../assets/images/tasbih-background.png");
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+background-attachment: fixed;
 
     color: var(--text);
     min-height: 100vh;
