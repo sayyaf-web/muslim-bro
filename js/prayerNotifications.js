@@ -2,49 +2,28 @@ let adhanPlayer = null;
 
 document.addEventListener("DOMContentLoaded", () => {
 
+    // Restore saved Adhan
+    const select = document.getElementById("adhanVoice");
+
+    if (select) {
+
+        select.value =
+            localStorage.getItem("adhanVoice") || "adhan";
+
+        select.addEventListener("change", changeAdhan);
+
+    }
+
+    // Preview button
     const button = document.getElementById("testAdhan");
 
     if (button) {
+
         button.addEventListener("click", playAdhan);
-    }
-
-    const adhanSelect = document.getElementById("adhanVoice");
-
-    if (adhanSelect) {
-
-        const saved =
-            localStorage.getItem("adhanVoice") || "adhan";
-
-        adhanSelect.value = saved;
-
-        adhanSelect.addEventListener("change", changeAdhan);
 
     }
 
 });
-
-function playAdhan() {
-
-    // Stop previous Adhan if it's still playing
-    if (adhanPlayer) {
-
-        adhanPlayer.pause();
-        adhanPlayer.currentTime = 0;
-
-    }
-
-    const voice =
-        localStorage.getItem("adhanVoice") || "adhan";
-
-    adhanPlayer = new Audio(`../audio/${voice}.mp3`);
-
-    adhanPlayer.play().catch(err => {
-
-        console.error("Audio Error:", err);
-
-    });
-
-}
 
 function changeAdhan() {
 
@@ -52,5 +31,30 @@ function changeAdhan() {
         document.getElementById("adhanVoice").value;
 
     localStorage.setItem("adhanVoice", voice);
+
+}
+
+function playAdhan() {
+
+    const voice =
+        localStorage.getItem("adhanVoice") || "adhan";
+
+    // If an Adhan is already playing, stop it
+    if (adhanPlayer) {
+
+        adhanPlayer.pause();
+        adhanPlayer.currentTime = 0;
+
+    }
+
+    adhanPlayer = new Audio("../audio/" + voice + ".mp3");
+
+    adhanPlayer.play().catch(error => {
+
+        console.log(error);
+
+        alert("Unable to play Adhan.");
+
+    });
 
 }
