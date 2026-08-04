@@ -5,48 +5,46 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Muslim Bro</title>
 
-<link rel="manifest"
-href="manifest.json">
+<link rel="manifest" href="manifest.json">
 
-<meta name="theme-color"
-content="#0b8457">
+<meta name="theme-color" content="#0b8457">
 
-<link rel="stylesheet"
-href="styles.css">
+<link rel="stylesheet" href="styles.css">
 
 </head>
 
 <body>
 
-<!-- ================= HERO ================= -->
+<!-- ===================================== -->
+<!-- HERO -->
+<!-- ===================================== -->
 
 <header class="hero">
 
 <div class="overlay">
 
-<div class="welcomeCard">
-
-<div class="heroTop">
-
-<!-- LEFT SIDE -->
-
-<div class="heroLeft">
+<div class="heroContent">
 
 <h1 class="logo">
+
 ☪ Muslim Bro
+
 </h1>
 
 <p class="tagline" id="islamicGreeting">
+
 السلام عليكم ورحمة الله وبركاته
+
 </p>
 
-<h2>
+<h2 class="welcomeTitle">
+
 🤲 أهلاً وسهلاً بكم
+
 </h2>
 
 <p class="welcomeText">
@@ -61,18 +59,27 @@ href="styles.css">
 
 </p>
 
-<div class="heroInfo">
+<!-- ================= INFO CARDS ================= -->
 
-<div class="infoCard">
+<div class="heroCards">
 
-<p class="smallTitle">
+<div class="heroCard">
 
-📍 Your Location
+<div class="heroCardIcon">
 
-</p>
+📍
 
-<p id="dashboardLocation"
-class="infoValue">
+</div>
+
+<div>
+
+<h4>
+
+Location
+
+</h4>
+
+<p id="dashboardLocation">
 
 Detecting...
 
@@ -80,16 +87,25 @@ Detecting...
 
 </div>
 
-<div class="infoCard">
+</div>
 
-<p class="smallTitle">
+<div class="heroCard">
 
-📅 Today's Date
+<div class="heroCardIcon">
 
-</p>
+📅
 
-<p id="dashboardDate"
-class="infoValue">
+</div>
+
+<div>
+
+<h4>
+
+Today's Date
+
+</h4>
+
+<p id="dashboardDate">
 
 Loading...
 
@@ -107,11 +123,9 @@ Loading...
 
 </div>
 
-<!-- RIGHT SIDE -->
+<!-- ================= NEXT PRAYER ================= -->
 
-<div class="heroRight">
-
-<div class="nextPrayer">
+<div class="nextPrayerCard">
 
 <h3>
 
@@ -119,11 +133,11 @@ Loading...
 
 </h3>
 
-<h2 id="dashboardPrayer">
+<h1 id="dashboardPrayer">
 
 Loading...
 
-</h2>
+</h1>
 
 <p id="dashboardPrayerTime">
 
@@ -131,11 +145,11 @@ Loading...
 
 </p>
 
-<p id="dashboardCountdown">
+<h2 id="dashboardCountdown">
 
 --:--:--
 
-</p>
+</h2>
 
 <div class="progressContainer">
 
@@ -145,13 +159,9 @@ Loading...
 
 <p id="dashboardRemaining">
 
-⏳ Calculating...
+Calculating...
 
 </p>
-
-</div>
-
-</div>
 
 </div>
 
@@ -161,243 +171,195 @@ Loading...
 
 </header>
 
-<!-- ================= MAIN ================= -->
+<!-- ===================================== -->
+<!-- MAIN -->
+<!-- ===================================== -->
 
-<main>
+<main class="mainContent">
 
-<section class="dashboardGrid"><!-- ================= CONTINUE READING ================= -->
+<!-- nice spacing between hero and cards -->
+
+<section class="dashboardSection"><!-- ===================================== -->
+<!-- CONTINUE READING -->
+<!-- ===================================== -->
 
 <div
-class="feature continue"
+class="continueReadingCard"
 id="continueCard"
 style="display:none;">
 
-<div class="icon">
+<div class="continueIcon">
+
 📖
+
 </div>
 
+<div class="continueContent">
+
 <h3>
+
 Continue Reading
+
 </h3>
 
 <p id="continueText">
+
 Loading...
+
 </p>
 
 </div>
 
-<!-- ================= PRAYER TIMES ================= -->
+<div class="continueArrow">
+
+➜
+
+</div>
+
+</div>
+
+<!-- ===================================== -->
+<!-- DASHBOARD -->
+<!-- ===================================== -->
+
+<section class="dashboardGrid">
 
 <div class="feature"
 onclick="location.href='pages/prayer.html'">
 
-<div class="icon">
-🕌
-</div>
+<div class="icon">🕌</div>
 
-<h3>
-Prayer Times
-</h3>
+<h3>Prayer Times</h3>
 
-<p>
-Today's Salah Schedule
-</p>
+<p>Today's Salah Schedule</p>
 
 </div>
-
-<!-- ================= HOLY QURAN ================= -->
 
 <div class="feature"
 onclick="location.href='pages/quran.html'">
 
-<div class="icon">
-📖
-</div>
+<div class="icon">📖</div>
 
-<h3>
-Holy Quran
-</h3>
+<h3>Holy Quran</h3>
 
-<p>
-Read, Listen & Reflect
-</p>
+<p>Read & Listen</p>
 
 </div>
-
-<!-- ================= QIBLA ================= -->
 
 <div class="feature"
 onclick="location.href='pages/qibla.html'">
 
-<div class="icon">
-🧭
-</div>
+<div class="icon">🧭</div>
 
-<h3>
-Qibla Direction
-</h3>
+<h3>Qibla</h3>
 
-<p>
-Find the Kaaba
-</p>
+<p>Find the Kaaba</p>
 
 </div>
-
-<!-- ================= TASBIH ================= -->
 
 <div class="feature"
 onclick="location.href='pages/tasbih.html'">
 
-<div class="icon">
-📿
-</div>
+<div class="icon">📿</div>
 
-<h3>
-Digital Tasbih
-</h3>
+<h3>Tasbih</h3>
 
-<p>
-Count Your Dhikr
-</p>
+<p>Digital Dhikr Counter</p>
 
 </div>
-
-<!-- ================= DUAS ================= -->
 
 <div class="feature"
 onclick="location.href='pages/duas.html'">
 
-<div class="icon">
-🤲
-</div>
+<div class="icon">🤲</div>
 
-<h3>
-Duas & Adhkar
-</h3>
+<h3>Duas & Adhkar</h3>
 
-<p>
-Morning & Evening
-</p>
+<p>Morning & Evening</p>
 
 </div>
-
-<!-- ================= DAILY AYAH ================= -->
 
 <div class="feature"
 onclick="location.href='pages/ayah.html'">
 
-<div class="icon">
-✨
-</div>
+<div class="icon">✨</div>
 
-<h3>
-Daily Ayah
-</h3>
+<h3>Daily Ayah</h3>
 
 <p id="ayah">
+
 Loading...
+
 </p>
 
 </div>
-
-<!-- ================= DAILY HADITH ================= -->
 
 <div class="feature"
 onclick="location.href='pages/hadith.html'">
 
-<div class="icon">
-📚
-</div>
+<div class="icon">📚</div>
 
-<h3>
-Daily Hadith
-</h3>
+<h3>Daily Hadith</h3>
 
 <p id="hadith">
+
 Loading...
+
 </p>
 
-</div><!-- ================= HIJRI CALENDAR ================= -->
+</div>
 
 <div class="feature"
 onclick="location.href='pages/calendar.html'">
 
-<div class="icon">
-📅
-</div>
+<div class="icon">📅</div>
 
-<h3>
-Hijri Calendar
-</h3>
+<h3>Hijri Calendar</h3>
 
-<p>
-Islamic Dates
-</p>
+<p>Islamic Dates</p>
 
 </div>
-
-<!-- ================= BOOKMARKS ================= -->
 
 <div class="feature"
 onclick="location.href='pages/bookmarks.html'">
 
-<div class="icon">
-⭐
-</div>
+<div class="icon">⭐</div>
 
-<h3>
-Bookmarks
-</h3>
+<h3>Bookmarks</h3>
 
-<p>
-Saved Surahs
-</p>
+<p>Saved Surahs</p>
 
 </div>
-
-<!-- ================= MOSQUES ================= -->
 
 <div class="feature"
 onclick="location.href='pages/mosques.html'">
 
-<div class="icon">
-🕌
-</div>
+<div class="icon">🕌</div>
 
-<h3>
-Nearby Mosques
-</h3>
+<h3>Nearby Mosques</h3>
 
-<p>
-Find Nearby Masjids
-</p>
+<p>Find Nearby Masjids</p>
 
 </div>
-
-<!-- ================= SETTINGS ================= -->
 
 <div class="feature"
 onclick="location.href='pages/settings.html'">
 
-<div class="icon">
-⚙️
-</div>
+<div class="icon">⚙️</div>
 
-<h3>
-Settings
-</h3>
+<h3>Settings</h3>
 
-<p>
-Themes & Preferences
-</p>
+<p>Themes & Preferences</p>
 
 </div>
+
+</section><!-- ===================================== -->
+<!-- BOTTOM NAVIGATION -->
+<!-- ===================================== -->
 
 </section>
 
 </main>
-
-<!-- ================= BOTTOM NAVIGATION ================= -->
 
 <nav class="bottomNav">
 
@@ -447,6 +409,10 @@ onclick="location.href='pages/settings.html'">
 </button>
 
 </nav>
+
+<!-- ===================================== -->
+<!-- JAVASCRIPT -->
+<!-- ===================================== -->
 
 <script src="app.js"></script>
 
