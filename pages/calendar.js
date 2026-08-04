@@ -1,269 +1,228 @@
 /* ==========================================
    MUSLIM BRO
-   PREMIUM HIJRI CALENDAR
+   PREMIUM OFFLINE HIJRI CALENDAR
 ========================================== */
 
-const monthTitle =
-document.getElementById("monthTitle");
+const monthTitle = document.getElementById("monthTitle");
+const hijriTitle = document.getElementById("hijriTitle");
+const calendarGrid = document.getElementById("calendarGrid");
+const eventText = document.getElementById("eventText");
 
-const hijriTitle =
-document.getElementById("hijriTitle");
+const prevBtn = document.getElementById("prevMonth");
+const nextBtn = document.getElementById("nextMonth");
+const todayBtn = document.getElementById("todayBtn");
 
-const calendarGrid =
-document.getElementById("calendarGrid");
-
-const eventText =
-document.getElementById("eventText");
-
-const prevBtn =
-document.getElementById("prevMonth");
-
-const nextBtn =
-document.getElementById("nextMonth");
-
-const todayBtn =
-document.getElementById("todayBtn");
-
-let currentDate =
-new Date();
+let currentDate = new Date();
 
 /* ===================================== */
 
 function buildCalendar(){
 
-calendarGrid.innerHTML="";
+    if(!calendarGrid) return;
 
-const year =
-currentDate.getFullYear();
+    calendarGrid.innerHTML = "";
 
-const month =
-currentDate.getMonth();
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
 
-const monthData =
-HijriEngine.generateMonth(
-year,
-month
-);
+    const monthData =
+    HijriEngine.generateMonth(year, month);
 
-monthTitle.textContent =
-currentDate.toLocaleString(
-"default",
-{
-month:"long",
-year:"numeric"
-}
-);
+    if(monthTitle){
 
-const firstValid =
-monthData.find(d=>d);
+        monthTitle.textContent =
+        currentDate.toLocaleString("default",{
 
-if(firstValid){
+            month:"long",
+            year:"numeric"
 
-hijriTitle.textContent =
-HijriEngine.hijriMonthTitle(firstValid);
+        });
 
-}
+    }
 
-/* Week Names */
+    const firstValid =
+    monthData.find(d=>d);
 
-const week=[
+    if(firstValid && hijriTitle){
 
-"Sun",
-"Mon",
-"Tue",
-"Wed",
-"Thu",
-"Fri",
-"Sat"
+        hijriTitle.textContent =
+        HijriEngine.hijriMonthTitle(firstValid);
 
-];
+    }
 
-week.forEach(name=>{
+    const weekNames = [
 
-const head=
-document.createElement("div");
+        "Sun",
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat"
 
-head.className=
-"weekHeader";
+    ];
 
-head.textContent=name;
+    weekNames.forEach(name=>{
 
-calendarGrid.appendChild(head);
+        const head =
+        document.createElement("div");
 
-});
+        head.className = "weekHeader";
+        head.textContent = name;
 
-/* Days */
+        calendarGrid.appendChild(head);
 
-monthData.forEach(day=>{
+    });
 
-const card=
-document.createElement("div");
+    monthData.forEach(day=>{
 
-if(day===null){
+        const card =
+        document.createElement("div");
 
-card.className=
-"calendarDay empty";
+        if(day===null){
 
-calendarGrid.appendChild(card);
+            card.className =
+            "calendarDay empty";
 
-return;
+            calendarGrid.appendChild(card);
 
-}
+            return;
 
-card.className=
-"calendarDay";
+        }
 
-if(HijriEngine.isToday(day)){
+        card.className="calendarDay";
 
-card.classList.add("today");
+        if(HijriEngine.isToday(day))
+            card.classList.add("today");
 
-}
+        if(HijriEngine.isFriday(day))
+            card.classList.add("friday");
 
-if(HijriEngine.isFriday(day)){
+        const event =
+        HijriEngine.getHijriEvent(day);
 
-card.classList.add("friday");
+        card.innerHTML = `
 
-}
+        <div class="gregorianDay">
+            ${day.gregorianDay}
+        </div>
 
-const event =
-HijriEngine.getHijriEvent(day);
+        <div class="hijriDay">
+            ${day.hijriDay}
+        </div>
 
-card.innerHTML=`
+        `;
 
-<div class="gregorianDay">
+        card.onclick=()=>{
 
-${day.gregorianDay}
+            showDay(day,event);
 
-</div>
+        };
 
-<div class="hijriDay">
+        calendarGrid.appendChild(card);
 
-${day.hijriDay}
-
-</div>
-
-`;
-
-card.onclick=()=>{
-
-showDay(day,event);
-
-};
-
-calendarGrid.appendChild(card);
-
-});
-
-}/* ==========================================
+    });
+/* ==========================================
    SHOW SELECTED DAY
 ========================================== */
 
 function showDay(day,event){
 
-const gregorian =
+    if(!eventText) return;
 
-day.date.toLocaleDateString(
+    const gregorian =
+    day.date.toLocaleDateString(
+        undefined,
+        {
+            weekday:"long",
+            day:"numeric",
+            month:"long",
+            year:"numeric"
+        }
+    );
 
-undefined,
+    const hijri =
+    `${day.hijriDay} ${day.hijriMonthArabic} ${day.hijriYear} AH`;
 
-{
+    eventText.innerHTML = `
 
-weekday:"long",
+    <div class="selectedDate">
 
-day:"numeric",
+        <h3>${gregorian}</h3>
 
-month:"long",
+        <p>🌙 ${hijri}</p>
 
-year:"numeric"
+    </div>
 
-}
+    <div class="selectedEvent">
 
-);
+        ${event || "No special Islamic event"}
 
-const hijri =
+    </div>
 
-`${day.hijriDay} ${day.hijriMonthArabic} ${day.hijriYear} AH`;
-
-if(eventText){
-
-eventText.innerHTML = `
-
-<div class="selectedDate">
-
-<h3>${gregorian}</h3>
-
-<p>🌙 ${hijri}</p>
-
-</div>
-
-<div class="selectedEvent">
-
-${event ? event : "No special Islamic event"}
-
-</div>
-
-`;
-
-}
+    `;
 
 }
 
 /* ==========================================
-   PREVIOUS MONTH
+   BUTTONS
 ========================================== */
 
-prevBtn.addEventListener("click",()=>{
+if(prevBtn){
 
-currentDate.setMonth(
+    prevBtn.addEventListener("click",()=>{
 
-currentDate.getMonth()-1
+        currentDate.setMonth(
+            currentDate.getMonth()-1
+        );
 
-);
+        buildCalendar();
 
-buildCalendar();
+    });
+
+}
+
+if(nextBtn){
+
+    nextBtn.addEventListener("click",()=>{
+
+        currentDate.setMonth(
+            currentDate.getMonth()+1
+        );
+
+        buildCalendar();
+
+    });
+
+}
+
+if(todayBtn){
+
+    todayBtn.addEventListener("click",()=>{
+
+        currentDate = new Date();
+
+        buildCalendar();
+
+    });
+
+}
+
+/* ==========================================
+   START
+========================================== */
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+    if(typeof HijriEngine === "undefined"){
+
+        console.error("HijriEngine not loaded.");
+
+        return;
+
+    }
+
+    buildCalendar();
 
 });
-
-/* ==========================================
-   NEXT MONTH
-========================================== */
-
-nextBtn.addEventListener("click",()=>{
-
-currentDate.setMonth(
-
-currentDate.getMonth()+1
-
-);
-
-buildCalendar();
-
-});
-
-/* ==========================================
-   TODAY BUTTON
-========================================== */
-
-todayBtn.addEventListener("click",()=>{
-
-currentDate=new Date();
-
-buildCalendar();
-
-});
-
-/* ==========================================
-   INITIALIZE
-========================================== */
-
-document.addEventListener(
-
-"DOMContentLoaded",
-
-()=>{
-
-buildCalendar();
-
 }
-
-);
