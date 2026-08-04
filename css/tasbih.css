@@ -1,0 +1,586 @@
+/* ==========================================
+   MUSLIM BRO
+   DIGITAL TASBIH
+   PART 1
+========================================== */
+
+body{
+
+    margin:0;
+    padding:0;
+
+    font-family:
+    "Segoe UI",
+    sans-serif;
+
+    background:#eef6ef;
+
+    color:#1b4332;
+
+}
+
+/* ==========================================
+   HERO
+========================================== */
+
+.tasbihHero{
+
+    height:180px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:
+
+    linear-gradient(
+
+        rgba(8,80,45,.75),
+
+        rgba(8,80,45,.75)
+
+    ),
+
+    url("../assets/images/mosque.jpg");
+
+    background-size:cover;
+
+    background-position:center;
+
+}
+
+.heroOverlay{
+
+    text-align:center;
+
+    color:#fff;
+
+}
+
+.heroOverlay h1{
+
+    margin:0;
+
+    font-size:34px;
+
+    font-weight:bold;
+
+}
+
+.heroOverlay p{
+
+    margin-top:10px;
+
+    font-size:16px;
+
+    opacity:.9;
+
+}
+
+/* ==========================================
+   CONTAINER
+========================================== */
+
+.tasbihContainer{
+
+    padding:20px;
+
+}
+
+.tasbihCard{
+
+    background:#fff;
+
+    border-radius:25px;
+
+    padding:25px;
+
+    box-shadow:
+
+    0 10px 30px rgba(0,0,0,.12);
+
+}
+
+.tasbihCard h2{
+
+    text-align:center;
+
+    color:#0b6b45;
+
+    margin-bottom:20px;
+
+}
+
+/* ==========================================
+   DHIKR SELECT
+========================================== */
+
+#dhikrSelect{
+
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:#f2f7f4;
+
+    font-size:16px;
+
+    color:#1b4332;
+
+    margin-bottom:25px;
+
+    outline:none;
+
+}/* ==========================================
+   COUNTER CIRCLE
+========================================== */
+
+.counterCircle{
+
+    width:230px;
+
+    height:230px;
+
+    margin:30px auto;
+
+    border-radius:50%;
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        #0d8b56,
+
+        #14a76c
+
+    );
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    box-shadow:
+
+    0 12px 30px rgba(13,139,86,.35);
+
+    transition:.3s;
+
+}
+
+.counterCircle:active{
+
+    transform:scale(.97);
+
+}
+
+/* ==========================================
+   COUNTER NUMBER
+========================================== */
+
+.counter{
+
+    font-size:64px;
+
+    font-weight:700;
+
+    color:#ffffff;
+
+    user-select:none;
+
+}
+
+/* ==========================================
+   GOAL
+========================================== */
+
+.goalText{
+
+    text-align:center;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    color:#0d8b56;
+
+    margin-top:15px;
+
+}
+
+/* ==========================================
+   PROGRESS BAR
+========================================== */
+
+.progressContainer{
+
+    width:100%;
+
+    height:12px;
+
+    background:#e6ece8;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    margin:25px 0;
+
+}
+
+.progressBar{
+
+    width:0%;
+
+    height:100%;
+
+    background:
+
+    linear-gradient(
+
+        90deg,
+
+        #0d8b56,
+
+        #20c978
+
+    );
+
+    border-radius:30px;
+
+    transition:width .3s ease;
+
+/* ==========================================
+   MODE SELECTOR
+========================================== */
+
+.modeContainer{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:25px;
+
+    margin:20px 0;
+
+    flex-wrap:wrap;
+
+}
+
+.modeContainer label{
+
+    font-size:16px;
+
+    font-weight:600;
+
+    color:#0d8b56;
+
+    cursor:pointer;
+
+}
+
+.modeContainer input{
+
+    margin-right:8px;
+
+}
+
+/* ==========================================
+   VOICE STATUS
+========================================== */
+
+.voiceStatus{
+
+    text-align:center;
+
+    margin:18px 0;
+
+    padding:12px;
+
+    border-radius:15px;
+
+    background:#f2f7f4;
+
+    color:#0d8b56;
+
+    font-weight:600;
+
+}
+
+/* ==========================================
+   BUTTONS
+========================================== */
+
+.tasbihButtons{
+
+    display:flex;
+
+    gap:12px;
+
+    margin-top:15px;
+
+    flex-wrap:wrap;
+
+}
+
+.tasbihButtons button{
+
+    flex:1;
+
+    min-width:120px;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:16px;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+/* Count Button */
+
+.primaryBtn{
+
+    background:#0d8b56;
+
+    color:white;
+
+}
+
+.primaryBtn:hover{
+
+    background:#0b7348;
+
+}
+
+/* Save / Undo / History */
+
+.secondaryBtn{
+
+    background:#eef6ef;
+
+    color:#0d8b56;
+
+}
+
+.secondaryBtn:hover{
+
+    background:#dff2e5;
+
+}
+
+/* Reset */
+
+.dangerBtn{
+
+    background:#d32f2f;
+
+    color:white;
+
+}
+
+.dangerBtn:hover{
+
+    background:#b71c1c;
+
+}
+
+/* ==========================================
+   SESSION INFO
+========================================== */
+
+.sessionInfo{
+
+    margin-top:25px;
+
+    text-align:center;
+
+    font-size:15px;
+
+    color:#666;
+
+}}/* ==========================================
+   ACTION BUTTONS
+========================================== */
+
+.tasbihActions{
+
+    display:flex;
+
+    gap:15px;
+
+    justify-content:center;
+
+    margin:30px 20px;
+
+}
+
+.actionBtn{
+
+    flex:1;
+
+    max-width:180px;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:#0d8b56;
+
+    color:#fff;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.actionBtn:hover{
+
+    background:#0b7348;
+
+    transform:translateY(-2px);
+
+}
+
+.actionBtn:active{
+
+    transform:scale(.96);
+
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.tasbihFooter{
+
+    text-align:center;
+
+    padding:20px;
+
+    color:#666;
+
+    font-size:14px;
+
+}
+
+/* ==========================================
+   ANIMATIONS
+========================================== */
+
+.counterCircle{
+
+    animation:fadeIn .6s ease;
+
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:scale(.8);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+
+}
+
+.primaryBtn:active,
+.secondaryBtn:active,
+.dangerBtn:active{
+
+    transform:scale(.96);
+
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media(max-width:768px){
+
+.counterCircle{
+
+    width:200px;
+
+    height:200px;
+
+}
+
+.counter{
+
+    font-size:56px;
+
+}
+
+.heroOverlay h1{
+
+    font-size:28px;
+
+}
+
+.heroOverlay p{
+
+    font-size:15px;
+
+}
+
+.tasbihButtons{
+
+    flex-direction:column;
+
+}
+
+.tasbihButtons button{
+
+    width:100%;
+
+}
+
+.tasbihActions{
+
+    flex-direction:column;
+
+}
+
+.actionBtn{
+
+    max-width:100%;
+
+}
+
+}
