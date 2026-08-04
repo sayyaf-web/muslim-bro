@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-content="width=device-width,initial-scale=1.0">
+content="width=device-width, initial-scale=1.0">
 
 <title>Muslim Bro</title>
 
@@ -23,7 +23,11 @@ href="styles.css">
 
 <body>
 
-<div class="hero">
+<!-- ========================= -->
+<!-- HERO -->
+<!-- ========================= -->
+
+<header class="hero">
 
 <div class="overlay">
 
@@ -47,7 +51,7 @@ href="styles.css">
 
 </h2>
 
-<p>
+<p class="welcomeText">
 
 اللهم افتح لنا أبواب رحمتك،
 وبارك لنا في يومنا،
@@ -60,7 +64,7 @@ href="styles.css">
 
 <div class="heroInfo">
 
-<div>
+<div class="infoCard">
 
 <p class="smallTitle">
 
@@ -76,7 +80,7 @@ Detecting...
 
 </div>
 
-<div>
+<div class="infoCard">
 
 <p class="smallTitle">
 
@@ -87,6 +91,12 @@ Detecting...
 <p id="dashboardDate">
 
 Loading...
+
+</p>
+
+<p id="dashboardHijri">
+
+🌙 Loading Hijri...
 
 </p>
 
@@ -114,17 +124,25 @@ Loading...
 
 </p>
 
-</div>
+<div class="progressContainer">
+
+<div id="progressBar">
 
 </div>
 
 </div>
 
 </div>
+
+</div>
+
+</div>
+
+</header>
 
 <main>
 
-<section class="dashboardGrid">
+<section class="dashboardGrid"><!-- Continue Reading -->
 
 <div
 class="feature continue"
@@ -149,100 +167,148 @@ Loading...
 
 </p>
 
-</div><div class="feature"
+</div>
+
+<!-- Prayer Times -->
+
+<div class="feature"
 onclick="location.href='pages/prayer.html'">
 
 <div class="icon">
+
 🕌
+
 </div>
 
 <h3>
+
 Prayer Times
+
 </h3>
 
 <p>
+
 Today's Salah Times
+
 </p>
 
 </div>
+
+<!-- Quran -->
 
 <div class="feature"
 onclick="location.href='pages/quran.html'">
 
 <div class="icon">
+
 📖
+
 </div>
 
 <h3>
+
 Holy Quran
+
 </h3>
 
 <p>
+
 Read & Listen
+
 </p>
 
 </div>
+
+<!-- Qibla -->
 
 <div class="feature"
 onclick="location.href='pages/qibla.html'">
 
 <div class="icon">
+
 🧭
+
 </div>
 
 <h3>
+
 Qibla Direction
+
 </h3>
 
 <p>
+
 Find the Kaaba
+
 </p>
 
 </div>
+
+<!-- Tasbih -->
 
 <div class="feature"
 onclick="location.href='pages/tasbih.html'">
 
 <div class="icon">
+
 📿
+
 </div>
 
 <h3>
+
 Tasbih
+
 </h3>
 
 <p>
+
 Digital Dhikr Counter
+
 </p>
 
 </div>
+
+<!-- Duas -->
 
 <div class="feature"
 onclick="location.href='pages/duas.html'">
 
 <div class="icon">
+
 🤲
+
 </div>
 
 <h3>
+
 Duas & Adhkar
+
 </h3>
 
 <p>
+
 Morning & Evening
+
 </p>
 
 </div>
+
+<!-- Daily Hadith -->
 
 <div class="feature"
 onclick="location.href='pages/hadith.html'">
 
 <div class="icon">
+
 📚
+
 </div>
 
 <h3>
+
 Daily Hadith
+
 </h3>
 
 <p id="hadith">
@@ -253,15 +319,21 @@ Loading...
 
 </div>
 
+<!-- Daily Ayah -->
+
 <div class="feature"
 onclick="location.href='pages/ayah.html'">
 
 <div class="icon">
+
 ✨
+
 </div>
 
 <h3>
+
 Daily Ayah
+
 </h3>
 
 <p id="ayah">
@@ -272,58 +344,111 @@ Loading...
 
 </div>
 
+<!-- Hijri Calendar -->
+
 <div class="feature"
 onclick="location.href='pages/calendar.html'">
 
 <div class="icon">
+
 📅
+
 </div>
 
 <h3>
+
 Hijri Calendar
+
 </h3>
 
 <p>
+
 Islamic Dates
+
 </p>
 
-</div>
+</div><!-- Bookmarks -->
 
 <div class="feature"
 onclick="location.href='pages/bookmarks.html'">
 
 <div class="icon">
+
 ⭐
+
 </div>
 
 <h3>
+
 Bookmarks
+
 </h3>
 
 <p>
+
 Saved Surahs
+
 </p>
 
 </div>
+
+<!-- Nearby Mosques -->
 
 <div class="feature"
 onclick="location.href='pages/mosques.html'">
 
 <div class="icon">
+
 🕌
+
 </div>
 
 <h3>
+
 Nearby Mosques
+
 </h3>
 
 <p>
+
 Find Nearby Masjids
+
 </p>
 
-</div></section>
+</div>
+
+<!-- Settings -->
+
+<div class="feature"
+onclick="location.href='pages/settings.html'">
+
+<div class="icon">
+
+⚙️
+
+</div>
+
+<h3>
+
+Settings
+
+</h3>
+
+<p>
+
+Themes, Audio & More
+
+</p>
+
+</div>
+
+</section>
 
 </main>
+
+<!-- ========================= -->
+<!-- Bottom Navigation -->
+<!-- ========================= -->
 
 <nav class="bottomNav">
 
