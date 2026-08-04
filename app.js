@@ -243,3 +243,80 @@ loadLocation();
 loadContinueReading();
 
 loadPrayerCountdown();
+// ===============================
+// Daily Ayah
+// ===============================
+
+async function loadDailyAyah(){
+
+try{
+
+const response = await fetch(
+
+"https://api.alquran.cloud/v1/ayah/random/en.asad"
+
+);
+
+const json = await response.json();
+
+const ayah = document.getElementById("ayah");
+
+if(ayah){
+
+ayah.textContent =
+
+json.data.text.substring(0,80) + "...";
+
+}
+
+}catch(e){
+
+console.log(e);
+
+}
+
+}
+
+// ===============================
+// Daily Hadith
+// ===============================
+
+async function loadDailyHadith(){
+
+const hadiths=[
+
+"Actions are judged by intentions.",
+
+"The best among you are those who learn the Qur'an and teach it.",
+
+"Make things easy, not difficult.",
+
+"Allah is gentle and loves gentleness.",
+
+"Smile at your brother; it is charity.",
+
+"The strong believer is better and more beloved to Allah."
+
+];
+
+const today=new Date().getDate();
+
+const hadith=document.getElementById("hadith");
+
+if(hadith){
+
+hadith.textContent=
+
+hadiths[today % hadiths.length];
+
+}
+
+}
+
+// ===============================
+// Load Everything
+// ===============================
+
+loadDailyAyah();
+
+loadDailyHadith();
