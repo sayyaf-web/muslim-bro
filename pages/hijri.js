@@ -502,35 +502,29 @@ function hijriMonthTitle(dayObj){
 }
 
 /* ==========================================
-   EXPORT ENGINE
+   EXPORT HELPERS
 ========================================== */
 
 window.HijriEngine = {
 
-    // Core
-    gregorianToHijri,
-    generateMonth,
-    todayHijri,
+  gregorianToHijri,
+  generateMonth,
+  todayHijri,
+  formatHijri,
 
-    // Formatting
-    formatHijri,
-    formatGregorian,
+  getHijriEvent,
+  hasEvent,
+  hijriMonthTitle,
 
-    // Events
-    getHijriEvent,
-    hasEvent,
+  isToday,
+  isFriday,
+  isWeekend,
 
-    // Titles
-    hijriMonthTitle,
+  createDayObject,
+  gregorianMonthDays,
+  firstWeekday,
 
-    // Helpers
-    isToday,
-    isFriday,
-    isWeekend,
-
-    // Data
-    months,
-    HIJRI_MONTHS,
-    HIJRI_MONTHS_AR
+  HIJRI_MONTHS,
+  HIJRI_MONTHS_AR
 
 };
