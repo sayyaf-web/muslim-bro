@@ -1,1 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0">
+
+<title>Hijri Calendar | Muslim Bro</title>
+
+<link rel="stylesheet"
+href="../styles.css">
+
+<style>
+
+body{
+
+margin:0;
+font-family:Arial,sans-serif;
+background:#eef7f2;
+
+}
+
+.header{
+
+background:linear-gradient(135deg,#0b8457,#16a46f);
+
+color:white;
+
+padding:28px 20px;
+
+text-align:center;
+
+border-bottom-left-radius:28px;
+border-bottom-right-radius:28px;
+
+box-shadow:0 8px 25px rgba(0,0,0,.15);
+
+}
+
+.header h1{
+
+margin:0;
+font-size:32px;
+
+}
+
+.header p{
+
+margin-top:8px;
+opacity:.9;
+
+}
+
+.container{
+
+padding:20px;
+max-width:700px;
+margin:auto;
+
+}
+
+.card{
+
+background:white;
+
+border-radius:22px;
+
+padding:22px;
+
+margin-bottom:20px;
+
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.card h2{
+
+margin-top:0;
+color:#0b8457;
+
+}
+
+.value{
+
+font-size:28px;
+
+font-weight:bold;
+
+margin-top:15px;
+
+color:#222;
+
+}
+
+.info{
+
+margin-top:15px;
+
+line-height:1.8;
+
+color:#555;
+
+}
+
+.back{
+
+display:block;
+
+width:220px;
+
+margin:30px auto;
+
+text-align:center;
+
+padding:15px;
+
+border-radius:16px;
+
+background:#0b8457;
+
+color:white;
+
+text-decoration:none;
+
+font-weight:bold;
+
+}
+
+.back:hover{
+
+background:#08734b;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+<h1>🕌 Hijri Calendar</h1>
+
+<p>Today's Islamic Date</p>
+
+</div>
+
+<div class="container">
+
+<div class="card">
+
+<h2>📅 Hijri Date</h2>
+
+<div
+class="value"
+id="hijriDate">
+
+Loading...
+
+</div>
+
+<div
+class="info"
+id="gregorianDate">
+
+Loading...
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>🌙 Islamic Month</h2>
+
+<div
+class="value"
+id="hijriMonth">
+
+Loading...
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>⭐ Important Reminder</h2>
+
+<p class="info">
+
+Follow the Hijri calendar for fasting,
+Ramadan,
+Eid,
+Hajj
+and all Islamic occasions.
+
+</p>
+
+</div>
+
+<a
+class="back"
+href="../index.html">
+
+⬅ Back Home
+
+</a>
+
+</div>
+
+<script>async function loadHijriDate(){
+
+try{
+
+const response =
+await fetch(
+"https://api.aladhan.com/v1/gToH"
+);
+
+const json =
+await response.json();
+
+const hijri =
+json.data.hijri;
+
+const gregorian =
+json.data.gregorian;
+
+document.getElementById("hijriDate").textContent =
+
+`${hijri.day} ${hijri.month.en} ${hijri.year} AH`;
+
+document.getElementById("gregorianDate").textContent =
+
+`${gregorian.weekday.en}, ${gregorian.day} ${gregorian.month.en} ${gregorian.year}`;
+
+document.getElementById("hijriMonth").textContent =
+
+`${hijri.month.en}
+(${hijri.month.ar})`;
+
+}catch(error){
+
+console.log(error);
+
+document.getElementById("hijriDate").textContent =
+"Unable to load Hijri date";
+
+document.getElementById("gregorianDate").textContent =
+"Check your internet connection.";
+
+document.getElementById("hijriMonth").textContent =
+"--";
+
+}
+
+}
+
+loadHijriDate();
+
+</script>
+
+</body>
+
+</html>
