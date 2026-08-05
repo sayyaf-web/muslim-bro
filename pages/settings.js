@@ -258,8 +258,13 @@ languageSelect.value
 
 );
 
-}
+alert(
 
+"Saved: " + languageSelect.value
+
+);
+
+}
 if(languageSelect){
 
 languageSelect.addEventListener(
