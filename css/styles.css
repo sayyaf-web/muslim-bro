@@ -2818,3 +2818,32 @@ padding:20px;
 }
 
 /* End of Muslim Bro Premium Theme */
+/* Ripple Effect */
+
+.rippleEffect{
+
+position:absolute;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.35);
+
+transform:scale(0);
+
+animation:rippleAnimation .65s linear;
+
+pointer-events:none;
+
+}
+
+@keyframes rippleAnimation{
+
+to{
+
+transform:scale(4);
+
+opacity:0;
+
+}
+
+}
