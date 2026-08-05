@@ -3036,3 +3036,61 @@ line-height:1.7;
 font-size:15px;
 
 }
+/*=========================================
+ PART 20
+ FINAL POLISH
+=========================================*/
+
+/* Smooth fade */
+
+body{
+
+animation:pageFade .5s ease;
+
+}
+
+@keyframes pageFade{
+
+from{
+
+opacity:0;
+
+transform:translateY(10px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+/* Better feature shadows */
+
+.feature{
+
+box-shadow:
+
+0 10px 30px rgba(0,0,0,.08);
+
+}
+
+/* Better prayer card */
+
+.premiumPrayerCard{
+
+transition:.4s;
+
+}
+
+.premiumPrayerCard:hover{
+
+transform:translateY(-4px);
+
+box-shadow:0 25px 60px rgba(0,0,0,.18);
+
+}
