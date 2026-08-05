@@ -1352,3 +1352,126 @@ notificationBadge();
 welcomeAnimation();
 
 });
+/*=========================================
+ PART 18
+ PREMIUM APP EXPERIENCE
+=========================================*/
+
+/* ---------- Loading Screen ---------- */
+
+function hideLoadingScreen(){
+
+const loader = document.getElementById("loadingScreen");
+
+if(!loader) return;
+
+setTimeout(()=>{
+
+loader.style.opacity="0";
+
+loader.style.pointerEvents="none";
+
+setTimeout(()=>{
+
+loader.remove();
+
+},600);
+
+},800);
+
+}
+
+/* ---------- Fade Between Pages ---------- */
+
+function enablePageTransitions(){
+
+document.querySelectorAll("a,.feature,button").forEach(item=>{
+
+item.addEventListener("click",function(e){
+
+const href=this.getAttribute("href");
+
+if(!href) return;
+
+if(
+href.startsWith("#") ||
+href.startsWith("javascript")
+){
+
+return;
+
+}
+
+e.preventDefault();
+
+document.body.style.opacity="0";
+
+setTimeout(()=>{
+
+window.location.href=href;
+
+},250);
+
+});
+
+});
+
+}
+
+/* ---------- Internet Status ---------- */
+
+function updateConnectionStatus(){
+
+const banner=document.getElementById("connectionStatus");
+
+if(!banner) return;
+
+if(navigator.onLine){
+
+banner.textContent="🟢 Online";
+
+banner.style.background="#0B8457";
+
+setTimeout(()=>{
+
+banner.style.opacity="0";
+
+},2000);
+
+}else{
+
+banner.textContent="🔴 Offline Mode";
+
+banner.style.background="#C62828";
+
+banner.style.opacity="1";
+
+}
+
+}
+
+window.addEventListener("online",updateConnectionStatus);
+
+window.addEventListener("offline",updateConnectionStatus);
+
+/* ---------- Auto Refresh Greeting ---------- */
+
+setInterval(()=>{
+
+updateGreeting();
+
+},60000);
+
+/* ---------- Start ---------- */
+
+window.addEventListener("load",()=>{
+
+document.body.style.opacity="1";
+
+hideLoadingScreen();
+
+enablePageTransitions();
+
+updateConnectionStatus();
+
+});
