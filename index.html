@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Muslim Bro</title>
+
+<meta name="theme-color" content="#0B8457">
+
+<link rel="manifest" href="manifest.json">
+
+<link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+
+<!-- ========================================= -->
+<!-- PREMIUM HERO -->
+<!-- ========================================= -->
+
+<header class="hero">
+
+<div class="heroBackground"></div>
+
+<div class="heroOverlay"></div>
+
+<div class="heroTop">
+
+<button class="menuBtn">
+
+☰
+
+</button>
+
+<div class="heroGreeting">
+
+<h2 id="greetingText">
+
+Assalamu Alaikum
+
+</h2>
+
+<p id="greetingSub">
+
+May Allah bless your day 🤲
+
+</p>
+
+</div>
+
+<button class="notificationBtn">
+
+🔔
+
+</button>
+
+</div>
+
+<section class="premiumPrayerCard">
+
+<div class="prayerImage">
+
+<div class="prayerOverlay">
+
+<small>
+
+Next Prayer
+
+</small>
+
+<h1 id="dashboardPrayer">
+
+Loading...
+
+</h1>
+
+<div class="countdownWrapper">
+
+<svg class="progressRing" width="180" height="180">
+
+<circle
+
+class="ringBackground"
+
+cx="90"
+
+cy="90"
+
+r="78">
+
+</circle>
+
+<circle
+
+class="ringProgress"
+
+cx="90"
+
+cy="90"
+
+r="78">
+
+</circle>
+
+</svg>
+
+<div class="countdownCenter">
+
+<span id="dashboardCountdown">
+
+--:--:--
+
+</span>
+
+<small>
+
+Remaining
+
+</small>
+
+</div>
+
+</div>
+
+<p id="dashboardRemaining">
+
+Calculating...
+
+</p>
+
+<button
+
+class="viewPrayerBtn"
+
+onclick="location.href='pages/prayer.html'">
+
+View Prayer Times →
+
+</button>
+
+</div>
+
+</div>
+
+<div class="prayerSide">
+
+<div class="hijriBox">
+
+<div>
+
+<small>
+
+Hijri Date
+
+</small>
+
+<h3 id="dashboardHijri">
+
+Loading...
+
+</h3>
+
+</div>
+
+<span class="calendarIcon">
+
+📅
+
+</span>
+
+</div>
+
+<div class="heroLocationCard">
+
+<span>
+
+📍
+
+</span>
+
+<div>
+
+<small>
+
+Location
+
+</small>
+
+<strong id="dashboardLocation">
+
+Detecting...
+
+</strong>
+
+</div>
+
+</div>
+
+<div class="heroDateCard">
+
+<span>
+
+🗓
+
+</span>
+
+<div>
+
+<small>
+
+Today's Date
+
+</small>
+
+<strong id="dashboardDate">
+
+Loading...
+
+</strong>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</header>
+
+<!-- ========================================= -->
+<!-- MAIN CONTENT -->
+<!-- ========================================= -->
+
+<main class="mainContent"><!-- ========================================= -->
+<!-- CONTINUE READING -->
+<!-- ========================================= -->
+
+<section class="dashboardSection">
+
+<div
+class="continueReadingCard"
+id="continueCard"
+style="display:none;">
+
+<div class="continueIcon">
+
+📖
+
+</div>
+
+<div class="continueContent">
+
+<h3>
+
+Continue Reading
+
+</h3>
+
+<p id="continueText">
+
+Loading...
+
+</p>
+
+</div>
+
+<div class="continueArrow">
+
+➜
+
+</div>
+
+</div>
+
+<!-- ========================================= -->
+<!-- DAILY PREMIUM WIDGETS -->
+<!-- ========================================= -->
+
+<section id="premiumWidgets">
+
+<div class="premiumWidget">
+
+<h3>
+
+🌙 Daily Inspiration
+
+</h3>
+
+<p>
+
+Indeed, with hardship comes ease.
+
+</p>
+
+<small>
+
+(Qur'an 94:6)
+
+</small>
+
+</div>
+
+<div class="premiumWidget">
+
+<h3>
+
+📿 Daily Dhikr
+
+</h3>
+
+<p>
+
+SubhanAllah ×33<br>
+
+Alhamdulillah ×33<br>
+
+Allahu Akbar ×34
+
+</p>
+
+</div>
+
+<div class="premiumWidget">
+
+<h3>
+
+🤲 Today's Dua
+
+</h3>
+
+<p>
+
+رَّبِّ زِدْنِي عِلْمًا
+
+</p>
+
+<small>
+
+"My Lord, increase me in knowledge."
+
+</small>
+
+</div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- QUICK ACTION TITLE -->
+<!-- ========================================= -->
+
+<div class="sectionHeader">
+
+<h2>
+
+Explore Muslim Bro
+
+</h2>
+
+<p>
+
+Everything you need for your daily Islamic journey.
+
+</p>
+
+</div>
+
+<!-- ========================================= -->
+<!-- DASHBOARD GRID START -->
+<!-- ========================================= -->
+
+<section class="dashboardGrid"><div class="feature" onclick="location.href='pages/prayer.html'">
+
+<div class="featureBadge">LIVE</div>
+
+<div class="icon">🕌</div>
+
+<h3>Prayer Times</h3>
+
+<p>Today's Salah Schedule</p>
+
+</div>
+
+<div class="feature" onclick="location.href='pages/quran.html'">
+
+<div class="featureBadge">NEW</div>
+
+<div class="icon">📖</div>
+
+<h3>Holy Qur'an</h3>
+
+<p>Read • Listen • Bookmark</p>
+
+</div>
+
+<div class="feature" onclick="location.href='pages/qibla.html'">
+
+<div class="featureBadge">GPS</div>
+
+<div class="icon">🧭</div>
+
+<h3>Qibla</h3>
+
+<p>Find the Kaaba instantly</p>
+
+</div>
+
+<div class="feature" onclick="location.href='pages/tasbih.html'">
+
+<div class="icon">📿</div>
+
+<h3>Digital Tasbih</h3>
+
+<p>Smart Dhikr Counter</p>
+
+</div>
+
+<div class="feature" onclick="location.href='pages/duas.html'">
+
+<div class="featureBadge">100+</div>
+
+<div class="icon">🤲</div>
+
+<h3>Duas & Adhkar</h3>
+
+<p>Morning • Evening • Daily</p>
+
+</div>
+
+<div class="feature" onclick="location.href='pages/ayah.html'">
+
+<div class="featureBadge">TODAY</div>
+
+<div class="icon">✨</div>
+
+<h3>Daily Ayah</h3>
+
+<p id="ayah">
+
+Loading...
+
+</p>
+
+</div><div class="feature" onclick="location.href='pages/hadith.html'">
+
+<div class="featureBadge">NEW</div>
+
+<div class="icon">📚</div>
+
+<h3>Daily Hadith</h3>
+
+<p id="hadith">
+
+Loading...
+
+</p>
+
+</div>
+
+<div class="feature" onclick="location.href='pages/calendar.html'">
+
+<div class="featureBadge">HIJRI</div>
+
+<div class="icon">📅</div>
+
+<h3>Hijri Calendar</h3>
+
+<p>Islamic Dates & Events</p>
+
+</div>
+
+<div class="feature" onclick="location.href='pages/bookmarks.html'">
+
+<div class="featureBadge">SAVE</div>
+
+<div class="icon">⭐</div>
+
+<h3>Bookmarks</h3>
+
+<p>Your Saved Surahs & Ayahs</p>
+
+</div>
+
+<div class="feature" onclick="location.href='pages/mosques.html'">
+
+<div class="featureBadge">NEARBY</div>
+
+<div class="icon">🕌</div>
+
+<h3>Nearby Mosques</h3>
+
+<p>Find Masjids Around You</p>
+
+</div>
+
+<div class="feature" onclick="location.href='pages/settings.html'">
+
+<div class="icon">⚙️</div>
+
+<h3>Settings</h3>
+
+<p>Appearance & Preferences</p>
+
+</div>
+
+<div class="feature" onclick="location.href='pages/about.html'">
+
+<div class="featureBadge">INFO</div>
+
+<div class="icon">❤️</div>
+
+<h3>About Muslim Bro</h3>
+
+<p>Support the Project</p>
+
+</div>
+
+</section><!-- ========================================= -->
+<!-- ISLAMIC QUOTE SECTION -->
+<!-- ========================================= -->
+
+<section class="islamicQuoteSection">
+
+<div class="quoteCard">
+
+<div class="quoteIcon">
+
+☪
+
+</div>
+
+<h2>
+
+"And whoever puts his trust in Allah, then He alone is sufficient for him."
+
+</h2>
+
+<p>
+
+Surah At-Talaq (65:3)
+
+</p>
+
+</div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- QUICK ACCESS -->
+<!-- ========================================= -->
+
+<section class="quickAccessSection">
+
+<h2>
+
+Quick Access
+
+</h2>
+
+<div class="quickAccessGrid">
+
+<button onclick="location.href='pages/prayer.html'">
+
+🕌 Prayer
+
+</button>
+
+<button onclick="location.href='pages/quran.html'">
+
+📖 Quran
+
+</button>
+
+<button onclick="location.href='pages/qibla.html'">
+
+🧭 Qibla
+
+</button>
+
+<button onclick="location.href='pages/tasbih.html'">
+
+📿 Tasbih
+
+</button>
+
+</div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- DEVELOPER CARD -->
+<!-- ========================================= -->
+
+<section class="developerCard">
+
+<div class="developerAvatar">
+
+👨‍💻
+
+</div>
+
+<h3>
+
+Developed by Bilal Athman
+
+</h3>
+
+<p>
+
+Muslim Bro is built to help every Muslim strengthen their connection with Allah through prayer, Qur'an, Dhikr, and daily Islamic guidance.
+
+</p>
+
+<p>
+
+May Allah accept this project as Sadaqah Jariyah.
+
+</p>
+
+<h2>
+
+اللهم آمين
+
+</h2>
+
+</section>
+
+</main><!-- ========================================= -->
+<!-- PREMIUM BOTTOM NAVIGATION -->
+<!-- ========================================= -->
+
+<nav class="bottomNav">
+
+<button class="active"
+onclick="location.href='index.html'">
+
+<div class="navIcon">
+
+🏠
+
+</div>
+
+<span>
+
+Home
+
+</span>
+
+</button>
+
+<button
+onclick="location.href='pages/quran.html'">
+
+<div class="navIcon">
+
+📖
+
+</div>
+
+<span>
+
+Qur'an
+
+</span>
+
+</button>
+
+<button
+onclick="location.href='pages/prayer.html'">
+
+<div class="navIcon">
+
+🕌
+
+</div>
+
+<span>
+
+Prayer
+
+</span>
+
+</button>
+
+<button
+onclick="location.href='pages/qibla.html'">
+
+<div class="navIcon">
+
+🧭
+
+</div>
+
+<span>
+
+Qibla
+
+</span>
+
+</button>
+
+<button
+onclick="location.href='pages/settings.html'">
+
+<div class="navIcon">
+
+⚙️
+
+</div>
+
+<span>
+
+Settings
+
+</span>
+
+</button>
+
+</nav>
+
+<!-- ========================================= -->
+<!-- JAVASCRIPT -->
+<!-- ========================================= -->
+
+<script src="app.js"></script>
+
+</body>
+
+</html>
