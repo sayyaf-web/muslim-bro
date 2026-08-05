@@ -1,14 +1,17 @@
-/*==================================================
- MUSLIM BRO
- SETTINGS.JS
- PART 1
-==================================================*/
-
 "use strict";
 
-/*==============================
- LOCAL STORAGE KEYS
-==============================*/
+/*=========================================
+MUSLIM BRO
+SETTINGS.JS
+PART 1
+CORE
+=========================================*/
+
+/*
+-----------------------------------------
+LOCAL STORAGE KEYS
+-----------------------------------------
+*/
 
 const STORAGE_KEYS = {
 
@@ -18,72 +21,155 @@ adhan: "mb_adhan",
 
 language: "mb_language",
 
-font: "mb_font"
+font: "mb_font",
+
+prayerMethod: "mb_prayer_method",
+
+timeFormat: "mb_time_format",
+
+adhanSound: "mb_adhan_sound",
+
+reciter: "mb_reciter"
 
 };
 
-/*==============================
- ELEMENTS
-==============================*/
+/*
+-----------------------------------------
+ELEMENTS
+-----------------------------------------
+*/
 
-const darkToggle = document.getElementById("darkToggle");
+const darkToggle =
+document.getElementById("darkToggle");
 
-const adhanToggle = document.getElementById("adhanToggle");
+const adhanToggle =
+document.getElementById("adhanToggle");
 
-/*==============================
- LOAD SAVED SETTINGS
-==============================*/
+const languageSelect =
+document.getElementById("languageSelect");
 
-window.addEventListener("DOMContentLoaded", () => {
+const fontSelect =
+document.getElementById("fontSelect");
 
-loadTheme();
+const prayerMethodSelect =
+document.getElementById("prayerMethod");
 
-loadAdhan();
+const timeFormatSelect =
+document.getElementById("timeFormat");
 
-});
+const adhanSoundSelect =
+document.getElementById("adhanSound");
 
-/*==============================
- SAVE HELPER
-==============================*/
+const reciterSelect =
+document.getElementById("reciterSelect");
 
-function saveSetting(key, value){
+/*
+-----------------------------------------
+SAVE HELPER
+-----------------------------------------
+*/
 
-localStorage.setItem(key, JSON.stringify(value));
+function saveSetting(key,value){
+
+localStorage.setItem(
+
+key,
+
+JSON.stringify(value)
+
+);
 
 }
 
-/*==============================
- LOAD HELPER
-==============================*/
+/*
+-----------------------------------------
+LOAD HELPER
+-----------------------------------------
+*/
 
-function loadSetting(key, defaultValue){
+function loadSetting(
 
-const value = localStorage.getItem(key);
+key,
 
-if(value === null) return defaultValue;
+defaultValue
 
-try{
+){
 
-return JSON.parse(value);
+const value=
 
-}catch{
+localStorage.getItem(key);
+
+if(value===null){
 
 return defaultValue;
 
 }
 
-}/*==================================================
- PART 2
- DARK MODE
-==================================================*/
+try{
 
-/*==============================
- LOAD THEME
-==============================*/
+return JSON.parse(value);
+
+}
+
+catch{
+
+return defaultValue;
+
+}
+
+}
+
+/*
+-----------------------------------------
+STARTUP
+-----------------------------------------
+*/
+
+document.addEventListener(
+
+"DOMContentLoaded",
+
+initializeSettings
+
+);
+
+function initializeSettings(){
+
+console.log(
+"Muslim Bro Settings Initializing..."
+);
+
+loadTheme();
+
+loadAdhan();
+
+loadLanguage();
+
+loadFont();
+
+requestNotificationPermission();
+
+}
+/*=========================================
+PART 2
+DARK MODE
+=========================================*/
+
+/*
+-----------------------------------------
+LOAD THEME
+-----------------------------------------
+*/
 
 function loadTheme(){
 
-const savedTheme = loadSetting(STORAGE_KEYS.theme, false);
+const savedTheme = loadSetting(
+
+STORAGE_KEYS.theme,
+
+false
+
+);
 
 if(darkToggle){
 
@@ -95,9 +181,11 @@ applyTheme(savedTheme);
 
 }
 
-/*==============================
- APPLY THEME
-==============================*/
+/*
+-----------------------------------------
+APPLY THEME
+-----------------------------------------
+*/
 
 function applyTheme(enabled){
 
@@ -113,34 +201,68 @@ document.body.classList.remove("dark-theme");
 
 }
 
-/*==============================
- DARK TOGGLE
-==============================*/
+/*
+-----------------------------------------
+SAVE THEME
+-----------------------------------------
+*/
+
+function saveTheme(){
+
+if(!darkToggle) return;
+
+saveSetting(
+
+STORAGE_KEYS.theme,
+
+darkToggle.checked
+
+);
+
+applyTheme(
+
+darkToggle.checked
+
+);
+
+}
+
+/*
+-----------------------------------------
+EVENT
+-----------------------------------------
+*/
 
 if(darkToggle){
 
-darkToggle.addEventListener("change", function(){
+darkToggle.addEventListener(
 
-const enabled = this.checked;
+"change",
 
-applyTheme(enabled);
+saveTheme
 
-saveSetting(STORAGE_KEYS.theme, enabled);
+);
 
-});
+}/*=========================================
+PART 3
+ADHAN NOTIFICATIONS
+=========================================*/
 
-}/*==================================================
- PART 3
- ADHAN NOTIFICATIONS
-==================================================*/
-
-/*==============================
- LOAD ADHAN SETTING
-==============================*/
+/*
+-----------------------------------------
+LOAD ADHAN SETTING
+-----------------------------------------
+*/
 
 function loadAdhan(){
 
-const savedAdhan = loadSetting(STORAGE_KEYS.adhan, true);
+const savedAdhan = loadSetting(
+
+STORAGE_KEYS.adhan,
+
+true
+
+);
 
 if(adhanToggle){
 
@@ -150,19 +272,25 @@ adhanToggle.checked = savedAdhan;
 
 }
 
-/*==============================
- ADHAN TOGGLE
-==============================*/
+/*
+-----------------------------------------
+SAVE ADHAN
+-----------------------------------------
+*/
 
-if(adhanToggle){
+function saveAdhan(){
 
-adhanToggle.addEventListener("change", function(){
+if(!adhanToggle) return;
 
-const enabled = this.checked;
+saveSetting(
 
-saveSetting(STORAGE_KEYS.adhan, enabled);
+STORAGE_KEYS.adhan,
 
-if(enabled){
+adhanToggle.checked
+
+);
+
+if(adhanToggle.checked){
 
 console.log("Adhan notifications enabled.");
 
@@ -172,25 +300,29 @@ console.log("Adhan notifications disabled.");
 
 }
 
-});
-
 }
 
-/*==============================
- CHECK NOTIFICATION PERMISSION
-==============================*/
+/*
+-----------------------------------------
+NOTIFICATION PERMISSION
+-----------------------------------------
+*/
 
 function requestNotificationPermission(){
 
 if(!("Notification" in window)){
 
-console.log("Notifications are not supported on this device.");
+console.log(
+
+"This device does not support notifications."
+
+);
 
 return;
 
 }
 
-if(Notification.permission === "default"){
+if(Notification.permission==="default"){
 
 Notification.requestPermission();
 
@@ -198,92 +330,110 @@ Notification.requestPermission();
 
 }
 
-/*==============================
- REQUEST PERMISSION
-==============================*/
+/*
+-----------------------------------------
+EVENT
+-----------------------------------------
+*/
 
-window.addEventListener("load", () => {
+if(adhanToggle){
 
-requestNotificationPermission();
+adhanToggle.addEventListener(
 
-});/*==================================================
- PART 4
- LANGUAGE & FONT SIZE
-==================================================*/
+"change",
 
-/*==============================
- ELEMENTS
-==============================*/
+saveAdhan
 
-const languageSelect = document.getElementById("languageSelect");
+);
 
-const fontSelect = document.getElementById("fontSelect");
+}/*=========================================
+PART 4
+LANGUAGE & FONT SIZE
+=========================================*/
 
-/*==============================
- LOAD LANGUAGE
-==============================*/
+/*
+-----------------------------------------
+LOAD LANGUAGE
+-----------------------------------------
+*/
 
 function loadLanguage(){
 
-if(!languageSelect) return;
-
 const savedLanguage = loadSetting(
+
 STORAGE_KEYS.language,
+
 "English"
+
 );
+
+if(languageSelect){
 
 languageSelect.value = savedLanguage;
 
 }
 
-/*==============================
- SAVE LANGUAGE
-==============================*/
+}
 
-if(languageSelect){
+/*
+-----------------------------------------
+SAVE LANGUAGE
+-----------------------------------------
+*/
 
-languageSelect.addEventListener(
-"change",
-function(){
+function saveLanguage(){
+
+if(!languageSelect) return;
 
 saveSetting(
+
 STORAGE_KEYS.language,
-this.value
+
+languageSelect.value
+
 );
 
 console.log(
+
 "Language:",
-this.value
-);
 
-}
+languageSelect.value
 
 );
 
 }
 
-/*==============================
- LOAD FONT SIZE
-==============================*/
+/*
+-----------------------------------------
+LOAD FONT SIZE
+-----------------------------------------
+*/
 
 function loadFont(){
 
-if(!fontSelect) return;
-
 const savedFont = loadSetting(
+
 STORAGE_KEYS.font,
+
 "Medium"
+
 );
 
+if(fontSelect){
+
 fontSelect.value = savedFont;
+
+}
 
 applyFont(savedFont);
 
 }
 
-/*==============================
- APPLY FONT SIZE
-==============================*/
+/*
+-----------------------------------------
+APPLY FONT
+-----------------------------------------
+*/
 
 function applyFont(size){
 
@@ -321,353 +471,58 @@ document.documentElement.style.fontSize="16px";
 
 }
 
-/*==============================
- SAVE FONT
-==============================*/
+/*
+-----------------------------------------
+SAVE FONT
+-----------------------------------------
+*/
+
+function saveFont(){
+
+if(!fontSelect) return;
+
+applyFont(
+
+fontSelect.value
+
+);
+
+saveSetting(
+
+STORAGE_KEYS.font,
+
+fontSelect.value
+
+);
+
+}
+
+/*
+-----------------------------------------
+EVENTS
+-----------------------------------------
+*/
+
+if(languageSelect){
+
+languageSelect.addEventListener(
+
+"change",
+
+saveLanguage
+
+);
+
+}
 
 if(fontSelect){
 
 fontSelect.addEventListener(
+
 "change",
-function(){
 
-applyFont(this.value);
-
-saveSetting(
-STORAGE_KEYS.font,
-this.value
-);
-
-}
+saveFont
 
 );
 
 }
-
-/*==============================
- LOAD EVERYTHING
-==============================*/
-
-window.addEventListener(
-"DOMContentLoaded",
-()=>{
-
-loadLanguage();
-
-loadFont();
-
-});/*==================================================
- PART 5
- ADDITIONAL SETTINGS
-==================================================*/
-
-/*==============================
- ELEMENTS BY ID
-==============================*/
-
-const prayerMethodSelect = document.getElementById("prayerMethod");
-const reciterSelect = document.getElementById("reciterSelect");
-
-/*==============================
- STORAGE KEYS
-==============================*/
-
-STORAGE_KEYS.prayerMethod = "mb_prayer_method";
-STORAGE_KEYS.reciter = "mb_reciter";
-
-/*==============================
- LOAD PRAYER METHOD
-==============================*/
-
-function loadPrayerMethod(){
-
-if(!prayerMethodSelect) return;
-
-const savedMethod = loadSetting(
-STORAGE_KEYS.prayerMethod,
-"Muslim World League"
-);
-
-prayerMethodSelect.value = savedMethod;
-
-}
-
-/*==============================
- SAVE PRAYER METHOD
-==============================*/
-
-if(prayerMethodSelect){
-
-prayerMethodSelect.addEventListener("change", function(){
-
-saveSetting(
-STORAGE_KEYS.prayerMethod,
-this.value
-);
-
-});
-
-}
-
-/*==============================
- LOAD RECITER
-==============================*/
-
-function loadReciter(){
-
-if(!reciterSelect) return;
-
-const savedReciter = loadSetting(
-STORAGE_KEYS.reciter,
-"Mishary Alafasy"
-);
-
-reciterSelect.value = savedReciter;
-
-}
-
-/*==============================
- SAVE RECITER
-==============================*/
-
-if(reciterSelect){
-
-reciterSelect.addEventListener("change", function(){
-
-saveSetting(
-STORAGE_KEYS.reciter,
-this.value
-);
-
-});
-
-}
-
-/*==============================
- LOAD EVERYTHING
-==============================*/
-
-window.addEventListener("DOMContentLoaded", () => {
-
-loadPrayerMethod();
-
-loadReciter();
-
-});/*==================================================
- PART 6
- BUTTON ACTIONS
-==================================================*/
-
-/*==============================
- BUTTONS
-==============================*/
-
-const clearCacheBtn = document.querySelector(".settingButton");
-const updateLinks = document.querySelectorAll(".settingsLink");
-
-/*==============================
- CLEAR CACHE
-==============================*/
-
-function clearAppCache(){
-
-if(confirm("Clear temporary cache files?")){
-
-localStorage.removeItem("mb_temp");
-
-alert("Cache cleared successfully.");
-
-}
-
-}
-
-if(clearCacheBtn){
-
-clearCacheBtn.addEventListener("click", clearAppCache);
-
-}
-
-/*==============================
- CHECK FOR UPDATES
-==============================*/
-
-function checkForUpdates(){
-
-alert(
-"You are using the latest version of Muslim Bro.\n\nMore premium updates are coming soon, In Sha Allah."
-);
-
-}
-
-/*==============================
- SHARE APP
-==============================*/
-
-function shareApp(){
-
-const appLink="https://play.google.com/store/apps/details?id=com.muslimbro.app";
-
-if(navigator.share){
-
-navigator.share({
-
-title:"Muslim Bro",
-
-text:"Strengthen your Iman with Muslim Bro.",
-
-url:appLink
-
-});
-
-}else{
-
-navigator.clipboard.writeText(appLink);
-
-alert("App link copied to clipboard.");
-
-}
-
-}
-
-/*==============================
- RATE APP
-==============================*/
-
-function rateApp(){
-
-window.open(
-
-"https://play.google.com/store/apps/details?id=com.muslimbro.app",
-
-"_blank"
-
-);
-
-}
-
-/*==============================
- STORAGE INFO
-==============================*/
-
-function showStorage(){
-
-let used=0;
-
-for(let key in localStorage){
-
-if(localStorage.hasOwnProperty(key)){
-
-used+=localStorage.getItem(key).length;
-
-}
-
-}
-
-alert(
-
-"Approximate local storage used:\n"+
-
-(used/1024).toFixed(2)+
-
-" KB"
-
-);
-
-}/*==================================================
- PART 7
- SETTINGS MENU ACTIONS
-==================================================*/
-
-/*==============================
- SETTINGS LINKS
-==============================*/
-
-document.querySelectorAll(".settingsLink").forEach(link=>{
-
-link.addEventListener("click",function(e){
-
-const text=this.textContent.trim();
-
-/*==============================
- RATE APP
-==============================*/
-
-if(text.includes("Rate")){
-
-e.preventDefault();
-
-rateApp();
-
-return;
-
-}
-
-/*==============================
- SHARE APP
-==============================*/
-
-if(text.includes("Share")){
-
-e.preventDefault();
-
-shareApp();
-
-return;
-
-}
-
-/*==============================
- CHECK UPDATES
-==============================*/
-
-if(text.includes("Update")){
-
-e.preventDefault();
-
-checkForUpdates();
-
-return;
-
-}
-
-/*==============================
- STORAGE
-==============================*/
-
-if(text.includes("Storage")){
-
-e.preventDefault();
-
-showStorage();
-
-return;
-
-}
-
-});
-
-});
-
-/*==============================
- STARTUP MESSAGE
-==============================*/
-
-console.log(
-"Muslim Bro Settings Loaded Successfully."
-);
-
-/*==============================
- VERSION
-==============================*/
-
-const APP_VERSION="1.0.0";
-
-console.log("Muslim Bro Version:",APP_VERSION);
-
-/*==============================
- FINISHED
-==============================*/
-
-console.log(
-"All Settings Ready."
-);
