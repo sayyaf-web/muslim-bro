@@ -675,3 +675,49 @@ console.log("Muslim Bro Version:",APP_VERSION);
 console.log(
 "All Settings Ready."
 );
+/*=========================================
+LANGUAGE SETTING
+=========================================*/
+
+const languageSelect = document.getElementById("languageSelect");
+
+function loadLanguage() {
+
+    if (!languageSelect) return;
+
+    const savedLanguage = localStorage.getItem("mb_language");
+
+    if (savedLanguage) {
+
+        languageSelect.value = savedLanguage;
+
+    }
+
+}
+
+function saveLanguage() {
+
+    if (!languageSelect) return;
+
+    localStorage.setItem(
+        "mb_language",
+        languageSelect.value
+    );
+
+    console.log(
+        "Language saved:",
+        languageSelect.value
+    );
+
+}
+
+if (languageSelect) {
+
+    languageSelect.addEventListener(
+        "change",
+        saveLanguage
+    );
+
+}
+
+loadLanguage();
