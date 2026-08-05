@@ -3000,3 +3000,39 @@ transition:.35s;
 box-shadow:0 8px 25px rgba(0,0,0,.25);
 
 }
+/*=========================================
+ PART 19
+ PREMIUM HOME WIDGET
+=========================================*/
+
+.dailyTipCard{
+
+margin:25px 0;
+
+padding:20px;
+
+border-radius:22px;
+
+background:linear-gradient(135deg,#0B8457,#16A46F);
+
+color:#fff;
+
+box-shadow:0 15px 35px rgba(0,0,0,.12);
+
+}
+
+.dailyTipCard h3{
+
+margin-bottom:10px;
+
+font-size:20px;
+
+}
+
+.dailyTipCard p{
+
+line-height:1.7;
+
+font-size:15px;
+
+}
