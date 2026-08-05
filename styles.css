@@ -918,3 +918,1416 @@ min-height:470px;
 }
 
 }
+/* ==========================================
+   PREMIUM HERO
+========================================== */
+
+.premiumHero{
+
+position:relative;
+
+height:500px;
+
+overflow:hidden;
+
+border-radius:0 0 40px 40px;
+
+background:#0b3d2e;
+
+}
+
+/* Mosque background */
+
+.heroBackground{
+
+position:absolute;
+
+inset:0;
+
+background:url("images/mosque.jpg") center center/cover no-repeat;
+
+filter:brightness(.45);
+
+}
+
+/* Glass overlay */
+
+.heroGlass{
+
+position:relative;
+
+z-index:2;
+
+height:100%;
+
+padding:25px;
+
+background:linear-gradient(
+
+180deg,
+
+rgba(0,0,0,.18),
+
+rgba(0,0,0,.55)
+
+);
+
+color:#fff;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:space-between;
+
+}
+
+/* Top */
+
+.topHeader{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:20px;
+
+}
+
+.leftHeader{
+
+display:flex;
+
+align-items:center;
+
+gap:16px;
+
+}
+
+.leftHeader h2{
+
+font-size:26px;
+
+font-weight:700;
+
+margin:0;
+
+color:#ffffff;
+
+}
+
+.leftHeader p{
+
+margin:4px 0 0;
+
+color:#eeeeee;
+
+font-size:14px;
+
+}
+
+/* Menu */
+
+.menuButton{
+
+width:48px;
+
+height:48px;
+
+border-radius:14px;
+
+border:none;
+
+background:rgba(255,255,255,.18);
+
+backdrop-filter:blur(10px);
+
+font-size:22px;
+
+color:#fff;
+
+cursor:pointer;
+
+}
+
+/* Right */
+
+.rightHeader{
+
+display:flex;
+
+align-items:center;
+
+gap:14px;
+
+}
+
+.rightHeader div{
+
+padding:12px 16px;
+
+background:rgba(255,255,255,.18);
+
+border-radius:16px;
+
+backdrop-filter:blur(12px);
+
+font-weight:600;
+
+}
+
+.notificationButton{
+
+width:48px;
+
+height:48px;
+
+border:none;
+
+border-radius:14px;
+
+background:#d4af37;
+
+color:#fff;
+
+font-size:20px;
+
+cursor:pointer;
+
+box-shadow:0 8px 20px rgba(212,175,55,.35);
+
+}/* ==========================================
+   PREMIUM PRAYER CARD
+========================================== */
+
+.premiumPrayerCard{
+
+display:flex;
+
+justify-content:space-between;
+
+gap:24px;
+
+padding:28px;
+
+border-radius:28px;
+
+background:rgba(255,255,255,.14);
+
+backdrop-filter:blur(20px);
+
+border:1px solid rgba(255,255,255,.18);
+
+box-shadow:0 20px 50px rgba(0,0,0,.25);
+
+margin-top:auto;
+
+}
+
+.prayerLeft{
+
+flex:1;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+}
+
+.prayerLeft small{
+
+font-size:14px;
+
+color:#FFD76A;
+
+letter-spacing:2px;
+
+text-transform:uppercase;
+
+margin-bottom:8px;
+
+}
+
+.prayerLeft h1{
+
+font-size:42px;
+
+margin:0;
+
+font-weight:800;
+
+color:#ffffff;
+
+}
+
+.prayerLeft h2{
+
+font-size:48px;
+
+margin:12px 0;
+
+color:#FFD76A;
+
+font-weight:700;
+
+}
+
+.prayerLeft p{
+
+font-size:15px;
+
+opacity:.9;
+
+margin-bottom:20px;
+
+}
+
+.prayerLeft button{
+
+width:max-content;
+
+padding:14px 28px;
+
+border:none;
+
+border-radius:18px;
+
+background:#D4AF37;
+
+color:#fff;
+
+font-weight:700;
+
+font-size:15px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.prayerLeft button:hover{
+
+transform:translateY(-3px);
+
+box-shadow:0 10px 25px rgba(212,175,55,.45);
+
+}
+
+.prayerRight{
+
+width:260px;
+
+display:flex;
+
+flex-direction:column;
+
+gap:16px;
+
+}
+
+.prayerRight h3{
+
+margin:0;
+
+font-size:22px;
+
+color:#FFD76A;
+
+}
+
+.prayerRight p{
+
+margin:0;
+
+font-size:15px;
+
+opacity:.9;
+
+}
+
+.miniPrayerList{
+
+display:flex;
+
+flex-direction:column;
+
+gap:10px;
+
+margin-top:8px;
+
+}
+
+.miniPrayerList div{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:12px 16px;
+
+border-radius:14px;
+
+background:rgba(255,255,255,.10);
+
+color:#fff;
+
+transition:.3s;
+
+}
+
+.miniPrayerList div strong{
+
+font-weight:700;
+
+}
+
+.activePrayer{
+
+background:#D4AF37 !important;
+
+color:#ffffff !important;
+
+font-weight:700;
+
+box-shadow:0 8px 18px rgba(212,175,55,.35);
+
+}/* ==========================================
+   PART 3
+   PRAYER CARD
+========================================== */
+
+.premiumPrayerCard{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+gap:30px;
+
+margin-top:30px;
+
+padding:30px;
+
+border-radius:28px;
+
+background:rgba(255,255,255,.14);
+
+backdrop-filter:blur(18px);
+
+-webkit-backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,.18);
+
+box-shadow:0 20px 45px rgba(0,0,0,.30);
+
+}
+
+.prayerLeft{
+
+flex:1;
+
+}
+
+.prayerLeft small{
+
+display:block;
+
+font-size:13px;
+
+letter-spacing:2px;
+
+text-transform:uppercase;
+
+color:#FFD166;
+
+margin-bottom:8px;
+
+}
+
+.prayerLeft h1{
+
+font-size:42px;
+
+font-weight:700;
+
+margin:0;
+
+color:#fff;
+
+}
+
+.prayerLeft h2{
+
+margin:15px 0;
+
+font-size:50px;
+
+font-weight:800;
+
+color:#FFD166;
+
+}
+
+.prayerLeft p{
+
+font-size:15px;
+
+color:#f2f2f2;
+
+margin-bottom:20px;
+
+}
+
+.prayerLeft button{
+
+padding:14px 24px;
+
+border:none;
+
+border-radius:16px;
+
+background:linear-gradient(135deg,#d4af37,#f4d35e);
+
+color:#1b1b1b;
+
+font-weight:700;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.prayerLeft button:hover{
+
+transform:translateY(-3px);
+
+box-shadow:0 10px 24px rgba(212,175,55,.45);
+
+}
+
+.prayerRight{
+
+width:270px;
+
+display:flex;
+
+flex-direction:column;
+
+gap:15px;
+
+}
+
+.prayerRight h3{
+
+margin:0;
+
+font-size:22px;
+
+color:#FFD166;
+
+}
+
+.prayerRight p{
+
+margin:0;
+
+color:#f5f5f5;
+
+font-size:14px;
+
+}
+
+.miniPrayerList{
+
+display:flex;
+
+flex-direction:column;
+
+gap:10px;
+
+margin-top:10px;
+
+}
+
+.miniPrayerList div{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:12px 16px;
+
+border-radius:14px;
+
+background:rgba(255,255,255,.10);
+
+color:#fff;
+
+transition:.3s;
+
+}
+
+.miniPrayerList div:hover{
+
+background:rgba(255,255,255,.18);
+
+}
+
+.miniPrayerList strong{
+
+font-weight:700;
+
+}
+
+.activePrayer{
+
+background:linear-gradient(135deg,#d4af37,#f4d35e)!important;
+
+color:#1b1b1b!important;
+
+font-weight:700;
+
+box-shadow:0 10px 20px rgba(212,175,55,.35);
+
+}/* ==========================================
+   PART 4
+   PREMIUM FEATURE GRID
+========================================== */
+
+.dashboardGrid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+
+gap:22px;
+
+margin-top:40px;
+
+padding:10px;
+
+}
+
+.feature{
+
+position:relative;
+
+overflow:hidden;
+
+padding:28px 20px;
+
+border-radius:24px;
+
+background:#ffffff;
+
+box-shadow:0 12px 30px rgba(0,0,0,.08);
+
+transition:.35s ease;
+
+cursor:pointer;
+
+text-align:left;
+
+}
+
+.feature:hover{
+
+transform:translateY(-8px);
+
+box-shadow:0 20px 40px rgba(0,0,0,.18);
+
+}
+
+/* Top glowing circle */
+
+.feature::before{
+
+content:"";
+
+position:absolute;
+
+top:-35px;
+
+right:-35px;
+
+width:120px;
+
+height:120px;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.22);
+
+}
+
+/* Different colours */
+
+.feature:nth-child(1){
+
+background:linear-gradient(135deg,#0F766E,#14B8A6);
+
+color:#fff;
+
+}
+
+.feature:nth-child(2){
+
+background:linear-gradient(135deg,#16A34A,#22C55E);
+
+color:#fff;
+
+}
+
+.feature:nth-child(3){
+
+background:linear-gradient(135deg,#2563EB,#3B82F6);
+
+color:#fff;
+
+}
+
+.feature:nth-child(4){
+
+background:linear-gradient(135deg,#7C3AED,#A855F7);
+
+color:#fff;
+
+}
+
+.feature:nth-child(5){
+
+background:linear-gradient(135deg,#EA580C,#FB923C);
+
+color:#fff;
+
+}
+
+.feature:nth-child(6){
+
+background:linear-gradient(135deg,#DC2626,#F87171);
+
+color:#fff;
+
+}
+
+.feature:nth-child(7){
+
+background:linear-gradient(135deg,#0891B2,#22D3EE);
+
+color:#fff;
+
+}
+
+.feature:nth-child(8){
+
+background:linear-gradient(135deg,#CA8A04,#FACC15);
+
+color:#fff;
+
+}
+
+.feature:nth-child(9){
+
+background:linear-gradient(135deg,#4F46E5,#818CF8);
+
+color:#fff;
+
+}
+
+.feature:nth-child(10){
+
+background:linear-gradient(135deg,#059669,#34D399);
+
+color:#fff;
+
+}
+
+.feature:nth-child(11){
+
+background:linear-gradient(135deg,#334155,#64748B);
+
+color:#fff;
+
+}
+
+.icon{
+
+font-size:42px;
+
+margin-bottom:18px;
+
+}
+
+.feature h3{
+
+font-size:20px;
+
+font-weight:700;
+
+margin-bottom:8px;
+
+}
+
+.feature p{
+
+font-size:14px;
+
+opacity:.95;
+
+line-height:1.5;
+
+}/* ==========================================
+   PART 5
+   PREMIUM FLOATING NAVIGATION
+========================================== */
+
+.bottomNav{
+
+position:fixed;
+
+bottom:18px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+width:92%;
+
+max-width:520px;
+
+height:76px;
+
+display:flex;
+
+justify-content:space-around;
+
+align-items:center;
+
+background:rgba(255,255,255,.16);
+
+backdrop-filter:blur(20px);
+
+-webkit-backdrop-filter:blur(20px);
+
+border:1px solid rgba(255,255,255,.22);
+
+border-radius:26px;
+
+box-shadow:0 15px 35px rgba(0,0,0,.25);
+
+z-index:9999;
+
+padding:0 10px;
+
+}
+
+.bottomNav button{
+
+background:none;
+
+border:none;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+justify-content:center;
+
+gap:4px;
+
+color:#ffffff;
+
+cursor:pointer;
+
+transition:.35s;
+
+width:64px;
+
+height:64px;
+
+border-radius:18px;
+
+}
+
+.bottomNav button span{
+
+font-size:24px;
+
+transition:.3s;
+
+}
+
+.bottomNav button p{
+
+font-size:12px;
+
+margin:0;
+
+font-weight:600;
+
+}
+
+.bottomNav button:hover{
+
+transform:translateY(-5px);
+
+}
+
+.bottomNav button:hover span{
+
+transform:scale(1.15);
+
+}
+
+.bottomNav button.active{
+
+background:linear-gradient(135deg,#D4AF37,#FFD166);
+
+color:#0B3D2E;
+
+box-shadow:0 8px 20px rgba(212,175,55,.45);
+
+}
+
+.bottomNav button.active span{
+
+font-size:26px;
+
+}
+
+.mainContent{
+
+padding-bottom:120px;
+
+}/* ==========================================
+   PART 6
+   PREMIUM ANIMATIONS
+========================================== */
+
+/* Fade animation */
+
+@keyframes fadeUp{
+
+0%{
+
+opacity:0;
+
+transform:translateY(35px);
+
+}
+
+100%{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+/* Floating animation */
+
+@keyframes floating{
+
+0%{
+
+transform:translateY(0px);
+
+}
+
+50%{
+
+transform:translateY(-8px);
+
+}
+
+100%{
+
+transform:translateY(0px);
+
+}
+
+}
+
+/* Glow animation */
+
+@keyframes glow{
+
+0%{
+
+box-shadow:0 0 10px rgba(212,175,55,.20);
+
+}
+
+50%{
+
+box-shadow:0 0 35px rgba(212,175,55,.55);
+
+}
+
+100%{
+
+box-shadow:0 0 10px rgba(212,175,55,.20);
+
+}
+
+}
+
+/* Hero Animation */
+
+.premiumHero{
+
+animation:fadeUp .8s ease;
+
+}
+
+/* Prayer Card */
+
+.premiumPrayerCard{
+
+animation:fadeUp 1s ease;
+
+}
+
+/* Dashboard Cards */
+
+.feature{
+
+opacity:0;
+
+animation:fadeUp .7s forwards;
+
+}
+
+.feature:nth-child(1){animation-delay:.10s;}
+.feature:nth-child(2){animation-delay:.18s;}
+.feature:nth-child(3){animation-delay:.26s;}
+.feature:nth-child(4){animation-delay:.34s;}
+.feature:nth-child(5){animation-delay:.42s;}
+.feature:nth-child(6){animation-delay:.50s;}
+.feature:nth-child(7){animation-delay:.58s;}
+.feature:nth-child(8){animation-delay:.66s;}
+.feature:nth-child(9){animation-delay:.74s;}
+.feature:nth-child(10){animation-delay:.82s;}
+.feature:nth-child(11){animation-delay:.90s;}
+
+/* Floating icons */
+
+.icon{
+
+animation:floating 4s ease-in-out infinite;
+
+}
+
+/* Active prayer glow */
+
+.activePrayer{
+
+animation:glow 3s infinite;
+
+}
+
+/* Prayer button */
+
+.prayerLeft button{
+
+transition:.35s;
+
+}
+
+.prayerLeft button:hover{
+
+transform:translateY(-5px) scale(1.03);
+
+}
+
+/* Dashboard Cards */
+
+.feature:hover .icon{
+
+transform:scale(1.20) rotate(8deg);
+
+transition:.35s;
+
+}
+
+/* Navigation */
+
+.bottomNav button{
+
+transition:.35s;
+
+}
+
+.bottomNav button:hover{
+
+transform:translateY(-6px);
+
+}
+
+.bottomNav button.active{
+
+animation:glow 2.5s infinite;
+
+}
+
+/* Smooth scrolling */
+
+html{
+
+scroll-behavior:smooth;
+/* ==========================================
+   PART 7
+   PREMIUM DASHBOARD 2.0
+========================================== */
+
+.feature{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+/* Decorative background circle */
+
+.feature::after{
+
+content:"";
+
+position:absolute;
+
+right:-45px;
+
+bottom:-45px;
+
+width:120px;
+
+height:120px;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.12);
+
+}
+
+/* Large icon */
+
+.feature .icon{
+
+width:70px;
+
+height:70px;
+
+border-radius:22px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:34px;
+
+background:rgba(255,255,255,.18);
+
+backdrop-filter:blur(8px);
+
+margin-bottom:18px;
+
+box-shadow:0 8px 20px rgba(0,0,0,.12);
+
+}
+
+/* Heading */
+
+.feature h3{
+
+font-size:21px;
+
+font-weight:700;
+
+margin-bottom:8px;
+
+letter-spacing:.2px;
+
+}
+
+/* Description */
+
+.feature p{
+
+font-size:14px;
+
+opacity:.95;
+
+line-height:1.6;
+
+}
+
+/* Hover */
+
+.feature:hover{
+
+transform:translateY(-10px) scale(1.02);
+
+}
+
+/* Shine animation */
+
+.feature::before{
+
+content:"";
+
+position:absolute;
+
+top:-100%;
+
+left:-60%;
+
+width:40%;
+
+height:250%;
+
+background:linear-gradient(
+
+90deg,
+
+transparent,
+
+rgba(255,255,255,.45),
+
+transparent
+
+);
+
+transform:rotate(25deg);
+
+transition:.8s;
+
+}
+
+.feature:hover::before{
+
+left:150%;
+
+}
+
+/* Small NEW badge */
+
+.feature:nth-child(2)::marker{
+
+content:"";
+
+}
+
+.feature:nth-child(2){
+
+position:relative;
+
+}
+
+.feature:nth-child(2) span.newBadge{
+
+display:none;
+
+}/* ==========================================
+   PART 8
+   LUXURY DETAILS
+========================================== */
+
+/* Gold highlight */
+
+:root{
+
+--gold:#D4AF37;
+--gold-light:#F8E08A;
+--green-dark:#0B3D2E;
+--glass:rgba(255,255,255,.18);
+
+}
+
+/* Greeting */
+
+.leftHeader h2{
+
+background:linear-gradient(
+90deg,
+#ffffff,
+var(--gold-light)
+);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+}
+
+/* Hijri card */
+
+.prayerRight h3{
+
+display:inline-block;
+
+padding:10px 18px;
+
+border-radius:18px;
+
+background:rgba(212,175,55,.18);
+
+border:1px solid rgba(212,175,55,.35);
+
+backdrop-filter:blur(8px);
+
+}
+
+/* Prayer countdown */
+
+#dashboardCountdown{
+
+text-shadow:
+
+0 0 15px rgba(212,175,55,.6),
+
+0 0 35px rgba(212,175,55,.35);
+
+}
+
+/* Golden button */
+
+.prayerLeft button{
+
+background:linear-gradient(
+135deg,
+#C89B2C,
+#F5D76E
+);
+
+}
+
+/* Dashboard cards */
+
+.feature{
+
+border:1px solid rgba(255,255,255,.15);
+
+}
+
+/* Glass icon */
+
+.feature .icon{
+
+border:1px solid rgba(255,255,255,.20);
+
+}
+
+/* Decorative Islamic glow */
+
+.premiumHero::after{
+
+content:"☪";
+
+position:absolute;
+
+right:35px;
+
+top:95px;
+
+font-size:120px;
+
+color:rgba(255,255,255,.05);
+
+pointer-events:none;
+
+}
+
+/* Prayer card ornament */
+
+.premiumPrayerCard::before{
+
+content:"✦";
+
+position:absolute;
+
+top:15px;
+
+right:18px;
+
+font-size:26px;
+
+color:rgba(212,175,55,.45);
+
+}
+
+/* Dashboard spacing */
+
+.dashboardSection{
+
+padding-top:20px;
+
+}
+
+/* Bottom navigation */
+
+.bottomNav{
+
+border:1px solid rgba(255,255,255,.25);
+
+}
+
+/* Navigation active */
+
+.bottomNav button.active{
+
+font-weight:700;
+
+}
+
+/* Beautiful page background */
+
+body{
+
+background:
+
+linear-gradient(
+180deg,
+#F5F7FA 0%,
+#EEF4F1 100%
+);
+
+}
+
+/* Premium scrollbar */
+
+::-webkit-scrollbar{
+
+width:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:linear-gradient(
+180deg,
+#0B8457,
+#D4AF37
+);
+
+border-radius:50px;
+
+}
+}
