@@ -25,6 +25,180 @@
 
 <header class="hero">
 
+    <!-- Background -->
+    <div class="heroBackground"></div>
+    <div class="heroOverlay"></div>
+
+    <div class="heroTop">
+
+        <button class="menuBtn">
+            ☰
+        </button>
+
+        <div class="heroGreeting">
+
+            <h2 id="greetingText">
+                Assalamu Alaikum
+            </h2>
+
+            <p id="greetingSub">
+                May Allah bless your day 🤲
+            </p>
+
+        </div>
+
+        <div class="heroActions">
+
+            <div class="heroLocation">
+
+                <span>📍</span>
+
+                <div>
+
+                    <small>Location</small>
+
+                    <strong id="dashboardLocation">
+                        Detecting...
+                    </strong>
+
+                </div>
+
+            </div>
+
+            <button class="notificationBtn">
+                🔔
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Prayer Card -->
+
+    <section class="premiumPrayerCard">
+
+        <div class="prayerImage">
+
+            <div class="prayerOverlay">
+
+                <small>
+                    Next Prayer
+                </small>
+
+                <h1 id="dashboardPrayer">
+                    Loading...
+                </h1>
+
+                <h2 id="dashboardCountdown">
+                    --:--:--
+                </h2>
+
+                <p id="dashboardRemaining">
+                    Calculating...
+                </p>
+
+                <button class="viewPrayerBtn"
+                    onclick="location.href='pages/prayer.html'">
+
+                    View Prayer Times →
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="prayerSide">
+
+            <div class="hijriBox">
+
+                <div>
+
+                    <small>Hijri Date</small>
+
+                    <h3 id="dashboardHijri">
+                        Loading...
+                    </h3>
+
+                </div>
+
+                <span class="calendarIcon">
+                    📅
+                </span>
+
+            </div>
+
+            <div class="prayerList">
+
+                <div class="prayerRow">
+
+                    <span>🌅 Fajr</span>
+
+                    <strong id="fajrTime">
+                        --
+                    </strong>
+
+                </div>
+
+                <div class="prayerRow">
+
+                    <span>🌄 Sunrise</span>
+
+                    <strong id="sunriseTime">
+                        --
+                    </strong>
+
+                </div>
+
+                <div class="prayerRow">
+
+                    <span>☀ Dhuhr</span>
+
+                    <strong id="dhuhrTime">
+                        --
+                    </strong>
+
+                </div>
+
+                <div class="prayerRow">
+
+                    <span>🌤 Asr</span>
+
+                    <strong id="asrTime">
+                        --
+                    </strong>
+
+                </div>
+
+                <div class="prayerRow activePrayer">
+
+                    <span id="currentPrayerName">
+                        🕌 Maghrib
+                    </span>
+
+                    <strong id="currentPrayerTime">
+                        --
+                    </strong>
+
+                </div>
+
+                <div class="prayerRow">
+
+                    <span>🌙 Isha</span>
+
+                    <strong id="ishaTime">
+                        --
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</header>
 <div class="overlay">
 
 <div class="heroContent">
@@ -139,37 +313,7 @@ Loading...
 
 </h1>
 
-<p id="dashboardPrayerTime">
 
-🕒 --:--
-
-</p>
-
-<h2 id="dashboardCountdown">
-
---:--:--
-
-</h2>
-
-<div class="progressContainer">
-
-<div id="progressBar"></div>
-
-</div>
-
-<p id="dashboardRemaining">
-
-Calculating...
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</header>
 
 <!-- ===================================== -->
 <!-- MAIN -->
