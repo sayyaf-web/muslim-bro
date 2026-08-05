@@ -242,6 +242,12 @@ STORAGE_KEYS.language,
 
 );
 
+alert(
+
+"Loaded: " + value
+
+);
+
 languageSelect.value=value;
 
 }
