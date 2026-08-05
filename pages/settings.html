@@ -5,13 +5,16 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>Settings | Muslim Bro</title>
 
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet"
+href="../styles.css">
 
-<link rel="stylesheet" href="../css/settings.css">
+<link rel="stylesheet"
+href="../css/settings.css">
 
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -50,9 +53,9 @@ Make your Islamic journey more comfortable.
 
 <main class="settingsContainer">
 
-<!-- ==========================
+<!-- ===================================
 GENERAL SETTINGS
-========================== -->
+=================================== -->
 
 <section class="settingsCard">
 
@@ -63,6 +66,8 @@ GENERAL SETTINGS
 General
 
 </h2>
+
+<!-- Language -->
 
 <div class="settingItem">
 
@@ -86,16 +91,35 @@ Choose your preferred application language.
 
 <select id="languageSelect">
 
-    <option value="English">English</option>
+<option value="English">
 
-    <option value="Arabic">Arabic</option>
+English
 
-    <option value="Swahili">Swahili</option>
+</option>
 
-    <option value="French">French</option>
+<option value="Arabic">
+
+Arabic
+
+</option>
+
+<option value="Swahili">
+
+Swahili
+
+</option>
+
+<option value="French">
+
+French
+
+</option>
 
 </select>
+
 </div>
+
+<!-- Dark Mode -->
 
 <div class="settingItem">
 
@@ -119,13 +143,17 @@ Switch between Light and Dark appearance.
 
 <label class="switch">
 
-<input type="checkbox" id="darkToggle">
+<input
+type="checkbox"
+id="darkToggle">
 
 <span class="slider"></span>
 
 </label>
 
 </div>
+
+<!-- Font Size -->
 
 <div class="settingItem">
 
@@ -147,27 +175,27 @@ Adjust reading size throughout the application.
 
 </div>
 
-<select>
+<select id="fontSelect">
 
-<option>
+<option value="Small">
 
 Small
 
 </option>
 
-<option selected>
+<option value="Medium">
 
 Medium
 
 </option>
 
-<option>
+<option value="Large">
 
 Large
 
 </option>
 
-<option>
+<option value="Extra Large">
 
 Extra Large
 
@@ -177,11 +205,9 @@ Extra Large
 
 </div>
 
-</section>
-
-<!-- ==========================
+</section><!-- ===================================
 NOTIFICATIONS
-========================== -->
+=================================== -->
 
 <section class="settingsCard">
 
@@ -192,6 +218,8 @@ NOTIFICATIONS
 Notifications
 
 </h2>
+
+<!-- Prayer Reminders -->
 
 <div class="settingItem">
 
@@ -213,13 +241,17 @@ Receive Adhan notifications for every prayer.
 
 <label class="switch">
 
-<input type="checkbox" id="adhanToggle">
+<input
+type="checkbox"
+id="adhanToggle">
 
 <span class="slider"></span>
 
 </label>
 
 </div>
+
+<!-- Daily Qur'an Reminder -->
 
 <div class="settingItem">
 
@@ -241,13 +273,17 @@ Receive reminders to read the Holy Qur'an.
 
 <label class="switch">
 
-<input type="checkbox">
+<input
+type="checkbox"
+id="quranReminder">
 
 <span class="slider"></span>
 
 </label>
 
 </div>
+
+<!-- Morning & Evening Adhkar -->
 
 <div class="settingItem">
 
@@ -269,7 +305,9 @@ Receive daily Adhkar reminders.
 
 <label class="switch">
 
-<input type="checkbox">
+<input
+type="checkbox"
+id="adhkarReminder">
 
 <span class="slider"></span>
 
@@ -277,9 +315,11 @@ Receive daily Adhkar reminders.
 
 </div>
 
-</section><!-- ==========================
+</section>
+
+<!-- ===================================
 PRAYER SETTINGS
-========================== -->
+=================================== -->
 
 <section class="settingsCard">
 
@@ -290,6 +330,8 @@ PRAYER SETTINGS
 Prayer Settings
 
 </h2>
+
+<!-- Prayer Calculation Method -->
 
 <div class="settingItem">
 
@@ -309,21 +351,43 @@ Choose the calculation method used for prayer times.
 
 </div>
 
-<select>
+<select id="prayerMethod">
 
-<option selected>Muslim World League</option>
+<option value="Muslim World League">
 
-<option>Umm Al-Qura University</option>
+Muslim World League
 
-<option>Egyptian General Authority</option>
+</option>
 
-<option>University of Karachi</option>
+<option value="Umm Al-Qura University">
 
-<option>ISNA</option>
+Umm Al-Qura University
+
+</option>
+
+<option value="Egyptian General Authority">
+
+Egyptian General Authority
+
+</option>
+
+<option value="University of Karachi">
+
+University of Karachi
+
+</option>
+
+<option value="ISNA">
+
+ISNA
+
+</option>
 
 </select>
 
 </div>
+
+<!-- Prayer Time Format -->
 
 <div class="settingItem">
 
@@ -343,15 +407,25 @@ Choose how prayer times are displayed.
 
 </div>
 
-<select>
+<select id="timeFormat">
 
-<option selected>24 Hour</option>
+<option value="24 Hour">
 
-<option>12 Hour (AM/PM)</option>
+24 Hour
+
+</option>
+
+<option value="12 Hour (AM/PM)">
+
+12 Hour (AM/PM)
+
+</option>
 
 </select>
 
 </div>
+
+<!-- Prayer Sound -->
 
 <div class="settingItem">
 
@@ -371,27 +445,45 @@ Choose your preferred prayer notification sound.
 
 </div>
 
-<select>
+<select id="adhanSound">
 
-<option selected>Default Adhan</option>
+<option value="Default Adhan">
 
-<option>Makkah Adhan</option>
+Default Adhan
 
-<option>Madinah Adhan</option>
+</option>
 
-<option>Notification Only</option>
+<option value="Makkah Adhan">
 
-<option>Silent</option>
+Makkah Adhan
+
+</option>
+
+<option value="Madinah Adhan">
+
+Madinah Adhan
+
+</option>
+
+<option value="Notification Only">
+
+Notification Only
+
+</option>
+
+<option value="Silent">
+
+Silent
+
+</option>
 
 </select>
 
 </div>
 
-</section>
-
-<!-- ==========================
+</section><!-- ===================================
 QIBLA SETTINGS
-========================== -->
+=================================== -->
 
 <section class="settingsCard">
 
@@ -402,6 +494,8 @@ QIBLA SETTINGS
 Qibla Settings
 
 </h2>
+
+<!-- High Accuracy Compass -->
 
 <div class="settingItem">
 
@@ -423,13 +517,17 @@ Improve compass accuracy whenever available.
 
 <label class="switch">
 
-<input type="checkbox" checked>
+<input
+type="checkbox"
+id="highAccuracyCompass">
 
 <span class="slider"></span>
 
 </label>
 
 </div>
+
+<!-- Auto Compass Calibration -->
 
 <div class="settingItem">
 
@@ -451,7 +549,9 @@ Automatically calibrate the compass when needed.
 
 <label class="switch">
 
-<input type="checkbox" checked>
+<input
+type="checkbox"
+id="autoCompassCalibration">
 
 <span class="slider"></span>
 
@@ -461,9 +561,9 @@ Automatically calibrate the compass when needed.
 
 </section>
 
-<!-- ==========================
+<!-- ===================================
 DIGITAL TASBIH
-========================== -->
+=================================== -->
 
 <section class="settingsCard">
 
@@ -474,6 +574,8 @@ DIGITAL TASBIH
 Digital Tasbih
 
 </h2>
+
+<!-- Vibration -->
 
 <div class="settingItem">
 
@@ -495,13 +597,17 @@ Vibrate after every Tasbih count.
 
 <label class="switch">
 
-<input type="checkbox" checked>
+<input
+type="checkbox"
+id="tasbihVibration">
 
 <span class="slider"></span>
 
 </label>
 
 </div>
+
+<!-- Click Sound -->
 
 <div class="settingItem">
 
@@ -523,13 +629,17 @@ Play a click sound while counting.
 
 <label class="switch">
 
-<input type="checkbox">
+<input
+type="checkbox"
+id="tasbihClick">
 
 <span class="slider"></span>
 
 </label>
 
 </div>
+
+<!-- Save Progress -->
 
 <div class="settingItem">
 
@@ -551,7 +661,9 @@ Automatically save today's Tasbih sessions.
 
 <label class="switch">
 
-<input type="checkbox" checked>
+<input
+type="checkbox"
+id="tasbihProgress">
 
 <span class="slider"></span>
 
@@ -559,11 +671,9 @@ Automatically save today's Tasbih sessions.
 
 </div>
 
-</section>
-
-<!-- ==========================
-QUR'AN SETTINGS
-========================== -->
+</section><!-- ===================================
+HOLY QUR'AN
+=================================== -->
 
 <section class="settingsCard">
 
@@ -574,6 +684,8 @@ QUR'AN SETTINGS
 Holy Qur'an
 
 </h2>
+
+<!-- Preferred Reciter -->
 
 <div class="settingItem">
 
@@ -593,21 +705,43 @@ Choose your default Qur'an reciter.
 
 </div>
 
-<select>
+<select id="reciterSelect">
 
-<option selected>Mishary Alafasy</option>
+<option value="Mishary Alafasy">
 
-<option>Abdul Basit</option>
+Mishary Alafasy
 
-<option>Maher Al Muaiqly</option>
+</option>
 
-<option>Saad Al Ghamdi</option>
+<option value="Abdul Basit">
 
-<option>Yasser Al Dosari</option>
+Abdul Basit
+
+</option>
+
+<option value="Maher Al Muaiqly">
+
+Maher Al Muaiqly
+
+</option>
+
+<option value="Saad Al Ghamdi">
+
+Saad Al Ghamdi
+
+</option>
+
+<option value="Yasser Al Dosari">
+
+Yasser Al Dosari
+
+</option>
 
 </select>
 
 </div>
+
+<!-- Wi-Fi Only -->
 
 <div class="settingItem">
 
@@ -629,13 +763,17 @@ Prevent large downloads while using mobile data.
 
 <label class="switch">
 
-<input type="checkbox" checked>
+<input
+type="checkbox"
+id="wifiOnlyDownloads">
 
 <span class="slider"></span>
 
 </label>
 
 </div>
+
+<!-- Resume Downloads -->
 
 <div class="settingItem">
 
@@ -657,7 +795,9 @@ Automatically continue interrupted downloads.
 
 <label class="switch">
 
-<input type="checkbox" checked>
+<input
+type="checkbox"
+id="autoResumeDownloads">
 
 <span class="slider"></span>
 
@@ -665,9 +805,11 @@ Automatically continue interrupted downloads.
 
 </div>
 
-</section><!-- ==========================
+</section>
+
+<!-- ===================================
 STORAGE & PERFORMANCE
-========================== -->
+=================================== -->
 
 <section class="settingsCard">
 
@@ -697,7 +839,9 @@ Manage your downloaded recitations.
 
 </div>
 
-<button class="settingButton">
+<button
+id="manageDownloadsBtn"
+class="settingButton">
 
 Manage
 
@@ -723,7 +867,9 @@ Remove temporary files to improve performance.
 
 </div>
 
-<button class="settingButton">
+<button
+id="clearCacheBtn"
+class="settingButton">
 
 Clear
 
@@ -749,7 +895,9 @@ View how much storage Muslim Bro is using.
 
 </div>
 
-<button class="settingButton">
+<button
+id="storageUsageBtn"
+class="settingButton">
 
 View
 
@@ -757,11 +905,9 @@ View
 
 </div>
 
-</section>
-
-<!-- ==========================
+</section><!-- ===================================
 PRIVACY
-========================== -->
+=================================== -->
 
 <section class="settingsCard">
 
@@ -772,6 +918,8 @@ PRIVACY
 Privacy
 
 </h2>
+
+<!-- Location Permission -->
 
 <div class="settingItem">
 
@@ -793,13 +941,17 @@ Required for Prayer Times and Qibla.
 
 <label class="switch">
 
-<input type="checkbox" checked>
+<input
+type="checkbox"
+id="locationPermission">
 
 <span class="slider"></span>
 
 </label>
 
 </div>
+
+<!-- Analytics -->
 
 <div class="settingItem">
 
@@ -821,7 +973,9 @@ Help improve Muslim Bro by sharing anonymous usage data.
 
 <label class="switch">
 
-<input type="checkbox">
+<input
+type="checkbox"
+id="analyticsPermission">
 
 <span class="slider"></span>
 
@@ -831,9 +985,9 @@ Help improve Muslim Bro by sharing anonymous usage data.
 
 </section>
 
-<!-- ==========================
-APP INFORMATION
-========================== -->
+<!-- ===================================
+APPLICATION
+=================================== -->
 
 <section class="settingsCard">
 
@@ -886,6 +1040,7 @@ Application
 </a>
 
 <a href="../contact.html" class="settingsLink">
+
 <i class="fa-solid fa-envelope"></i>
 
 <span>Contact Us</span>
@@ -896,9 +1051,9 @@ Application
 
 </section>
 
-<!-- ==========================
+<!-- ===================================
 SUPPORT
-========================== -->
+=================================== -->
 
 <section class="settingsCard">
 
@@ -910,7 +1065,7 @@ Support Muslim Bro
 
 </h2>
 
-<a href="#" class="settingsLink">
+<a href="#" id="rateAppBtn" class="settingsLink">
 
 <i class="fa-solid fa-star"></i>
 
@@ -920,7 +1075,7 @@ Support Muslim Bro
 
 </a>
 
-<a href="#" class="settingsLink">
+<a href="#" id="shareAppBtn" class="settingsLink">
 
 <i class="fa-solid fa-share-nodes"></i>
 
@@ -930,7 +1085,7 @@ Support Muslim Bro
 
 </a>
 
-<a href="#" class="settingsLink">
+<a href="#" id="checkUpdatesBtn" class="settingsLink">
 
 <i class="fa-solid fa-arrows-rotate"></i>
 
@@ -942,9 +1097,9 @@ Support Muslim Bro
 
 </section>
 
-<!-- ==========================
+<!-- ===================================
 DEVELOPER
-========================== -->
+=================================== -->
 
 <section class="settingsCard">
 
@@ -966,13 +1121,15 @@ Founder & Developer of Muslim Bro
 
 <p>
 
-Muslim Bro is continuously growing with new premium features, performance improvements and beneficial Islamic tools. Thank you for being part of this journey and for supporting the mission of serving the Muslim Ummah.
+Muslim Bro is continuously growing with new premium features, performance improvements and beneficial Islamic tools.
+
+Thank you for supporting this project and helping serve the Muslim Ummah.
 
 </p>
 
 <p>
 
-May Allah (SWT) accept this project as Sadaqah Jariyah, bless every user of Muslim Bro and grant us all beneficial knowledge, sincerity and Jannatul Firdaus.
+May Allah (SWT) accept this work as Sadaqah Jariyah, bless every Muslim Bro user, and grant us all beneficial knowledge and Jannatul Firdaus.
 
 </p>
 
