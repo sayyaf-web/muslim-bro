@@ -215,13 +215,9 @@ requestNotificationPermission();
  ELEMENTS
 ==============================*/
 
-const languageSelect = document.querySelector(
-'select'
-);
+const languageSelect = document.getElementById("languageSelect");
 
-const fontSelect = document.querySelectorAll(
-'select'
-)[1];
+const fontSelect = document.getElementById("fontSelect");
 
 /*==============================
  LOAD LANGUAGE
