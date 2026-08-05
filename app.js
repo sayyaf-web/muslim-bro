@@ -1571,3 +1571,111 @@ loadDailyTip();
 highlightCurrentPrayer();
 
 });
+/*=========================================
+ PART 20
+ FINAL PREMIUM FEATURES
+=========================================*/
+
+/* ---------- Welcome Sound (Optional) ---------- */
+
+function welcomeEffect(){
+
+const hero=document.querySelector(".hero");
+
+if(!hero) return;
+
+hero.animate(
+
+[
+{opacity:.95},
+{opacity:1}
+],
+
+{
+duration:1000,
+fill:"forwards"
+}
+
+);
+
+}
+
+/* ---------- Refresh Prayer Times Every 10 Minutes ---------- */
+
+setInterval(()=>{
+
+if(latitude!==null && longitude!==null){
+
+loadPrayerTimes();
+
+}
+
+},600000);
+
+/* ---------- Refresh Daily Content At Midnight ---------- */
+
+function checkNewDay(){
+
+const now=new Date();
+
+if(
+
+now.getHours()===0 &&
+
+now.getMinutes()===0
+
+){
+
+loadDailyAyah();
+
+loadDailyHadith();
+
+loadIslamicGreeting();
+
+loadDailyTip();
+
+}
+
+}
+
+setInterval(checkNewDay,60000);
+
+/* ---------- Save Last Visit ---------- */
+
+function saveLastVisit(){
+
+localStorage.setItem(
+
+"lastVisit",
+
+new Date().toISOString()
+
+);
+
+}
+
+function showLastVisit(){
+
+const last=
+
+localStorage.getItem("lastVisit");
+
+if(!last) return;
+
+console.log("Last visit:",last);
+
+}
+
+/* ---------- Performance ---------- */
+
+window.addEventListener("beforeunload",saveLastVisit);
+
+/* ---------- Start ---------- */
+
+window.addEventListener("load",()=>{
+
+welcomeEffect();
+
+showLastVisit();
+
+});
