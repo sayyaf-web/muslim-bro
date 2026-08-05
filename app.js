@@ -972,3 +972,243 @@ parseFloat(progress.style.width || "0");
 updatePrayerRing(width);
 
 };   
+/*=========================================
+ PART 15
+ PREMIUM HERO EFFECTS
+=========================================*/
+
+function updateHeroBackground() {
+
+    const hero = document.querySelector(".hero");
+
+    if (!hero) return;
+
+    const hour = new Date().getHours();
+
+    let overlay = "";
+
+    if (hour >= 5 && hour < 11) {
+
+        overlay = "linear-gradient(rgba(255,180,60,.18),rgba(0,0,0,.35))";
+
+    } else if (hour >= 11 && hour < 17) {
+
+        overlay = "linear-gradient(rgba(255,255,255,.05),rgba(0,0,0,.30))";
+
+    } else if (hour >= 17 && hour < 20) {
+
+        overlay = "linear-gradient(rgba(255,120,40,.22),rgba(0,0,0,.45))";
+
+    } else {
+
+        overlay = "linear-gradient(rgba(20,35,80,.35),rgba(0,0,0,.60))";
+
+    }
+
+    hero.style.backgroundImage =
+        `${overlay}, url("images/mosque.jpg")`;
+
+    hero.style.backgroundSize = "cover";
+    hero.style.backgroundPosition = "center";
+
+}
+
+/* Hero Fade */
+
+function animateHeroContent() {
+
+    const content = document.querySelector(".heroContent");
+
+    if (!content) return;
+
+    content.animate(
+
+        [
+            {
+                opacity: 0,
+                transform: "translateY(35px)"
+            },
+
+            {
+                opacity: 1,
+                transform: "translateY(0)"
+            }
+
+        ],
+
+        {
+            duration: 900,
+            easing: "ease-out",
+            fill: "forwards"
+        }
+
+    );
+
+}
+
+/* Floating Logo */
+
+function animateLogo() {
+
+    const logo = document.querySelector(".logo");
+
+    if (!logo) return;
+
+    let direction = 1;
+
+    setInterval(() => {
+
+        logo.style.transform =
+            `translateY(${direction * 4}px)`;
+
+        direction *= -1;
+
+    }, 2500);
+
+}
+
+/* Start Premium Hero */
+
+window.addEventListener("load", () => {
+
+    updateHeroBackground();
+
+    animateHeroContent();
+
+    animateLogo();
+
+});/*=========================================
+ PART 16
+ PREMIUM CARD EFFECTS
+=========================================*/
+
+/* Ripple Animation */
+
+function createRipple(event){
+
+const card = event.currentTarget;
+
+const ripple = document.createElement("span");
+
+const rect = card.getBoundingClientRect();
+
+const size = Math.max(rect.width, rect.height);
+
+ripple.style.width = size + "px";
+ripple.style.height = size + "px";
+
+ripple.style.left =
+(event.clientX - rect.left - size / 2) + "px";
+
+ripple.style.top =
+(event.clientY - rect.top - size / 2) + "px";
+
+ripple.className = "rippleEffect";
+
+card.appendChild(ripple);
+
+setTimeout(() => {
+
+ripple.remove();
+
+}, 650);
+
+}
+
+/* Attach Ripple To Dashboard Cards */
+
+function enableDashboardRipple(){
+
+document.querySelectorAll(".feature").forEach(card=>{
+
+card.style.position="relative";
+
+card.style.overflow="hidden";
+
+card.addEventListener("click",createRipple);
+
+});
+
+}
+
+/* Lift Animation */
+
+function animateDashboardCards(){
+
+const cards = document.querySelectorAll(".feature");
+
+cards.forEach((card,index)=>{
+
+card.animate(
+
+[
+
+{
+
+opacity:0,
+
+transform:"translateY(35px)"
+
+},
+
+{
+
+opacity:1,
+
+transform:"translateY(0)"
+
+}
+
+],
+
+{
+
+duration:600,
+
+delay:index*70,
+
+fill:"forwards",
+
+easing:"ease-out"
+
+}
+
+);
+
+});
+
+}
+
+/* Premium Button Hover */
+
+function animateButtons(){
+
+document.querySelectorAll("button").forEach(btn=>{
+
+btn.addEventListener("mouseenter",()=>{
+
+btn.style.transform="scale(1.04)";
+
+});
+
+btn.addEventListener("mouseleave",()=>{
+
+btn.style.transform="scale(1)";
+
+});
+
+});
+
+}
+
+/* Start */
+
+window.addEventListener("load",()=>{
+
+enableDashboardRipple();
+
+animateDashboardCards();
+
+animateButtons();
+
+});
