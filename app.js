@@ -635,3 +635,445 @@ navigator.serviceWorker.register("service-worker.js")
 });
 
 }
+/* ==========================================
+   PART 9
+   PREMIUM LIVE DASHBOARD
+========================================== */
+
+function updateGreeting() {
+
+    const greeting = document.getElementById("islamicGreeting");
+
+    if (!greeting) return;
+
+    const hour = new Date().getHours();
+
+    let text = "";
+
+    if (hour < 5) {
+
+        text = "🌙 Peaceful Night";
+
+    } else if (hour < 12) {
+
+        text = "☀️ Good Morning";
+
+    } else if (hour < 17) {
+
+        text = "🌤 Good Afternoon";
+
+    } else if (hour < 20) {
+
+        text = "🌅 Good Evening";
+
+    } else {
+
+        text = "🌙 Blessed Evening";
+
+    }
+
+    greeting.textContent = text;
+
+}
+
+/* Today's Date */
+
+function updateDate() {
+
+    const date = document.getElementById("dashboardDate");
+
+    if (!date) return;
+
+    date.textContent = new Date().toLocaleDateString(
+        "en-GB",
+        {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+        }
+    );
+
+}
+
+/* Hijri */
+
+function updateHijri() {
+
+    const hijri = document.getElementById("dashboardHijri");
+
+    if (!hijri) return;
+
+    try {
+
+        const formatter = new Intl.DateTimeFormat(
+            "en-TN-u-ca-islamic",
+            {
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+            }
+        );
+
+        hijri.textContent = formatter.format(new Date());
+
+    } catch {
+
+        hijri.textContent = "Hijri Calendar";
+
+    }
+
+}
+
+/* Location */
+
+function updateLocation() {
+
+    const location = document.getElementById("dashboardLocation");
+
+    if (!location) return;
+
+    if (!navigator.geolocation) {
+
+        location.textContent = "Location unavailable";
+
+        return;
+
+    }
+
+    navigator.geolocation.getCurrentPosition(
+
+        () => {
+
+            location.textContent = "Location detected";
+
+        },
+
+        () => {
+
+            location.textContent = "Location disabled";
+
+        }
+
+    );
+
+}
+
+/* Hero animation */
+
+function animateHero() {
+
+    const hero = document.querySelector(".premiumPrayerCard");
+
+    if (!hero) return;
+
+    hero.animate(
+        [
+            {
+                transform: "translateY(15px)",
+                opacity: 0
+            },
+            {
+                transform: "translateY(0px)",
+                opacity: 1
+            }
+        ],
+        {
+            duration: 800,
+            easing: "ease-out"
+        }
+    );
+
+}
+
+/* Start */
+
+window.addEventListener("load", () => {
+
+    updateGreeting();
+
+    updateDate();
+
+    updateHijri();
+
+    updateLocation();
+
+    animateHero();
+
+});/* ==========================================
+   PART 10
+   PREMIUM DAILY WIDGETS
+========================================== */
+
+/* ---------- Daily Islamic Quotes ---------- */
+
+const islamicQuotes = [
+
+"Indeed, with hardship comes ease. (Quran 94:6)",
+
+"And whoever relies upon Allah – then He is sufficient for him. (65:3)",
+
+"The best among you are those who learn the Qur'an and teach it.",
+
+"Prayer is the key to Paradise.",
+
+"Allah loves those who constantly repent.",
+
+"Remember Allah and He will remember you.",
+
+"Be patient. Allah is with the patient."
+
+];
+
+/* ---------- Daily Dhikr ---------- */
+
+const dailyDhikr = [
+
+"SubhanAllah ×33",
+
+"Alhamdulillah ×33",
+
+"Allahu Akbar ×34",
+
+"La ilaha illallah",
+
+"Astaghfirullah",
+
+"La hawla wa la quwwata illa billah"
+
+];
+
+/* ---------- Daily Dua ---------- */
+
+const dailyDuas = [
+
+"اللهم اغفر لي وارحمني",
+
+"اللهم ارزقني علماً نافعاً",
+
+"اللهم ثبت قلبي على دينك",
+
+"رب زدني علماً",
+
+"رب اغفر لي ولوالدي",
+
+"اللهم اجعل القرآن ربيع قلبي"
+
+];
+
+/* ---------- Random Helper ---------- */
+
+function randomItem(arr){
+
+return arr[Math.floor(Math.random()*arr.length)];
+
+}
+
+/* ---------- Create Widgets ---------- */
+
+function createPremiumWidgets(){
+
+const dashboard=document.querySelector(".dashboardSection");
+
+if(!dashboard) return;
+
+/* Prevent duplicate */
+
+if(document.getElementById("premiumWidgets")) return;
+
+const wrapper=document.createElement("section");
+
+wrapper.id="premiumWidgets";
+
+wrapper.innerHTML=`
+
+<div class="premiumWidget">
+
+<h3>✨ Daily Inspiration</h3>
+
+<p id="dailyQuote">${randomItem(islamicQuotes)}</p>
+
+</div>
+
+<div class="premiumWidget">
+
+<h3>📿 Today's Dhikr</h3>
+
+<p id="todayDhikr">${randomItem(dailyDhikr)}</p>
+
+</div>
+
+<div class="premiumWidget">
+
+<h3>🤲 Daily Dua</h3>
+
+<p id="todayDua">${randomItem(dailyDuas)}</p>
+
+</div>
+
+`;
+
+dashboard.prepend(wrapper);
+
+}
+
+/* ---------- Refresh Every Day ---------- */
+
+function refreshDailyWidgets(){
+
+createPremiumWidgets();
+
+}
+
+/* ---------- Start ---------- */
+
+window.addEventListener("load",refreshDailyWidgets);/* ==========================================
+   PART 11
+   PREMIUM WIDGETS
+========================================== */
+
+#premiumWidgets{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+gap:18px;
+
+margin:30px 0;
+
+}
+
+.premiumWidget{
+
+position:relative;
+
+overflow:hidden;
+
+padding:24px;
+
+border-radius:24px;
+
+background:linear-gradient(
+135deg,
+#0B8457,
+#127B52
+);
+
+color:#fff;
+
+box-shadow:0 15px 35px rgba(0,0,0,.15);
+
+transition:.35s;
+
+}
+
+.premiumWidget:hover{
+
+transform:translateY(-8px);
+
+box-shadow:0 25px 45px rgba(0,0,0,.22);
+
+}
+
+.premiumWidget:nth-child(2){
+
+background:linear-gradient(
+135deg,
+#D4AF37,
+#F5D76E
+);
+
+color:#143A2D;
+
+}
+
+.premiumWidget:nth-child(3){
+
+background:linear-gradient(
+135deg,
+#1E40AF,
+#3B82F6
+);
+
+}
+
+.premiumWidget h3{
+
+margin:0 0 15px;
+
+font-size:20px;
+
+font-weight:700;
+
+}
+
+.premiumWidget p{
+
+margin:0;
+
+font-size:15px;
+
+line-height:1.8;
+
+font-weight:500;
+
+}
+
+/* Decorative glow */
+
+.premiumWidget::before{
+
+content:"";
+
+position:absolute;
+
+right:-40px;
+
+top:-40px;
+
+width:120px;
+
+height:120px;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.12);
+
+}
+
+/* Decorative star */
+
+.premiumWidget::after{
+
+content:"✦";
+
+position:absolute;
+
+bottom:18px;
+
+right:20px;
+
+font-size:24px;
+
+color:rgba(255,255,255,.25);
+
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+#premiumWidgets{
+
+grid-template-columns:1fr;
+
+}
+
+.premiumWidget{
+
+padding:22px;
+
+}
+
+}
