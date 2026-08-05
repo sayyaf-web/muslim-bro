@@ -928,4 +928,47 @@ createPremiumWidgets();
 /* ---------- Start ---------- */
 
 window.addEventListener("load",refreshDailyWidgets);/* ==========================================
-   
+/*=========================================
+ PART 14
+ PREMIUM PRAYER RING
+=========================================*/
+
+function updatePrayerRing(percent){
+
+const ring = document.querySelector(".ringProgress");
+
+if(!ring) return;
+
+const radius = 100;
+const circumference = 2 * Math.PI * radius;
+
+ring.style.strokeDasharray = circumference;
+
+const offset =
+circumference -
+(percent / 100) * circumference;
+
+ring.style.strokeDashoffset = offset;
+
+}
+
+/* Connect Ring To Existing Progress Bar */
+
+const originalUpdatePrayerCountdown = updatePrayerCountdown;
+
+updatePrayerCountdown = function(){
+
+originalUpdatePrayerCountdown();
+
+/* Read progress from existing progress bar */
+
+const progress = document.getElementById("progressBar");
+
+if(!progress) return;
+
+const width =
+parseFloat(progress.style.width || "0");
+
+updatePrayerRing(width);
+
+};   
