@@ -1475,3 +1475,99 @@ enablePageTransitions();
 updateConnectionStatus();
 
 });
+/*=========================================
+ PART 19
+ PREMIUM SMART HOME
+=========================================*/
+
+/* ---------- Random Quran Tip ---------- */
+
+const quranTips = [
+
+"📖 Read at least one page of the Qur'an today.",
+
+"🤲 Make dua after every Salah.",
+
+"📿 Say SubhanAllah 33 times after prayer.",
+
+"🌙 Pray Tahajjud whenever you can.",
+
+"💚 Smile—it is Sunnah.",
+
+"☪ Remember Allah often throughout the day.",
+
+"🕌 Pray your Salah at its earliest time."
+
+];
+
+function loadDailyTip(){
+
+const tip=document.getElementById("dailyTip");
+
+if(!tip) return;
+
+const day=new Date().getDate();
+
+tip.textContent=quranTips[day % quranTips.length];
+
+}
+
+/* ---------- Prayer Highlight ---------- */
+
+function highlightCurrentPrayer(){
+
+if(!currentTimings) return;
+
+const rows=document.querySelectorAll(".prayerRow");
+
+rows.forEach(row=>row.classList.remove("activePrayer"));
+
+const now=new Date();
+
+let current="Fajr";
+
+for(const prayer of prayers){
+
+const t=currentTimings[prayer].split(":");
+
+const d=new Date();
+
+d.setHours(Number(t[0]),Number(t[1]),0,0);
+
+if(now>=d){
+
+current=prayer;
+
+}
+
+}
+
+rows.forEach(row=>{
+
+if(row.textContent.includes(current)){
+
+row.classList.add("activePrayer");
+
+}
+
+});
+
+}
+
+/* ---------- Auto Refresh ---------- */
+
+setInterval(()=>{
+
+highlightCurrentPrayer();
+
+},60000);
+
+/* ---------- Start ---------- */
+
+window.addEventListener("load",()=>{
+
+loadDailyTip();
+
+highlightCurrentPrayer();
+
+});
