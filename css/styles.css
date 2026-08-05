@@ -2898,3 +2898,105 @@ animation:pulseBadge 2s infinite;
 transition:opacity .3s ease;
 
 }
+/*=========================================
+ PART 18
+ PREMIUM APP EXPERIENCE
+=========================================*/
+
+body{
+
+opacity:1;
+
+transition:opacity .25s ease;
+
+}
+
+/* Loading Screen */
+
+#loadingScreen{
+
+position:fixed;
+
+inset:0;
+
+background:linear-gradient(180deg,#0B8457,#063E2D);
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+flex-direction:column;
+
+z-index:99999;
+
+transition:.6s;
+
+}
+
+#loadingScreen h1{
+
+color:white;
+
+margin-top:20px;
+
+font-size:34px;
+
+}
+
+.loaderCircle{
+
+width:80px;
+
+height:80px;
+
+border:6px solid rgba(255,255,255,.2);
+
+border-top-color:#FFD166;
+
+border-radius:50%;
+
+animation:loaderSpin 1s linear infinite;
+
+}
+
+@keyframes loaderSpin{
+
+to{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+/* Internet Banner */
+
+#connectionStatus{
+
+position:fixed;
+
+top:15px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+padding:10px 18px;
+
+border-radius:18px;
+
+color:white;
+
+font-weight:700;
+
+z-index:9999;
+
+opacity:0;
+
+transition:.35s;
+
+box-shadow:0 8px 25px rgba(0,0,0,.25);
+
+}
