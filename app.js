@@ -1212,3 +1212,143 @@ animateDashboardCards();
 animateButtons();
 
 });
+/*=========================================
+ PART 17
+ PREMIUM ISLAMIC EXPERIENCE
+=========================================*/
+
+/* Daily Islamic Messages */
+
+const islamicMessages = [
+
+"🤲 May Allah accept all your duas.",
+
+"🌙 Remember Allah and your heart will find peace.",
+
+"📖 The Qur'an is a light for every believer.",
+
+"🕌 Never delay your Salah.",
+
+"💚 Every good deed brings you closer to Allah.",
+
+"✨ Allah's mercy is greater than your sins.",
+
+"📿 Keep your tongue moist with Dhikr.",
+
+"🤍 Be patient. Allah is with the patient.",
+
+"🌸 Smile—it is Sunnah.",
+
+"☪ May Allah bless your day."
+
+];
+
+/* Rotate Message */
+
+function rotateIslamicMessage(){
+
+const text = document.getElementById("islamicGreeting");
+
+if(!text) return;
+
+let index = 0;
+
+text.textContent = islamicMessages[index];
+
+setInterval(()=>{
+
+index++;
+
+if(index >= islamicMessages.length){
+
+index = 0;
+
+}
+
+text.style.opacity = "0";
+
+setTimeout(()=>{
+
+text.textContent = islamicMessages[index];
+
+text.style.opacity = "1";
+
+},300);
+
+},15000);
+
+}
+
+/* Notification Badge */
+
+function notificationBadge(){
+
+const bell = document.querySelector(".notificationBtn");
+
+if(!bell) return;
+
+const badge = document.createElement("span");
+
+badge.className = "notificationBadge";
+
+badge.textContent = "1";
+
+bell.style.position = "relative";
+
+bell.appendChild(badge);
+
+}
+
+/* Welcome Animation */
+
+function welcomeAnimation(){
+
+const title = document.querySelector(".welcomeTitle");
+
+if(!title) return;
+
+title.animate(
+
+[
+
+{
+
+opacity:0,
+
+transform:"scale(.8)"
+
+},
+
+{
+
+opacity:1,
+
+transform:"scale(1)"
+
+}
+
+],
+
+{
+
+duration:800,
+
+fill:"forwards"
+
+}
+
+);
+
+}
+
+/* Start */
+
+window.addEventListener("load",()=>{
+
+rotateIslamicMessage();
+
+notificationBadge();
+
+welcomeAnimation();
+
+});
