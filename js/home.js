@@ -1,196 +1,174 @@
-/* ==========================================
-   MUSLIM BRO - HOME.JS
-   PART 1
-   APP INITIALIZATION
-========================================== */
+/*=========================================
+  MUSLIM BRO
+  HOME.JS
+  PART 1
+==========================================*/
 
-document.addEventListener("DOMContentLoaded", () => {
-    initHome();
-});
+"use strict";
 
-function initHome() {
+/*=========================================
+LOADING SCREEN
+=========================================*/
 
-    hideLoadingScreen();
+window.addEventListener("load", () => {
 
-    updateGreeting();
-
-    updateTodayDate();
-
-    updateConnectionStatus();
-
-    window.addEventListener("online", updateConnectionStatus);
-    window.addEventListener("offline", updateConnectionStatus);
-
-    setInterval(updateGreeting, 60000);
-}
-
-/* ==========================================
-   LOADING SCREEN
-========================================== */
-
-function hideLoadingScreen() {
-
-    const loading = document.getElementById("loadingScreen");
-
-    if (!loading) return;
+    const loader = document.getElementById("loadingScreen");
 
     setTimeout(() => {
 
-        loading.style.opacity = "0";
+        loader.style.opacity = "0";
+
+        loader.style.pointerEvents = "none";
 
         setTimeout(() => {
 
-            loading.style.display = "none";
+            loader.remove();
 
-        }, 500);
+        },500);
 
-    }, 1200);
+    },800);
 
-}
+});
 
-/* ==========================================
-   GREETING
-========================================== */
+/*=========================================
+DOM ELEMENTS
+=========================================*/
 
-function updateGreeting() {
+const prayerName =
+document.getElementById("dashboardPrayer");
 
-    const greeting = document.getElementById("greetingText");
+const countdown =
+document.getElementById("dashboardCountdown");
 
-    if (!greeting) return;
+const remaining =
+document.getElementById("dashboardRemaining");
 
-    const hour = new Date().getHours();
+const hijri =
+document.getElementById("dashboardHijri");
 
-    let text = "Assalamu Alaikum";
+const locationText =
+document.getElementById("dashboardLocation");
 
-    if (hour >= 5 && hour < 12) {
+const todayDate =
+document.getElementById("dashboardDate");
 
-        text = "Good Morning 🌅";
+const prayerList =
+document.getElementById("miniPrayerList");
 
-    }
+const ayah =
+document.getElementById("ayah");
 
-    else if (hour >= 12 && hour < 17) {
+const hadith =
+document.getElementById("hadith");
 
-        text = "Good Afternoon ☀️";
+const dailyTip =
+document.getElementById("dailyTip");
 
-    }
+const continueCard =
+document.getElementById("continueCard");
 
-    else if (hour >= 17 && hour < 20) {
+const continueText =
+document.getElementById("continueText");
 
-        text = "Good Evening 🌇";
+const connectionStatus =
+document.getElementById("connectionStatus");
 
-    }
+/*=========================================
+TODAY DATE
+=========================================*/
 
-    else {
+const today = new Date();
 
-        text = "Good Night 🌙";
+todayDate.textContent =
+today.toLocaleDateString(undefined,{
+weekday:"long",
+day:"numeric",
+month:"long",
+year:"numeric"
+});
 
-    }
+/*=========================================
+ISLAMIC GREETING
+=========================================*/
 
-    greeting.textContent = text;
+const hour = today.getHours();
 
-}
+const greeting =
+document.getElementById("greetingText");
 
-/* ==========================================
-   TODAY'S DATE
-========================================== */
+if(hour<12){
 
-function updateTodayDate() {
-loadPrayerTimes();
-
-loadLocation();
-    const el = document.getElementById("dashboardDate");
-
-    if (!el) return;
-
-    const today = new Date();
-
-    const options = {
-
-        weekday: "long",
-
-        day: "numeric",
-
-        month: "long",
-
-        year: "numeric"
-
-    };
-
-    el.textContent = today.toLocaleDateString(undefined, options);
-
-}
-
-/* ==========================================
-   INTERNET STATUS
-========================================== */
-
-function updateConnectionStatus() {
-
-    const box = document.getElementById("connectionStatus");
-
-    if (!box) return;
-
-    box.style.display = "block";
-
-    if (navigator.onLine) {
-
-        box.textContent = "🟢 Online";
-
-        box.style.background = "#0B8457";
-
-    }
-
-    else {
-
-        box.textContent = "🔴 Offline";
-
-        box.style.background = "#b42318";
-
-    }
-
-    setTimeout(() => {
-
-        box.style.display = "none";
-
-    }, 2500);
+greeting.textContent =
+"Assalamu Alaikum ☀️";
 
 }
 
-/* ==========================================
-   PLACEHOLDERS
-   (Implemented in Parts 2 & 3)
-========================================== */
+else if(hour<18){
 
-function loadPrayerTimes(){}
+greeting.textContent =
+"Good Afternoon 🤲";
 
-function startPrayerCountdown(){}
+}
 
-function loadHijriDate(){}
+else{
 
-function loadLocation(){}
+greeting.textContent =
+"Good Evening 🌙";
 
-function loadDailyAyah(){}
+}
+/*=========================================
+PART 2
+LOCATION • CONNECTION • HIJRI DATE
+=========================================*/
 
-function loadDailyHadith(){}
+/*=========================================
+CONNECTION STATUS
+=========================================*/
 
-function loadDailyTip(){}
+function showConnection(message, color){
 
-function loadContinueReading(){}
-/* ==========================================
-   PART 2
-   PRAYER • HIJRI • LOCATION
-========================================== */
+    connectionStatus.textContent = message;
 
-const PRAYER_API = "https://api.aladhan.com/v1/timings";
+    connectionStatus.style.background = color;
 
-let prayerTimes = {};
-let countdownTimer = null;
+    connectionStatus.style.display = "block";
 
-function loadPrayerTimes() {
+    setTimeout(()=>{
 
-    if (!navigator.geolocation) {
+        connectionStatus.style.display = "none";
 
-        loadPrayerData(-1.286389, 36.817223);
+    },3000);
+
+}
+
+window.addEventListener("online",()=>{
+
+    showConnection(
+        "🟢 Back Online",
+        "#0B8457"
+    );
+
+});
+
+window.addEventListener("offline",()=>{
+
+    showConnection(
+        "🔴 No Internet Connection",
+        "#C62828"
+    );
+
+});
+
+/*=========================================
+GET USER LOCATION
+=========================================*/
+
+function loadLocation(){
+
+    if(!navigator.geolocation){
+
+        locationText.textContent =
+        "Location unavailable";
 
         return;
 
@@ -198,18 +176,17 @@ function loadPrayerTimes() {
 
     navigator.geolocation.getCurrentPosition(
 
-        position => {
+        success,
 
-            loadPrayerData(
-                position.coords.latitude,
-                position.coords.longitude
-            );
+        error,
 
-        },
+        {
 
-        () => {
+            enableHighAccuracy:true,
 
-            loadPrayerData(-1.286389, 36.817223);
+            timeout:15000,
+
+            maximumAge:600000
 
         }
 
@@ -217,42 +194,183 @@ function loadPrayerTimes() {
 
 }
 
-async function loadPrayerData(lat, lon) {
+/*=========================================
+LOCATION SUCCESS
+=========================================*/
 
-    try {
+async function success(position){
+
+    const lat = position.coords.latitude;
+
+    const lon = position.coords.longitude;
+
+    try{
 
         const response = await fetch(
-            `${PRAYER_API}?latitude=${lat}&longitude=${lon}&method=2`
+
+            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`
+
+        );
+
+        const data = await response.json();
+
+        const city =
+        data.address.city ||
+        data.address.town ||
+        data.address.village ||
+        data.address.county ||
+        "Unknown";
+
+        const country =
+        data.address.country || "";
+
+        locationText.textContent =
+        city + ", " + country;
+
+    }
+
+    catch{
+
+        locationText.textContent =
+        "Unknown Location";
+
+    }
+
+    loadHijriDate(lat,lon);
+
+}
+
+/*=========================================
+LOCATION ERROR
+=========================================*/
+
+function error(){
+
+    locationText.textContent =
+    "Location Permission Denied";
+
+    hijri.textContent =
+    "--";
+
+}
+
+/*=========================================
+HIJRI DATE
+=========================================*/
+
+async function loadHijriDate(lat,lon){
+
+    try{
+
+        const response = await fetch(
+
+            `https://api.aladhan.com/v1/gToH?date=${today.getDate()}-${today.getMonth()+1}-${today.getFullYear()}`
+
+        );
+
+        const json = await response.json();
+
+        const h = json.data.hijri;
+
+        hijri.textContent =
+        `${h.day} ${h.month.en} ${h.year} AH`;
+
+    }
+
+    catch{
+
+        hijri.textContent =
+        "Hijri unavailable";
+
+    }
+
+}
+
+/*=========================================
+START LOCATION
+=========================================*/
+
+loadLocation();
+/*=========================================
+PART 3
+PRAYER TIMES
+=========================================*/
+
+let prayerTimes = {};
+let countdownInterval = null;
+
+/*=========================================
+LOAD PRAYER TIMES
+=========================================*/
+
+async function loadPrayerTimes(lat, lon){
+
+    try{
+
+        const response = await fetch(
+            `https://api.aladhan.com/v1/timings?latitude=${lat}&longitude=${lon}&method=2`
         );
 
         const json = await response.json();
 
         prayerTimes = json.data.timings;
 
-        document.getElementById("dashboardHijri").textContent =
-            json.data.date.hijri.date;
+        renderPrayerList();
 
-        showNextPrayer();
+        startCountdown();
 
     }
 
-    catch (err) {
+    catch(error){
 
-        console.error(err);
+        prayerName.textContent = "Unavailable";
+
+        countdown.textContent = "--:--:--";
+
+        remaining.textContent =
+        "Unable to load prayer times.";
 
     }
 
 }
 
-/* ==========================================
-   NEXT PRAYER
-========================================== */
+/*=========================================
+TIME TO MINUTES
+=========================================*/
 
-function showNextPrayer() {
+function toMinutes(time){
 
-    if (!prayerTimes.Fajr) return;
+    const parts = time.split(":");
 
-    const schedule = [
+    return parseInt(parts[0]) * 60 +
+
+           parseInt(parts[1]);
+
+}
+
+/*=========================================
+TODAY MINUTES
+=========================================*/
+
+function nowMinutes(){
+
+    const now = new Date();
+
+    return now.getHours() * 60 +
+
+           now.getMinutes();
+
+}
+
+/*=========================================
+NEXT PRAYER
+=========================================*/
+
+function getNextPrayer(){
+
+    const now = nowMinutes();
+
+    const prayers = [
 
         ["Fajr", prayerTimes.Fajr],
 
@@ -266,200 +384,234 @@ function showNextPrayer() {
 
     ];
 
-    const now = new Date();
+    for(const prayer of prayers){
 
-    let nextPrayer = schedule[0];
+        if(now < toMinutes(prayer[1])){
 
-    for (const prayer of schedule) {
-
-        const parts = prayer[1].substring(0,5).split(":");
-
-        const prayerDate = new Date();
-
-        prayerDate.setHours(parts[0]);
-
-        prayerDate.setMinutes(parts[1]);
-
-        prayerDate.setSeconds(0);
-
-        if (prayerDate > now) {
-
-            nextPrayer = prayer;
-
-            break;
+            return prayer;
 
         }
 
     }
 
-    document.getElementById("dashboardPrayer").textContent =
-        nextPrayer[0];
+    return [
 
-    startPrayerCountdown(nextPrayer[1]);
+        "Fajr",
+
+        prayerTimes.Fajr
+
+    ];
 
 }
 
-/* ==========================================
-   COUNTDOWN
-========================================== */
+/*=========================================
+COUNTDOWN
+=========================================*/
 
-function startPrayerCountdown(timeString) {
+function startCountdown(){
 
-    if (countdownTimer)
+    if(countdownInterval){
 
-        clearInterval(countdownTimer);
+        clearInterval(countdownInterval);
 
-    countdownTimer = setInterval(() => {
+    }
 
-        const now = new Date();
+    countdownInterval = setInterval(updateCountdown,1000);
 
-        const target = new Date();
+    updateCountdown();
 
-        const parts = timeString.substring(0,5).split(":");
+}
 
-        target.setHours(parts[0]);
+/*=========================================
+UPDATE COUNTDOWN
+=========================================*/
 
-        target.setMinutes(parts[1]);
+function updateCountdown(){
 
-        target.setSeconds(0);
+    const next = getNextPrayer();
 
-        let diff = target - now;
+    prayerName.textContent = next[0];
 
-        if (diff < 0) {
+    const now = new Date();
 
-            clearInterval(countdownTimer);
+    let target = new Date();
 
-            loadPrayerTimes();
+    const parts = next[1].split(":");
 
-            return;
+    target.setHours(
+
+        parseInt(parts[0]),
+
+        parseInt(parts[1]),
+
+        0,
+
+        0
+
+    );
+
+    if(target < now){
+
+        target.setDate(target.getDate()+1);
+
+    }
+
+    const diff = target - now;
+
+    const hrs = Math.floor(diff / 3600000);
+
+    const mins = Math.floor(
+
+        (diff % 3600000)/60000
+
+    );
+
+    const secs = Math.floor(
+
+        (diff % 60000)/1000
+
+    );
+
+    countdown.textContent =
+
+        String(hrs).padStart(2,"0") + ":" +
+
+        String(mins).padStart(2,"0") + ":" +
+
+        String(secs).padStart(2,"0");
+
+    remaining.textContent =
+
+        `Time remaining until ${next[0]}`;
+
+}
+
+/*=========================================
+PRAYER LIST
+=========================================*/
+
+function renderPrayerList(){
+
+    prayerList.innerHTML = "";
+
+    const current = getNextPrayer()[0];
+
+    const prayers = [
+
+        "Fajr",
+
+        "Dhuhr",
+
+        "Asr",
+
+        "Maghrib",
+
+        "Isha"
+
+    ];
+
+    prayers.forEach(name=>{
+
+        const row = document.createElement("div");
+
+        row.className = "prayerItem";
+
+        if(name===current){
+
+            row.classList.add("active");
 
         }
 
-        const hours =
-            Math.floor(diff / 3600000);
+        row.innerHTML = `
 
-        const minutes =
-            Math.floor(diff % 3600000 / 60000);
+            <span>${name}</span>
 
-        const seconds =
-            Math.floor(diff % 60000 / 1000);
+            <strong>${prayerTimes[name]}</strong>
 
-        document.getElementById(
-            "dashboardCountdown"
-        ).textContent =
-            `${hours.toString().padStart(2,"0")}:` +
-            `${minutes.toString().padStart(2,"0")}:` +
-            `${seconds.toString().padStart(2,"0")}`;
+        `;
 
-        document.getElementById(
-            "dashboardRemaining"
-        ).textContent =
-            "Remaining until prayer";
+        prayerList.appendChild(row);
 
-    },1000);
+    });
 
 }
 
-/* ==========================================
-   LOCATION
-========================================== */
+/*=========================================
+START PRAYER TIMES
+=========================================*/
 
-async function loadLocation() {
+/* Add this line at the end of the
+   success(position) function from Part 2 */
 
-    const label =
-        document.getElementById("dashboardLocation");
+loadPrayerTimes(lat, lon);
+/*=========================================
+PART 4
+DAILY CONTENT
+=========================================*/
 
-    if (!label) return;
-
-    label.textContent =
-        "Current Location";
-
-}/* ==========================================
-   PART 3
-   DAILY AYAH • HADITH • TIP
-========================================== */
-
-/* Daily Ayah */
+/*=========================================
+DAILY AYAH
+=========================================*/
 
 const dailyAyahs = [
 
 {
 arabic:"إِنَّ مَعَ الْعُسْرِ يُسْرًا",
 translation:"Indeed, with hardship comes ease.",
-reference:"Surah Ash-Sharh (94:6)"
+reference:"Surah Ash-Sharh 94:6"
+},
+
+{
+arabic:"وَاذْكُرُوا اللَّهَ كَثِيرًا",
+translation:"Remember Allah often so that you may succeed.",
+reference:"Surah Al-Anfal 8:45"
 },
 
 {
 arabic:"فَاذْكُرُونِي أَذْكُرْكُمْ",
-translation:"So remember Me; I will remember you.",
-reference:"Surah Al-Baqarah (2:152)"
+translation:"Remember Me, and I will remember you.",
+reference:"Surah Al-Baqarah 2:152"
 },
 
 {
-arabic:"رَّبِّ زِدْنِي عِلْمًا",
-translation:"My Lord, increase me in knowledge.",
-reference:"Surah Ta-Ha (20:114)"
+arabic:"وَهُوَ مَعَكُمْ أَيْنَ مَا كُنتُمْ",
+translation:"He is with you wherever you are.",
+reference:"Surah Al-Hadid 57:4"
 },
 
 {
 arabic:"إِنَّ اللَّهَ مَعَ الصَّابِرِينَ",
-translation:"Indeed, Allah is with the patient.",
-reference:"Surah Al-Baqarah (2:153)"
-},
-
-{
-arabic:"وَمَن يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ",
-translation:"Whoever relies upon Allah, He is sufficient for him.",
-reference:"Surah At-Talaq (65:3)"
-},
-
-{
-arabic:"ادْعُونِي أَسْتَجِبْ لَكُمْ",
-translation:"Call upon Me; I will respond to you.",
-reference:"Surah Ghafir (40:60)"
-},
-
-{
-arabic:"اللَّهُ خَيْرُ الرَّازِقِينَ",
-translation:"Allah is the Best of Providers.",
-reference:"Surah Al-Jumu'ah (62:11)"
-},
-
-{
-arabic:"إِنَّ اللَّهَ يُحِبُّ الْمُتَوَكِّلِينَ",
-translation:"Indeed, Allah loves those who rely upon Him.",
-reference:"Surah Aal-Imran (3:159)"
+translation:"Indeed Allah is with the patient.",
+reference:"Surah Al-Baqarah 2:153"
 }
 
 ];
 
 function loadDailyAyah(){
 
-const ayah=document.getElementById("ayah");
+const day = new Date().getDate();
 
-if(!ayah) return;
+const item = dailyAyahs[
+day % dailyAyahs.length
+];
 
-const today=new Date().getDate();
-
-const verse=dailyAyahs[today%dailyAyahs.length];
-
-ayah.innerHTML=`
+ayah.innerHTML = `
 
 <div class="ayahArabic">
 
-${verse.arabic}
+${item.arabic}
 
 </div>
 
 <div class="ayahTranslation">
 
-${verse.translation}
+${item.translation}
 
 </div>
 
 <div class="ayahReference">
 
-${verse.reference}
+${item.reference}
 
 </div>
 
@@ -467,103 +619,97 @@ ${verse.reference}
 
 }
 
-/* ==========================================
-   DAILY HADITH
-========================================== */
+/*=========================================
+DAILY HADITH
+=========================================*/
 
-const dailyHadiths=[
+const hadiths = [
 
-"The best among you are those who learn the Qur'an and teach it.",
+"Actions are judged by intentions. — Sahih al-Bukhari",
 
-"Actions are judged by intentions.",
+"The best among you are those who learn the Qur'an and teach it. — Bukhari",
 
-"Allah is gentle and loves gentleness.",
+"Allah is gentle and loves gentleness in all matters. — Muslim",
 
-"Smile at your brother—it is charity.",
+"Smiling at your brother is charity. — Tirmidhi",
 
-"The strong believer is better and more beloved to Allah.",
-
-"Make things easy and do not make them difficult.",
-
-"The most beloved deeds are those done consistently.",
-
-"Purity is half of faith."
+"The strong believer is better and more beloved to Allah. — Muslim"
 
 ];
 
 function loadDailyHadith(){
 
-const hadith=document.getElementById("hadith");
+const day = new Date().getDate();
 
-if(!hadith) return;
+hadith.textContent =
 
-const today=new Date().getDate();
-
-hadith.textContent=dailyHadiths[today%dailyHadiths.length];
+hadiths[day % hadiths.length];
 
 }
 
-/* ==========================================
-   DAILY TIP
-========================================== */
+/*=========================================
+DAILY TIP
+=========================================*/
 
-const dailyTips=[
-
-"Pray every Salah on time.",
+const tips = [
 
 "Read at least one page of the Qur'an today.",
 
-"Remember Allah frequently.",
+"Pray every Salah on time.",
 
-"Help someone today for the sake of Allah.",
+"Remember Allah frequently through Dhikr.",
 
-"Recite SubhanAllah 33 times.",
+"Give charity even if it is little.",
 
-"Recite Alhamdulillah 33 times.",
+"Forgive someone for the sake of Allah.",
 
-"Recite Allahu Akbar 34 times.",
+"Make sincere dua after every prayer.",
 
-"Send abundant blessings upon Prophet Muhammad ﷺ."
+"Smile because it is Sunnah.",
+
+"Help someone today.",
+
+"Read Surah Al-Mulk before sleeping.",
+
+"Keep your tongue busy with Astaghfirullah."
 
 ];
 
 function loadDailyTip(){
 
-const tip=document.getElementById("dailyTip");
+const day = new Date().getDate();
 
-if(!tip) return;
+dailyTip.textContent =
 
-const today=new Date().getDate();
-
-tip.textContent=dailyTips[today%dailyTips.length];
+tips[day % tips.length];
 
 }
 
-/* ==========================================
-   CONTINUE READING
-========================================== */
+/*=========================================
+CONTINUE READING
+=========================================*/
 
 function loadContinueReading(){
 
-const card=document.getElementById("continueCard");
+const lastSurah =
+localStorage.getItem("lastSurah");
 
-const text=document.getElementById("continueText");
+const lastAyah =
+localStorage.getItem("lastAyah");
 
-if(!card||!text) return;
+if(lastSurah){
 
-const surah=localStorage.getItem("lastSurah");
+continueCard.style.display = "flex";
 
-const ayah=localStorage.getItem("lastAyah");
+continueText.textContent =
 
-if(surah){
+`Surah ${lastSurah} • Ayah ${lastAyah || 1}`;
 
-card.style.display="flex";
+continueCard.onclick = ()=>{
 
-text.textContent=`Continue Surah ${surah} • Ayah ${ayah||1}`;
+location.href=
 
-card.onclick=()=>{
-
-location.href="pages/quran.html";
+`pages/quran.html?surah=${lastSurah}&ayah=${lastAyah || 1}`;
 
 };
 
@@ -571,15 +717,9 @@ location.href="pages/quran.html";
 
 }
 
-/* ==========================================
-   START EVERYTHING
-========================================== */
-
-window.addEventListener("load",()=>{
-
-loadPrayerTimes();
-
-loadLocation();
+/*=========================================
+START DAILY CONTENT
+=========================================*/
 
 loadDailyAyah();
 
@@ -588,5 +728,177 @@ loadDailyHadith();
 loadDailyTip();
 
 loadContinueReading();
+/*=========================================
+PART 5
+FINAL POLISH
+=========================================*/
+
+/*=========================================
+RIPPLE EFFECT
+=========================================*/
+
+document.querySelectorAll("button").forEach(button=>{
+
+    button.addEventListener("click",function(e){
+
+        const ripple=document.createElement("span");
+
+        ripple.className="rippleEffect";
+
+        const size=Math.max(
+            this.clientWidth,
+            this.clientHeight
+        );
+
+        ripple.style.width=size+"px";
+        ripple.style.height=size+"px";
+
+        const rect=this.getBoundingClientRect();
+
+        ripple.style.left=
+            (e.clientX-rect.left-size/2)+"px";
+
+        ripple.style.top=
+            (e.clientY-rect.top-size/2)+"px";
+
+        this.appendChild(ripple);
+
+        setTimeout(()=>{
+
+            ripple.remove();
+
+        },650);
+
+    });
 
 });
+
+/*=========================================
+ACTIVE NAVIGATION
+=========================================*/
+
+document.querySelectorAll(".bottomNav button")
+.forEach(button=>{
+
+    button.addEventListener("click",function(){
+
+        document
+        .querySelectorAll(".bottomNav button")
+        .forEach(btn=>{
+
+            btn.classList.remove("active");
+
+        });
+
+        this.classList.add("active");
+
+    });
+
+});
+
+/*=========================================
+PAGE VISIBILITY
+Refresh prayer countdown
+=========================================*/
+
+document.addEventListener(
+
+    "visibilitychange",
+
+    ()=>{
+
+        if(!document.hidden){
+
+            updateCountdown();
+
+        }
+
+    }
+
+);
+
+/*=========================================
+REFRESH EVERY MINUTE
+=========================================*/
+
+setInterval(()=>{
+
+    if(typeof updateCountdown==="function"){
+
+        updateCountdown();
+
+    }
+
+},60000);
+
+/*=========================================
+SAVE LAST VISIT
+=========================================*/
+
+localStorage.setItem(
+
+    "lastVisit",
+
+    new Date().toISOString()
+
+);
+
+/*=========================================
+WELCOME MESSAGE
+=========================================*/
+
+const lastVisit=
+
+localStorage.getItem("lastVisit");
+
+if(lastVisit){
+
+console.log(
+
+"Last visit:",
+
+new Date(lastVisit)
+
+);
+
+}
+
+/*=========================================
+SERVICE WORKER
+=========================================*/
+
+if("serviceWorker" in navigator){
+
+window.addEventListener("load",()=>{
+
+navigator.serviceWorker.register("sw.js")
+
+.then(()=>{
+
+console.log("Service Worker Registered");
+
+})
+
+.catch(error=>{
+
+console.log(error);
+
+});
+
+});
+
+}
+
+/*=========================================
+APP VERSION
+=========================================*/
+
+console.log(
+
+"Muslim Bro Home Loaded Successfully"
+
+);
+
+/*=========================================
+END OF HOME.JS
+=========================================*/
