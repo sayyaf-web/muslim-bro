@@ -11,24 +11,34 @@
 
 <meta name="theme-color" content="#0B8457">
 
+<meta name="description" content="Your complete Islamic companion.">
+
 <link rel="manifest" href="manifest.json">
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="home.css">
 
 </head>
 
 <body>
+
+<!-- ========================================= -->
+<!-- LOADING SCREEN -->
+<!-- ========================================= -->
+
 <div id="loadingScreen">
 
 <div class="loaderCircle"></div>
 
 <h1>☪ Muslim Bro</h1>
 
+<p>Loading your Islamic companion...</p>
+
 </div>
 
 <div id="connectionStatus"></div>
+
 <!-- ========================================= -->
-<!-- PREMIUM HERO -->
+<!-- HERO -->
 <!-- ========================================= -->
 
 <header class="hero">
@@ -40,34 +50,30 @@
 <div class="heroTop">
 
 <button class="menuBtn">
-
 ☰
-
 </button>
 
 <div class="heroGreeting">
 
 <h2 id="greetingText">
-
 Assalamu Alaikum
-
 </h2>
 
 <p id="greetingSub">
-
 May Allah bless your day 🤲
-
 </p>
 
 </div>
 
 <button class="notificationBtn">
-
 🔔
-
 </button>
 
 </div>
+
+<!-- ========================================= -->
+<!-- PRAYER CARD -->
+<!-- ========================================= -->
 
 <section class="premiumPrayerCard">
 
@@ -75,16 +81,10 @@ May Allah bless your day 🤲
 
 <div class="prayerOverlay">
 
-<small>
-
-Next Prayer
-
-</small>
+<small>Next Prayer</small>
 
 <h1 id="dashboardPrayer">
-
 Loading...
-
 </h1>
 
 <div class="countdownWrapper">
@@ -92,27 +92,17 @@ Loading...
 <svg class="progressRing" width="180" height="180">
 
 <circle
-
 class="ringBackground"
-
 cx="90"
-
 cy="90"
-
 r="78">
-
 </circle>
 
 <circle
-
 class="ringProgress"
-
 cx="90"
-
 cy="90"
-
 r="78">
-
 </circle>
 
 </svg>
@@ -120,31 +110,21 @@ r="78">
 <div class="countdownCenter">
 
 <span id="dashboardCountdown">
-
 --:--:--
-
 </span>
 
-<small>
-
-Remaining
-
-</small>
+<small>Remaining</small>
 
 </div>
 
 </div>
 
 <p id="dashboardRemaining">
-
 Calculating...
-
 </p>
 
 <button
-
 class="viewPrayerBtn"
-
 onclick="location.href='pages/prayer.html'">
 
 View Prayer Times →
@@ -155,54 +135,40 @@ View Prayer Times →
 
 </div>
 
+<!-- ========================================= -->
+<!-- SIDE INFO -->
+<!-- ========================================= -->
+
 <div class="prayerSide">
 
 <div class="hijriBox">
 
 <div>
 
-<small>
-
-Hijri Date
-
-</small>
+<small>Hijri Date</small>
 
 <h3 id="dashboardHijri">
-
 Loading...
-
 </h3>
 
 </div>
 
 <span class="calendarIcon">
-
 📅
-
 </span>
 
 </div>
 
 <div class="heroLocationCard">
 
-<span>
-
-📍
-
-</span>
+<span>📍</span>
 
 <div>
 
-<small>
-
-Location
-
-</small>
+<small>Location</small>
 
 <strong id="dashboardLocation">
-
 Detecting...
-
 </strong>
 
 </div>
@@ -211,24 +177,14 @@ Detecting...
 
 <div class="heroDateCard">
 
-<span>
-
-🗓
-
-</span>
+<span>🗓</span>
 
 <div>
 
-<small>
-
-Today's Date
-
-</small>
+<small>Today's Date</small>
 
 <strong id="dashboardDate">
-
 Loading...
-
 </strong>
 
 </div>
@@ -245,82 +201,50 @@ Loading...
 <!-- MAIN CONTENT -->
 <!-- ========================================= -->
 
-<main class="mainContent"><!-- ========================================= -->
+<main class="mainContent">
+<!-- ========================================= -->
 <!-- CONTINUE READING -->
 <!-- ========================================= -->
 
 <section class="dashboardSection">
 
-<div
-class="continueReadingCard"
-id="continueCard"
-style="display:none;">
+<div id="continueCard" class="continueReadingCard" style="display:none;">
 
-<div class="continueIcon">
-
-📖
-
-</div>
+<div class="continueIcon">📖</div>
 
 <div class="continueContent">
 
-<h3>
+<h3>Continue Reading</h3>
 
-Continue Reading
-
-</h3>
-
-<p id="continueText">
-
-Loading...
-
-</p>
+<p id="continueText">Loading...</p>
 
 </div>
 
-<div class="continueArrow">
-
-➜
+<div class="continueArrow">➜</div>
 
 </div>
 
-</div>
+</section>
 
 <!-- ========================================= -->
-<!-- DAILY PREMIUM WIDGETS -->
+<!-- DAILY WIDGETS -->
 <!-- ========================================= -->
 
 <section id="premiumWidgets">
 
 <div class="premiumWidget">
 
-<h3>
+<h3>🌙 Daily Inspiration</h3>
 
-🌙 Daily Inspiration
+<p>Indeed, with hardship comes ease.</p>
 
-</h3>
-
-<p>
-
-Indeed, with hardship comes ease.
-
-</p>
-
-<small>
-
-(Qur'an 94:6)
-
-</small>
+<small>Surah Ash-Sharh (94:6)</small>
 
 </div>
 
 <div class="premiumWidget">
 
-<h3>
-
-📿 Daily Dhikr
-
-</h3>
+<h3>📿 Daily Dhikr</h3>
 
 <p>
 
@@ -336,61 +260,47 @@ Allahu Akbar ×34
 
 <div class="premiumWidget">
 
-<h3>
+<h3>🤲 Today's Dua</h3>
 
-🤲 Today's Dua
+<p>رَّبِّ زِدْنِي عِلْمًا</p>
 
-</h3>
-
-<p>
-
-رَّبِّ زِدْنِي عِلْمًا
-
-</p>
-
-<small>
-
-"My Lord, increase me in knowledge."
-
-</small>
+<small>My Lord, increase me in knowledge.</small>
 
 </div>
 
 </section>
 
 <!-- ========================================= -->
-<!-- QUICK ACTION TITLE -->
+<!-- SECTION TITLE -->
 <!-- ========================================= -->
 
 <div class="sectionHeader">
 
-<h2>
+<h2>Explore Muslim Bro</h2>
 
-Explore Muslim Bro
-
-</h2>
-
-<p>
-
-Everything you need for your daily Islamic journey.
-
-</p>
+<p>Everything you need for your daily Islamic journey.</p>
 
 </div>
 
 <!-- ========================================= -->
-<!-- DASHBOARD GRID START -->
+<!-- DAILY TIP -->
 <!-- ========================================= -->
+
 <div class="dailyTipCard">
 
 <h3>💡 Daily Islamic Tip</h3>
 
-<p id="dailyTip">
-Loading...
-</p>
+<p id="dailyTip">Loading...</p>
 
 </div>
-<section class="dashboardGrid"><div class="feature" onclick="location.href='pages/prayer.html'">
+
+<!-- ========================================= -->
+<!-- FEATURE GRID -->
+<!-- ========================================= -->
+
+<section class="dashboardGrid">
+
+<div class="feature" onclick="location.href='pages/prayer.html'">
 
 <div class="featureBadge">LIVE</div>
 
@@ -456,13 +366,15 @@ Loading...
 
 <h3>Daily Ayah</h3>
 
-<p id="ayah">
+<div id="ayah">
 
 Loading...
 
-</p>
+</div>
 
-</div><div class="feature" onclick="location.href='pages/hadith.html'">
+</div>
+
+<div class="feature" onclick="location.href='pages/hadith.html'">
 
 <div class="featureBadge">NEW</div>
 
@@ -498,7 +410,7 @@ Loading...
 
 <h3>Bookmarks</h3>
 
-<p>Your Saved Surahs & Ayahs</p>
+<p>Your Saved Ayahs</p>
 
 </div>
 
@@ -537,18 +449,14 @@ Loading...
 </div>
 
 </section><!-- ========================================= -->
-<!-- ISLAMIC QUOTE SECTION -->
+<!-- ISLAMIC QUOTE -->
 <!-- ========================================= -->
 
 <section class="islamicQuoteSection">
 
 <div class="quoteCard">
 
-<div class="quoteIcon">
-
-☪
-
-</div>
+<div class="quoteIcon">☪</div>
 
 <h2>
 
@@ -556,11 +464,7 @@ Loading...
 
 </h2>
 
-<p>
-
-Surah At-Talaq (65:3)
-
-</p>
+<p>Surah At-Talaq (65:3)</p>
 
 </div>
 
@@ -572,36 +476,24 @@ Surah At-Talaq (65:3)
 
 <section class="quickAccessSection">
 
-<h2>
-
-Quick Access
-
-</h2>
+<h2>Quick Access</h2>
 
 <div class="quickAccessGrid">
 
 <button onclick="location.href='pages/prayer.html'">
-
 🕌 Prayer
-
 </button>
 
 <button onclick="location.href='pages/quran.html'">
-
-📖 Quran
-
+📖 Qur'an
 </button>
 
 <button onclick="location.href='pages/qibla.html'">
-
 🧭 Qibla
-
 </button>
 
 <button onclick="location.href='pages/tasbih.html'">
-
 📿 Tasbih
-
 </button>
 
 </div>
@@ -609,45 +501,38 @@ Quick Access
 </section>
 
 <!-- ========================================= -->
-<!-- DEVELOPER CARD -->
+<!-- DEVELOPER -->
 <!-- ========================================= -->
 
 <section class="developerCard">
 
-<div class="developerAvatar">
+<div class="developerAvatar">👨‍💻</div>
 
-👨‍💻
-
-</div>
-
-<h3>
-
-Developed by Bilal Athman
-
-</h3>
+<h3>Developed by Bilal Athman</h3>
 
 <p>
 
-Muslim Bro is built to help every Muslim strengthen their connection with Allah through prayer, Qur'an, Dhikr, and daily Islamic guidance.
+Muslim Bro is built to help every Muslim strengthen
+their relationship with Allah through Prayer,
+Qur'an, Dhikr and authentic Islamic guidance.
 
 </p>
 
 <p>
 
-May Allah accept this project as Sadaqah Jariyah.
+May Allah accept this project as
+Sadaqah Jariyah.
 
 </p>
 
-<h2>
-
-اللهم آمين
-
-</h2>
+<h2>اللهم آمين</h2>
 
 </section>
 
-</main><!-- ========================================= -->
-<!-- PREMIUM BOTTOM NAVIGATION -->
+</main>
+
+<!-- ========================================= -->
+<!-- BOTTOM NAVIGATION -->
 <!-- ========================================= -->
 
 <nav class="bottomNav">
@@ -655,95 +540,55 @@ May Allah accept this project as Sadaqah Jariyah.
 <button class="active"
 onclick="location.href='index.html'">
 
-<div class="navIcon">
+<div class="navIcon">🏠</div>
 
-🏠
-
-</div>
-
-<span>
-
-Home
-
-</span>
+<span>Home</span>
 
 </button>
 
 <button
 onclick="location.href='pages/quran.html'">
 
-<div class="navIcon">
+<div class="navIcon">📖</div>
 
-📖
-
-</div>
-
-<span>
-
-Qur'an
-
-</span>
+<span>Qur'an</span>
 
 </button>
 
 <button
 onclick="location.href='pages/prayer.html'">
 
-<div class="navIcon">
+<div class="navIcon">🕌</div>
 
-🕌
-
-</div>
-
-<span>
-
-Prayer
-
-</span>
+<span>Prayer</span>
 
 </button>
 
 <button
 onclick="location.href='pages/qibla.html'">
 
-<div class="navIcon">
+<div class="navIcon">🧭</div>
 
-🧭
-
-</div>
-
-<span>
-
-Qibla
-
-</span>
+<span>Qibla</span>
 
 </button>
 
 <button
 onclick="location.href='pages/settings.html'">
 
-<div class="navIcon">
+<div class="navIcon">⚙️</div>
 
-⚙️
-
-</div>
-
-<span>
-
-Settings
-
-</span>
+<span>Settings</span>
 
 </button>
 
 </nav>
 
 <!-- ========================================= -->
-<!-- JAVASCRIPT -->
+<!-- HOME SCRIPT -->
 <!-- ========================================= -->
 
-<script src="app.js"></script>
+<script src="home.js"></script>
 
 </body>
 
