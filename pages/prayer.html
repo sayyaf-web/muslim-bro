@@ -4,108 +4,531 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prayer Times • Muslim Bro</title>
 
-<title>Prayer Times - Muslim Bro</title>
+<meta name="theme-color"
+content="#0B8457">
 
-<link rel="stylesheet" href="prayer.css">
+<link rel="manifest"
+href="../manifest.json">
+
+<link rel="icon"
+href="../icons/icon-192.png">
+
+<link rel="stylesheet"
+href="../css/prayer.css">
 
 </head>
 
 <body>
 
-<div class="container">
+<!-- Loading Screen -->
 
-<h2>🕌 Prayer Times</h2>
+<div id="loadingScreen">
 
-<p id="location">Detecting location...</p>
+<div class="loaderCircle"></div>
 
-<div id="today"></div>
-
-<div class="card">
-
-<div class="row">
-<span>🌅 Fajr</span>
-<span id="fajr">--:--</span>
-</div>
-
-<div class="row">
-<span>☀️ Dhuhr</span>
-<span id="dhuhr">--:--</span>
-</div>
-
-<div class="row">
-<span>🌇 Asr</span>
-<span id="asr">--:--</span>
-</div>
-
-<div class="row">
-<span>🌆 Maghrib</span>
-<span id="maghrib">--:--</span>
-</div>
-
-<div class="row">
-<span>🌙 Isha</span>
-<span id="isha">--:--</span>
-</div>
+<h1>🕌 Prayer Times</h1>
 
 </div>
 
-<h3 id="nextPrayer"></h3>
+<!-- Connection Banner -->
 
-<div class="adhan-settings">
+<div id="connectionStatus"></div>
 
-<label for="adhanVoice">
-🎙 Choose Adhan Voice
-</label>
+<!-- ===================================== -->
 
-<select id="adhanVoice" onchange="changeAdhan()">
+<header class="pageHeader">
 
-<option value="adhan">🔊 Default Adhan</option>
+<div class="topBar">
 
-<option value="makkah">🕋 Makkah</option>
+<button
+class="backBtn"
+onclick="history.back()">
 
-<option value="madinah">🕌 Madinah</option>
+←
 
-<option value="istanbul">🇹🇷 Istanbul</option>
-
-<option value="dubai">🇦🇪 Dubai</option>
-
-<option value="egypt">🇪🇬 Egypt</option>
-
-<option value="pakistan">🇵🇰 Pakistan</option>
-
-<option value="abdulbasit">🎙 Abdul Basit</option>
-
-<option value="aqsa">🕌 Al-Aqsa</option>
-
-<option value="fajr">🌅 Fajr Adhan</option>
-
-</select>
-
-<br><br>
-
-<div class="adhan-buttons">
-
-<button id="testAdhan">
-▶ Preview
 </button>
 
-<button id="stopAdhan">
-⏹ Stop
+<div>
+
+<h2>Prayer Times</h2>
+
+<p>Your daily Salah schedule</p>
+
+</div>
+
+<button
+class="refreshBtn"
+id="refreshPrayer">
+
+↻
+
 </button>
 
 </div>
 
-</div>
+</header>
+
+<!-- ===================================== -->
+
+<section class="heroPrayer">
+
+<div class="heroOverlay">
+
+<small>Next Prayer</small>
+
+<h1 id="nextPrayerName">
+
+Loading...
+
+</h1>
+
+<h2 id="countdown">
+
+--:--:--
+
+</h2>
+
+<p id="remainingText">
+
+Calculating...
+
+</p>
 
 </div>
 
-<script src="prayer.js"></script>
+</section>
 
-<script src="../js/prayerNotifications.js"></script>
+<!-- ===================================== -->
+
+<main class="pageContent">
+<!-- ===================================== -->
+<!-- PRAYER STATUS -->
+<!-- ===================================== -->
+
+<section class="statusSection">
+
+    <div class="countdownCard">
+
+        <div class="progressWrapper">
+
+            <svg
+                class="progressRing"
+                width="220"
+                height="220">
+
+                <circle
+                    class="ringBackground"
+                    cx="110"
+                    cy="110"
+                    r="96">
+                </circle>
+
+                <circle
+                    class="ringProgress"
+                    id="ringProgress"
+                    cx="110"
+                    cy="110"
+                    r="96">
+                </circle>
+
+            </svg>
+
+            <div class="ringCenter">
+
+                <small>Next Prayer</small>
+
+                <h2 id="ringCountdown">
+
+                    --:--:--
+
+                </h2>
+
+                <p id="ringPrayer">
+
+                    Loading...
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===================================== -->
+<!-- LOCATION + DATE -->
+<!-- ===================================== -->
+
+<section class="infoGrid">
+
+    <div class="infoCard">
+
+        <div class="infoIcon">
+
+            📍
+
+        </div>
+
+        <div>
+
+            <small>Location</small>
+
+            <h3 id="userLocation">
+
+                Detecting...
+
+            </h3>
+
+        </div>
+
+    </div>
+
+    <div class="infoCard">
+
+        <div class="infoIcon">
+
+            📅
+
+        </div>
+
+        <div>
+
+            <small>Hijri Date</small>
+
+            <h3 id="hijriDate">
+
+                Loading...
+
+            </h3>
+
+        </div>
+
+    </div>
+
+    <div class="infoCard">
+
+        <div class="infoIcon">
+
+            🗓️
+
+        </div>
+
+        <div>
+
+            <small>Today</small>
+
+            <h3 id="gregorianDate">
+
+                Loading...
+
+            </h3>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===================================== -->
+<!-- TODAY'S PRAYERS -->
+<!-- ===================================== -->
+
+<section class="scheduleCard">
+
+    <div class="sectionHeader">
+
+        <h2>Today's Prayer Times</h2>
+
+        <p>Automatically updated</p>
+
+    </div>
+
+    <div id="prayerList">
+
+        <!-- Filled by prayer.js -->
+
+    </div>
+
+</section>
+<!-- ===================================== -->
+<!-- QUICK ACTIONS -->
+<!-- ===================================== -->
+
+<section class="quickActions">
+
+    <button
+        class="actionCard"
+        onclick="location.href='qibla.html'">
+
+        <div class="actionIcon">🧭</div>
+
+        <div>
+
+            <h3>Qibla Compass</h3>
+
+            <p>Find the direction of the Kaaba</p>
+
+        </div>
+
+    </button>
+
+    <button
+        class="actionCard"
+        onclick="location.href='tasbih.html'">
+
+        <div class="actionIcon">📿</div>
+
+        <div>
+
+            <h3>Digital Tasbih</h3>
+
+            <p>Remember Allah with Dhikr</p>
+
+        </div>
+
+    </button>
+
+</section>
+
+<!-- ===================================== -->
+<!-- DAILY REMINDER -->
+<!-- ===================================== -->
+
+<section class="reminderCard">
+
+    <div class="cardHeader">
+
+        <span>🌙</span>
+
+        <h2>Daily Reminder</h2>
+
+    </div>
+
+    <blockquote id="dailyReminder">
+
+        “Indeed, prayer has been decreed upon the believers
+        at specified times.”
+
+    </blockquote>
+
+    <small>
+
+        Surah An-Nisa (4:103)
+
+    </small>
+
+</section>
+
+<!-- ===================================== -->
+<!-- PRAYER STATISTICS -->
+<!-- ===================================== -->
+
+<section class="statsGrid">
+
+    <div class="statCard">
+
+        <span>🕌</span>
+
+        <h3 id="completedPrayer">
+
+            0
+
+        </h3>
+
+        <p>Completed Today</p>
+
+    </div>
+
+    <div class="statCard">
+
+        <span>⏰</span>
+
+        <h3 id="nextPrayerTime">
+
+            --:--
+
+        </h3>
+
+        <p>Next Prayer</p>
+
+    </div>
+
+    <div class="statCard">
+
+        <span>📅</span>
+
+        <h3 id="currentHijriMonth">
+
+            Loading...
+
+        </h3>
+
+        <p>Hijri Month</p>
+
+    </div>
+
+</section>
+
+<!-- ===================================== -->
+<!-- ISLAMIC QUOTE -->
+<!-- ===================================== -->
+
+<section class="quoteCard">
+
+    <div class="quoteIcon">
+
+        ☪
+
+    </div>
+
+    <p class="quoteArabic">
+
+        إِنَّ مَعَ الْعُسْرِ يُسْرًا
+
+    </p>
+
+    <p class="quoteTranslation">
+
+        Indeed, with hardship comes ease.
+
+    </p>
+
+    <small>
+
+        Surah Ash-Sharh (94:6)
+
+    </small>
+
+</section>
+
+<!-- ===================================== -->
+<!-- BOTTOM NAVIGATION -->
+<!-- ===================================== -->
+
+<nav class="bottomNav">
+
+    <button
+        onclick="location.href='../index.html'">
+
+        <div class="navIcon">🏠</div>
+
+        <span>Home</span>
+
+    </button>
+
+    <button
+        onclick="location.href='quran.html'">
+
+        <div class="navIcon">📖</div>
+
+        <span>Quran</span>
+
+    </button>
+
+    <button class="active">
+
+        <div class="navIcon">🕌</div>
+
+        <span>Prayer</span>
+
+    </button>
+
+    <button
+        onclick="location.href='qibla.html'">
+
+        <div class="navIcon">🧭</div>
+
+        <span>Qibla</span>
+
+    </button>
+
+    <button
+        onclick="location.href='settings.html'">
+
+        <div class="navIcon">⚙️</div>
+
+        <span>Settings</span>
+
+    </button>
+
+</nav>
+<!-- ===================================== -->
+<!-- FLOATING ACTION BUTTON -->
+<!-- ===================================== -->
+
+<button
+    class="fab"
+    onclick="location.href='quran.html'"
+    aria-label="Open Quran">
+
+    📖
+
+</button>
+
+<!-- ===================================== -->
+<!-- OFFLINE MESSAGE -->
+<!-- ===================================== -->
+
+<div id="offlineBanner" class="offlineBanner">
+
+    ⚠️ You are offline. Some features may be unavailable.
+
+</div>
+
+<!-- ===================================== -->
+<!-- LOADING OVERLAY -->
+<!-- ===================================== -->
+
+<div id="pageLoader" class="pageLoader" style="display:none;">
+
+    <div class="loaderCircle"></div>
+
+    <p>Updating Prayer Times...</p>
+
+</div>
+
+<!-- ===================================== -->
+<!-- FOOTER -->
+<!-- ===================================== -->
+
+<footer class="pageFooter">
+
+    <p>
+
+        ﷽
+
+    </p>
+
+    <small>
+
+        Muslim Bro © 2026
+
+    </small>
+
+    <p>
+
+        "Establish prayer for My remembrance."
+        <br>
+        <strong>Surah Taha (20:14)</strong>
+
+    </p>
+
+</footer>
+
+</main>
+
+<!-- ===================================== -->
+<!-- JAVASCRIPT -->
+<!-- ===================================== -->
+
+<script src="../js/prayer.js"></script>
 
 </body>
-
 </html>
