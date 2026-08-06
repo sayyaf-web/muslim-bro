@@ -826,5 +826,27 @@ grid-template-columns:repeat(4,1fr);
 }
 
 }
+.ayahArabic{
+font-size:26px;
+text-align:right;
+direction:rtl;
+line-height:2;
+color:#FFD166;
+font-weight:bold;
+margin-bottom:10px;
+font-family:'Amiri','Noto Naskh Arabic',serif;
+}
 
+.ayahTranslation{
+font-size:15px;
+color:#fff;
+line-height:1.6;
+margin-bottom:8px;
+}
+
+.ayahReference{
+font-size:13px;
+color:#cfcfcf;
+font-style:italic;
+}
 /* End of Muslim Bro Home CSS */
